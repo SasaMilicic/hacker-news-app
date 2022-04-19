@@ -1,11 +1,13 @@
-import './App.css';
-import Header from './Componenets/Header/Header';
+import { StApp } from './style-app';
+import Header from './components/Header/Header';
+import Main from './components/Main/story-page/MainStoryPage';
 
 function App() {
   return (
-    <div className="App">
+    <StApp>
       <Header />
-    </div>
+      <Main />
+    </StApp>
   );
 }
 
