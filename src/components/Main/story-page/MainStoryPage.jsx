@@ -1,4 +1,4 @@
-import { StMain, StHeadline } from '../UI/style-story-page.js';
+import { StMain, StHeadline } from './style-story-page.js';
 
 function Main() {
   return (

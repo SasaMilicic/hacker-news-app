@@ -1,5 +1,5 @@
 import React from 'react';
-import { StHeader } from '../UI/style-header';
+import { StHeader } from './style-header';
 
 function Header() {
   return (
