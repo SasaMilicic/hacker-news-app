@@ -1,4 +1,7 @@
-import { StMain, StHeadline } from './StyleMain';
+import { StMain, StHeadline, StCommDiv } from './StyleMain';
+
+import BtnCloseComm from './../UI/ButtonComments/BtnCloseComm'; // Conditionaly
+import BtnShowComm from './../UI/ButtonComments/BtnShowComm';
 
 function Main() {
   return (
@@ -15,9 +18,11 @@ function Main() {
         </h2>
       </StHeadline>
       <div>
-        <h3> 11 comments </h3>
-
-        <h3> score: 50 </h3>
+        <StCommDiv>
+          <BtnShowComm /> {/* <BtnCloseComm />  **** Conditional**** */}
+          <h3> 10 comments </h3>
+        </StCommDiv>
+        <h3> | score: 38 </h3>
       </div>
     </StMain>
   );

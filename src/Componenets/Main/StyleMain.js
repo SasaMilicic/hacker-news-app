@@ -3,12 +3,11 @@ import styled from 'styled-components';
 export const StMain = styled.main`
   text-align: left;
   color: black;
-  background-color: azure;
+  background-color: #e6e6e6;
   padding: 5px;
 
   div {
     display: flex;
-    column-gap: 20px;
   }
   a {
     color: black;
@@ -19,6 +18,12 @@ export const StMain = styled.main`
   h2 {
     margin: 5px 0;
   }
+`;
+
+export const StCommDiv = styled.div`
+  display: flex;
+  gap: 5px;
+  margin-right: 10px;
 `;
 
 export const StHeadline = styled.div`
