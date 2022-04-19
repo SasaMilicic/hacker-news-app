@@ -1,7 +1,7 @@
 import { StMain, StHeadline, StCommDiv } from './StyleMain';
 
-import BtnCloseComm from './../UI/ButtonComments/BtnCloseComm'; // Conditionaly
-import BtnShowComm from './../UI/ButtonComments/BtnShowComm';
+import BtnCloseComm from './ButtonComments/BtnCloseComm'; // Conditionaly
+import BtnShowComm from './ButtonComments/BtnShowComm';
 
 function Main() {
   return (
