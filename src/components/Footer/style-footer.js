@@ -6,8 +6,10 @@ export const StPageBtns = styled.div`
   display: flex;
   gap: 10px;
 
-  .btnPrevPage,
-  .btnNextPage {
+  button {
     cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
   }
 `;
