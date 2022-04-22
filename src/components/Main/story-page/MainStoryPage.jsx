@@ -1,24 +1,32 @@
-import { StMain, StHeadline } from './style-story-page.js';
+import * as S from './style-story-page.js';
+import { useSelector } from 'react-redux';
 
-function Main() {
+function MainStoryPage() {
+  const {
+    by: author,
+    url: toUrl,
+    title,
+    kids: comments,
+    score,
+  } = useSelector(state => state.topStory.value);
+
   return (
-    <StMain>
-      <StHeadline>
-        <h4> author: azizsaya </h4>
+    <S.Main>
+      <S.Headline>
+        <h4> author: {author} </h4>
         <h2>
-          <a
-            target="_blank"
-            href="https://www.foodunfolded.com/article/why-are-some-egg-yolks-so-orange"
-          >
-            Why Are Some Egg Yolks So Orange?
+          <a target="_blank" rel="noreferrer" href={toUrl}>
+            {title}
           </a>
         </h2>
-      </StHeadline>
+      </S.Headline>
       <div>
-        <h3> 10 comments | score: 38 </h3>
+        <h3>
+          {comments.length} comments | score: {score}
+        </h3>
       </div>
-    </StMain>
+    </S.Main>
   );
 }
 
-export default Main;
+export default MainStoryPage;

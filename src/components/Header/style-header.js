@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StHeader = styled.header`
+export const Header = styled.header`
   font-size: calc(10px + 2vmin);
   color: black;
   padding: 10px;

@@ -1,15 +1,15 @@
-import { StApp } from './style-app';
+import * as S from './style-app';
 import Header from './components/Header/Header';
-import Main from './components/Main/story-page/MainStoryPage';
+import MainStoryPage from './components/Main/story-page/MainStoryPage';
 import Footer from './components/Footer/Footer';
 
 function App() {
   return (
-    <StApp>
+    <S.App>
       <Header />
-      <Main />
+      <MainStoryPage />
       <Footer />
-    </StApp>
+    </S.App>
   );
 }
 

@@ -1,15 +1,15 @@
 import React from 'react';
-import { StHeader } from './style-header';
+import * as S from './style-header';
 
 function Header() {
   return (
-    <StHeader>
+    <S.Header>
       <h1>Hacker News</h1>
       <div>
         <p>story</p>
         <p>comments</p>
       </div>
-    </StHeader>
+    </S.Header>
   );
 }
 
