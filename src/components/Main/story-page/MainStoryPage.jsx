@@ -2,12 +2,12 @@ import { StMain, StHeadline } from './style-story-page.js';
 import { useSelector } from 'react-redux';
 
 function MainStoryPage() {
-  const storiyData = useSelector(state => state.topStory.value);
-  const renderAuthor = useSelector(() => storiyData.by);
-  const renderUrl = useSelector(() => storiyData.url);
-  const renderTitle = useSelector(() => storiyData.title);
-  const renderNumComm = useSelector(() => storiyData.kids.length);
-  const renderScore = useSelector(() => storiyData.score);
+  const storyData = useSelector(state => state.topStory.value);
+  const renderAuthor = useSelector(() => storyData.by);
+  const renderUrl = useSelector(() => storyData.url);
+  const renderTitle = useSelector(() => storyData.title);
+  const renderNumComm = useSelector(() => storyData.kids.length);
+  const renderScore = useSelector(() => storyData.score);
 
   return (
     <StMain>
