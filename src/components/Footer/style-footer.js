@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StPageBtns = styled.div`
+export const ContButttons = styled.div`
   text-align: left;
   padding: 5px;
   display: flex;

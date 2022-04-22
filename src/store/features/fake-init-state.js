@@ -1,6 +1,6 @@
 export const initialState_fake = {
   value: {
-    by: 'F------I------R------S------T - 1',
+    by: 'zigor',
     descendants: 56,
     id: 31084264,
     kids: [
