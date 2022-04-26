@@ -176,5 +176,3 @@ export const initialState = [
     url: 'https://thin.dev/',
   },
 ];
-
-console.log(initialState);
