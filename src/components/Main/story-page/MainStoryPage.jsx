@@ -8,7 +8,7 @@ function MainStoryPage() {
     title,
     kids: comments,
     score,
-  } = useSelector(state => state.topStory.value);
+  } = useSelector(state => state.topStory);
 
   return (
     <S.Main>
