@@ -8,12 +8,29 @@ export const Main = styled.main`
 
   a {
     color: black;
+    text-decoration: none;
+  }
+
+  li {
+    border-bottom: solid 2px black;
+  }
+
+  ul {
+    padding: 10px;
+    list-style-type: none;
+  }
+
+  h1 {
+    text-align: center;
   }
 
   h4,
   h3,
   h2 {
     margin: 5px 0;
+  }
+  span {
+    text-decoration: underline;
   }
 `;
 

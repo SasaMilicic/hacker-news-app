@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { topStoryreducer } from './stories/stories-reducer';
 
 const reducers = combineReducers({
-  topStory: topStoryreducer,
+  topStories: topStoryreducer,
 });
 
 export default reducers;
