@@ -161,18 +161,4 @@ export const initialState = [
     type: 'story',
     url: 'https://www.sciencedirect.com/book/9780128116418/electronics-explained',
   },
-  {
-    by: '_query',
-    descendants: 14,
-    id: 31164799,
-    kids: [
-      31165285, 31166206, 31165404, 31165527, 31165490, 31165473, 31165557,
-    ],
-    score: 71,
-    time: 1650956489,
-    title:
-      'Show HN: thin.dev, back end for making realtime, typesafe React Apps',
-    type: 'story',
-    url: 'https://thin.dev/',
-  },
 ];
