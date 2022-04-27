@@ -2,26 +2,29 @@ import * as S from './style-story-page';
 import { useSelector } from 'react-redux';
 
 function Main() {
-  const state = useSelector(state => state.topStory);
+  const arrTopStories = useSelector(state => state.topStories);
 
-  const listStories = state.map((story, i) => (
-    <li key={i}>
-      <S.Headline>
-        <h4>author: {story.by} </h4>
-        <h2>
-          <a target="_blank" rel="noreferrer" href={story.url}>
-            {i + 1}) <span>{story.title}</span>
-          </a>
-        </h2>
-      </S.Headline>
-      <div>
-        <h3>
-          {story.kids === undefined ? 0 : story.kids.length} comments | score:
-          {story.score}
-        </h3>
-      </div>
-    </li>
-  ));
+  const listStories = arrTopStories.map((story, index) => {
+    const { by: author, id, url, title, score, kids: comments } = story;
+    return (
+      <li key={id}>
+        <S.Headline>
+          <h4>author: {author} </h4>
+          <h2>
+            <a target="_blank" rel="noreferrer" href={url}>
+              {index + 1}) <span>{title}</span>
+            </a>
+          </h2>
+        </S.Headline>
+        <div>
+          <h3>
+            {comments === undefined ? 0 : comments.length} comments | score:
+            {score}
+          </h3>
+        </div>
+      </li>
+    );
+  });
 
   return (
     <S.Main>
