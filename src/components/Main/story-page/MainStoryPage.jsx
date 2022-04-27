@@ -4,9 +4,8 @@ import { useSelector } from 'react-redux';
 function Main() {
   const arrTopStories = useSelector(state => state.topStories);
 
-  const listStories = arrTopStories.map((story, index) => {
-    const { by: author, id, url, title, score, kids: comments } = story;
-    return (
+  const listStories = arrTopStories.map(
+    ({ by: author, id, url, title, score, kids: comments }, index) => (
       <li key={id}>
         <S.Headline>
           <h4>author: {author} </h4>
@@ -23,8 +22,8 @@ function Main() {
           </h3>
         </div>
       </li>
-    );
-  });
+    )
+  );
 
   return (
     <S.Main>
