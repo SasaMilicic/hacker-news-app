@@ -1,9 +1,10 @@
 import * as S from './style-story-page';
 import { useSelector } from 'react-redux';
-import { fromIndex } from './../../Footer/Footer';
 
 function Main() {
-  const arrTopStories = useSelector(state => state.topStories);
+  const stateTopStories = useSelector(state => state.topStories);
+  const arrTopStories = stateTopStories.items;
+  let numArtical = stateTopStories.index + 1;
 
   const listStories = arrTopStories.map(
     ({ by: author, id, url, title, score, kids: comments }, i) => (
@@ -12,8 +13,7 @@ function Main() {
           <h4>author: {author} </h4>
           <h2>
             <a target="_blank" rel="noreferrer" href={url}>
-              {fromIndex + i + 1}) <span>{title}</span>{' '}
-              {/*<== {fromIndex + i + 1} - Currently I haven't better solution, but in real API I have.*/}
+              {numArtical++}) <span>{title}</span>
             </a>
           </h2>
         </S.Headline>

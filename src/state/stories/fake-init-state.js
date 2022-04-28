@@ -1,4 +1,4 @@
-export const initialState = [
+export const items = [
   {
     by: 'ggambetta',
     descendants: 48,

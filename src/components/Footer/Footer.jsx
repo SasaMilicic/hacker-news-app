@@ -13,20 +13,20 @@ const numRenderArticles = 4;
 function Footer() {
   const dispatch = useDispatch();
 
-  const checkPrevPage = () => fromIndex === 0;
-  const checkNextPage = () => {
-    return initialState.length - numRenderArticles < fromIndex;
-  };
+  // const checkPrevPage = () => fromIndex === 0;
+  // const checkNextPage = () => {
+  //   return initialState.length - numRenderArticles < fromIndex;
+  // };
 
   const nextPage = () => {
-    if (checkNextPage()) return;
+    // if (checkNextPage()) return;
     fromIndex = fromIndex + numRenderArticles;
     toIndex = toIndex + numRenderArticles;
     dispatch(actChangePage({ fromIndex, toIndex }));
   };
 
   const prevPage = () => {
-    if (checkPrevPage()) return;
+    // if (checkPrevPage()) return;
     fromIndex = fromIndex - numRenderArticles;
     toIndex = toIndex - numRenderArticles;
     dispatch(actChangePage({ fromIndex, toIndex }));
@@ -34,8 +34,8 @@ function Footer() {
 
   return (
     <S.ContButttons>
-      <ButtonPrevPage onClick={() => prevPage()} />
-      <ButtonNextPage onClick={() => nextPage()} />
+      <ButtonPrevPage onClick={prevPage} />
+      <ButtonNextPage onClick={nextPage} />
     </S.ContButttons>
   );
 }

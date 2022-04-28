@@ -1,14 +1,24 @@
-import { initialState } from './fake-init-state';
+import { items } from './fake-init-state';
+
+const initialState = { items, index: 0 };
 
 //Reducer
 export const topStoryreducer = (
-  state = initialState.slice(0, 4),
+  state = {
+    ...initialState,
+    items: initialState.items.slice(initialState.index, initialState.index + 4),
+  },
   { type, payload }
 ) => {
   switch (type) {
     case 'CHANGE_PAGE':
-      const { fromIndex, toIndex } = payload;
-      return initialState.slice(fromIndex, toIndex);
+      return {
+        ...initialState,
+        items: initialState.items.slice(
+          initialState.index,
+          initialState.index + 4
+        ),
+      };
 
     default:
       return state;
