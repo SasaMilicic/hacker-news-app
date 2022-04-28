@@ -12,11 +12,6 @@ import { useDispatch } from 'react-redux';
 function Footer() {
   const dispatch = useDispatch();
 
-  // const checkPrevPage = () => fromIndex === 0;
-  // const checkNextPage = () => {
-  //   return initialState.length - numRenderArticles < fromIndex;
-  // };
-
   const nextPage = () => {
     dispatch(actIncrementIndex());
     dispatch(actChangePage());
