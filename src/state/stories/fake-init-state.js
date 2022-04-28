@@ -1,6 +1,6 @@
 export const items = [
   {
-    by: 'ggambetta',
+    by: 'ggambetta ----------',
     descendants: 48,
     id: 31151056,
     kids: [
@@ -146,7 +146,7 @@ export const items = [
     url: 'https://skysedge.com/unsmartphones/RUSP/index.html',
   },
   {
-    by: 'teleforce',
+    by: 'teleforce --------------',
     descendants: 34,
     id: 31163871,
     kids: [

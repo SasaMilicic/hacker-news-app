@@ -13,11 +13,23 @@ export const topStoryreducer = (
   switch (type) {
     case 'CHANGE_PAGE':
       return {
-        ...initialState,
-        items: initialState.items.slice(
-          initialState.index,
-          initialState.index + 4
-        ),
+        ...state,
+        items: [...initialState.items.slice(state.index, state.index + 4)],
+      };
+
+    case 'INCREMENT_INDEX':
+      return {
+        ...state,
+        index:
+          state.index + 4 > initialState.items.length
+            ? state.index
+            : state.index + 4,
+      };
+
+    case 'DECREMENT_INDEX':
+      return {
+        ...state,
+        index: state.index === 0 ? state.index : state.index - 4,
       };
 
     default:
@@ -26,9 +38,20 @@ export const topStoryreducer = (
 };
 
 //Actions
-export const actChangePage = pageRange => {
+export const actChangePage = () => {
   return {
     type: 'CHANGE_PAGE',
-    payload: pageRange,
+  };
+};
+
+export const actIncrementIndex = () => {
+  return {
+    type: 'INCREMENT_INDEX',
+  };
+};
+
+export const actDecrementIndex = () => {
+  return {
+    type: 'DECREMENT_INDEX',
   };
 };
