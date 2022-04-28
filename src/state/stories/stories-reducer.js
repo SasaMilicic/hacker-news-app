@@ -15,27 +15,27 @@ export const topStoryreducer = (
   { type, payload }
 ) => {
   switch (type) {
-    case 'CHANGE_PAGE':
+    case 'NEXT_PAGE':
       return {
         ...state,
+        index:
+          state.index + numArticles > initialState.items.length
+            ? state.index
+            : state.index + numArticles,
+
         items: [
           ...initialState.items.slice(state.index, state.index + numArticles),
         ],
       };
 
-    case 'INCREMENT_INDEX':
-      return {
-        ...state,
-        index:
-          state.index + 4 > initialState.items.length
-            ? state.index
-            : state.index + 4,
-      };
-
-    case 'DECREMENT_INDEX':
+    case 'PREV_PAGE':
       return {
         ...state,
         index: state.index === 0 ? state.index : state.index - numArticles,
+
+        items: [
+          ...initialState.items.slice(state.index, state.index + numArticles),
+        ],
       };
 
     default:
@@ -44,20 +44,14 @@ export const topStoryreducer = (
 };
 
 //Actions
-export const actChangePage = () => {
+export const actNextPage = () => {
   return {
-    type: 'CHANGE_PAGE',
+    type: 'NEXT_PAGE',
   };
 };
 
-export const actIncrementIndex = () => {
+export const actPrevPage = () => {
   return {
-    type: 'INCREMENT_INDEX',
-  };
-};
-
-export const actDecrementIndex = () => {
-  return {
-    type: 'DECREMENT_INDEX',
+    type: 'PREV_PAGE',
   };
 };

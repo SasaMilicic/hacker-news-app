@@ -1,6 +1,6 @@
 export const items = [
   {
-    by: 'ggambetta ----------',
+    by: 'ggambetta ----------0',
     descendants: 48,
     id: 31151056,
     kids: [
@@ -16,7 +16,7 @@ export const items = [
     url: 'https://phorhum.github.io/',
   },
   {
-    by: 'davidvarela_us',
+    by: 'davidvarela_us ----------1',
     descendants: 93,
     id: 31162576,
     kids: [
@@ -32,7 +32,7 @@ export const items = [
     url: 'https://www.quantamagazine.org/elegant-six-page-proof-reveals-the-emergence-of-random-structure-20220425/',
   },
   {
-    by: 'strzibny',
+    by: 'strzibny ----------2',
     descendants: 44,
     id: 31153963,
     kids: [
@@ -47,7 +47,7 @@ export const items = [
     url: 'https://nts.strzibny.name/one-year-of-sales/',
   },
   {
-    by: 'robin_reala',
+    by: 'robin_reala ----------3',
     descendants: 186,
     id: 31165505,
     kids: [
@@ -66,7 +66,7 @@ export const items = [
     url: 'https://shkspr.mobi/blog/2020/04/things-i-cant-do-on-macos-which-i-can-do-on-ubuntu/',
   },
   {
-    by: 'Lantt',
+    by: 'Lantt ----------4',
     descendants: 17,
     id: 31163709,
     kids: [
@@ -81,7 +81,7 @@ export const items = [
     url: 'https://quii.gitbook.io/learn-go-with-tests/',
   },
   {
-    by: 'marcobambini',
+    by: 'marcobambini ----------5',
     descendants: 13,
     id: 31092909,
     kids: [31166089, 31166113, 31166063, 31165696, 31166144],
@@ -92,7 +92,7 @@ export const items = [
     url: 'https://arstechnica.com/gaming/2022/04/review-playdate-earns-its-179-price-tag-with-cute-design-memorable-games/',
   },
   {
-    by: 'grunthos',
+    by: 'grunthos ----------6',
     descendants: 1,
     id: 31153453,
     kids: [31166203],
@@ -103,7 +103,7 @@ export const items = [
     url: 'https://vintagetek.org/crt-manufacturing/',
   },
   {
-    by: 'todsacerdoti',
+    by: 'todsacerdoti ----------7',
     descendants: 99,
     id: 31163083,
     kids: [
@@ -121,7 +121,7 @@ export const items = [
     url: 'https://hush-shell.github.io/',
   },
   {
-    by: 'softwaredoug',
+    by: 'softwaredoug ----------8',
     descendants: 32,
     id: 31154926,
     kids: [
@@ -136,7 +136,7 @@ export const items = [
     url: 'https://softwaredoug.com/blog/2022/04/23/start-with-who.html',
   },
   {
-    by: 'revorad',
+    by: 'revorad ----------9',
     descendants: 0,
     id: 31166026,
     score: 5,
@@ -146,8 +146,7 @@ export const items = [
     url: 'https://skysedge.com/unsmartphones/RUSP/index.html',
   },
   {
-    by: 'teleforce --------------',
-    descendants: 34,
+    by: 'teleforce -------------- 10',
     id: 31163871,
     kids: [
       31165318, 31165857, 31166167, 31164795, 31165110, 31165966, 31165058,

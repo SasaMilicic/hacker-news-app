@@ -2,24 +2,18 @@ import React from 'react';
 import * as S from './style-footer';
 import { ReactComponent as ButtonPrevPage } from './svg/arrow-left-square-fill.svg';
 import { ReactComponent as ButtonNextPage } from './svg/arrow-right-square-fill.svg';
-import {
-  actChangePage,
-  actIncrementIndex,
-  actDecrementIndex,
-} from '../../state/stories/stories-reducer';
+import { actNextPage, actPrevPage } from '../../state/stories/stories-reducer';
 import { useDispatch } from 'react-redux';
 
 function Footer() {
   const dispatch = useDispatch();
 
   const nextPage = () => {
-    dispatch(actIncrementIndex());
-    dispatch(actChangePage());
+    dispatch(actNextPage());
   };
 
   const prevPage = () => {
-    dispatch(actDecrementIndex());
-    dispatch(actChangePage());
+    dispatch(actPrevPage());
   };
 
   return (
