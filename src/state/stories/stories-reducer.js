@@ -19,27 +19,25 @@ export const topStoryreducer = (state = firstPage, { type, payload }) => {
 
   switch (type) {
     case 'NEXT_PAGE': {
-      const pageIndex = (state.pageIndex =
+      const pageIndex =
         state.pageIndex + numArticles > initialState.items.length
           ? state.pageIndex
-          : state.pageIndex + numArticles);
+          : state.pageIndex + numArticles;
 
       return {
         ...state,
-        pageIndex,
+        pageIndex: pageIndex,
         items: getItems(state.pageIndex),
       };
     }
 
     case 'PREV_PAGE': {
-      const pageIndex = (state.pageIndex =
-        state.pageIndex === 0
-          ? state.pageIndex
-          : state.pageIndex - numArticles);
+      const pageIndex =
+        state.pageIndex === 0 ? state.pageIndex : state.pageIndex - numArticles;
 
       return {
         ...state,
-        pageIndex,
+        pageIndex: pageIndex,
         items: getItems(state.pageIndex),
       };
     }
