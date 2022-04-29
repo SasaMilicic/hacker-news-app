@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 function Main() {
   const stateTopStories = useSelector(state => state.topStories);
   const arrTopStories = stateTopStories.items;
-  let numArtical = stateTopStories.index + 1;
+  let numArtical = stateTopStories.pageIndex + 1;
 
   const listStories = arrTopStories.map(
     ({ by: author, id, url, title, score, kids: comments }, i) => (
