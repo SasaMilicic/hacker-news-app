@@ -19,27 +19,27 @@ const getNewItems = index => {
 export const topStoryreducer = (state = firstPage, { type, payload }) => {
   switch (type) {
     case 'NEXT_PAGE': {
-      const newNextPageIndex = (state.pageIndex =
+      //////////////////////////////////////////////////////////////////////////
+      const newNextPageIndex =
         state.pageIndex + numArticles > initialState.items.length
           ? state.pageIndex
-          : state.pageIndex + numArticles);
-
+          : state.pageIndex + numArticles;
+      //////////////////////////////////////////////////////////////////////////
       return {
         ...state,
-        newNextPageIndex,
+        pageIndex: newNextPageIndex,
         items: getNewItems(newNextPageIndex),
       };
     }
 
     case 'PREV_PAGE': {
-      const newPrevPageIndex = (state.pageIndex =
-        state.pageIndex === 0
-          ? state.pageIndex
-          : state.pageIndex - numArticles);
-
+      //////////////////////////////////////////////////////////////////////////
+      const newPrevPageIndex =
+        state.pageIndex === 0 ? state.pageIndex : state.pageIndex - numArticles;
+      //////////////////////////////////////////////////////////////////////////
       return {
         ...state,
-        newPrevPageIndex,
+        pageIndex: newPrevPageIndex,
         items: getNewItems(newPrevPageIndex),
       };
     }

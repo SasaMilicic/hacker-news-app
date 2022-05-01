@@ -7,7 +7,7 @@ function Main() {
   let numArtical = stateTopStories.pageIndex + 1;
 
   const listStories = arrTopStories.map(
-    ({ by: author, id, url, title, score, kids: comments }, i) => (
+    ({ by: author, id, url, title, score, kids: comments }) => (
       <li key={id}>
         <S.Headline>
           <h4>author: {author} </h4>
