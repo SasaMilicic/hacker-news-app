@@ -11,51 +11,40 @@ const firstPage = {
   ),
 };
 
+const getNewItems = index => {
+  return initialState.items.slice(index, index + numArticles);
+};
+
 //Reducer
 export const topStoryreducer = (state = firstPage, { type, payload }) => {
-  const getItems = index => {
-    return initialState.items.slice(index, index + numArticles);
-  };
-
   switch (type) {
     case 'NEXT_PAGE': {
-      const pageIndex =
+      const newNextPageIndex = (state.pageIndex =
         state.pageIndex + numArticles > initialState.items.length
           ? state.pageIndex
-          : state.pageIndex + numArticles;
+          : state.pageIndex + numArticles);
 
       return {
         ...state,
-        pageIndex: pageIndex,
-        items: getItems(state.pageIndex),
+        newNextPageIndex,
+        items: getNewItems(newNextPageIndex),
       };
     }
 
     case 'PREV_PAGE': {
-      const pageIndex =
-        state.pageIndex === 0 ? state.pageIndex : state.pageIndex - numArticles;
+      const newPrevPageIndex = (state.pageIndex =
+        state.pageIndex === 0
+          ? state.pageIndex
+          : state.pageIndex - numArticles);
 
       return {
         ...state,
-        pageIndex: pageIndex,
-        items: getItems(state.pageIndex),
+        newPrevPageIndex,
+        items: getNewItems(newPrevPageIndex),
       };
     }
 
     default:
       return state;
   }
-};
-
-//Actions
-export const actNextPage = () => {
-  return {
-    type: 'NEXT_PAGE',
-  };
-};
-
-export const actPrevPage = () => {
-  return {
-    type: 'PREV_PAGE',
-  };
 };
