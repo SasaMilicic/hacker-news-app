@@ -1,4 +1,7 @@
-import { actFetchStoriesSucc, actFetchStoriesReq } from './stories-reducer';
+import {
+  actFetchStoriesReq,
+  actFetchStoriesSucc,
+} from './reducers/stories-reducer';
 
 export const fetchStoriesData = () => async dispatch => {
   dispatch(actFetchStoriesReq());

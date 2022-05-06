@@ -5,9 +5,9 @@ import { ReactComponent as ButtonNextPage } from './svg/arrow-right-square-fill.
 import {
   actNextPage,
   actPrevPage,
-} from '../../state/stories/fake-stories-actions';
+} from '../../state/stories_fake/fake-stories-actions';
 import { useDispatch } from 'react-redux';
-import { fetchStoriesData } from './../../state/fetch_data/fetch-data';
+import { fetchStoriesData } from '../../state/fetch-fun';
 
 function Footer() {
   const dispatch = useDispatch();
