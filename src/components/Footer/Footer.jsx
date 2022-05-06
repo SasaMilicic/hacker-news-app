@@ -14,7 +14,7 @@ function Footer() {
 
   useEffect(() => {
     dispatch(fetchStoriesData());
-  }, [dispatch]);
+  }, []);
 
   return (
     <S.ContButttons>
