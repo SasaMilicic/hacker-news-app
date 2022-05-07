@@ -3,6 +3,20 @@ import {
   actFetchStoriesSucc,
 } from './reducers/stories-reducer';
 
+const fetchDataItemArr = arrID =>
+  Promise.all(
+    arrID.map(async id => {
+      const fetchItem = await fetch(
+        `https://hacker-news.firebaseio.com/v0/item/${id}.json`
+      );
+
+      if (!fetchItem.ok) return;
+
+      const itemData = await fetchItem.json();
+      return itemData;
+    })
+  );
+
 export const fetchStoriesData = () => async dispatch => {
   dispatch(actFetchStoriesReq());
 
@@ -11,7 +25,9 @@ export const fetchStoriesData = () => async dispatch => {
   );
 
   if (!fetchArrStoriesID.ok) return;
-  const responseArrStoriesID = await fetchArrStoriesID.json();
 
-  dispatch(actFetchStoriesSucc(responseArrStoriesID));
+  const responseArrStoriesID = await fetchArrStoriesID.json();
+  const responseArrStoriesData = await fetchDataItemArr(responseArrStoriesID);
+
+  dispatch(actFetchStoriesSucc(responseArrStoriesData));
 };
