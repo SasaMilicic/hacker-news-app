@@ -7,7 +7,7 @@ function Main() {
   const dispatch = useDispatch();
 
   const stateTopStories = useSelector(state => state.stories);
-  const arrTopStories = stateTopStories.items;
+  const arrTopStories = stateTopStories.renderItems;
   const isLoading = stateTopStories.loading;
   let numArticle = stateTopStories.pageIndex + 1;
 
@@ -37,7 +37,7 @@ function Main() {
   );
 
   const renderStories = () => {
-    if (stateTopStories.loading) return <h1>L O A D I N G . . .</h1>;
+    if (isLoading) return <h1>L O A D I N G . . .</h1>;
     return <ul>{listStories}</ul>;
   };
 

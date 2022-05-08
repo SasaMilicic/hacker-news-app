@@ -1,6 +1,6 @@
 const initialState = {
   initItems: [],
-  items: [],
+  renderItems: [],
   loading: false,
   pageIndex: 0,
   numArticles: 4,
@@ -11,6 +11,7 @@ const getNewItems = (initState, index, numArt) => {
 };
 
 export const storiesReducer = (state = initialState, { type, payload }) => {
+  const { initItems, renderItems, pageIndex, numArticles } = state;
   switch (type) {
     /////////////////////////////////////////////////////////////////////////
     case `FETCH_STORIES_REQUEST`:
@@ -27,45 +28,35 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
       };
     /////////////////////////////////////////////////////////////////////////
     case 'START_PAGE': {
-      const startItems = [...state.initItems].slice(0, state.numArticles);
+      const startItems = [...initItems].slice(0, numArticles);
 
       return {
         ...state,
-        items: startItems,
+        renderItems: startItems,
       };
     }
     /////////////////////////////////////////////////////////////////////////
     case 'PREV_PAGE': {
       const newPrevPageIndex =
-        state.pageIndex === 0
-          ? state.pageIndex
-          : state.pageIndex - state.numArticles;
+        pageIndex === 0 ? pageIndex : pageIndex - numArticles;
 
       return {
         ...state,
         pageIndex: newPrevPageIndex,
-        items: getNewItems(
-          state.initItems,
-          newPrevPageIndex,
-          state.numArticles
-        ),
+        renderItems: getNewItems(initItems, newPrevPageIndex, numArticles),
       };
     }
     /////////////////////////////////////////////////////////////////////////
     case 'NEXT_PAGE': {
       const newNextPageIndex =
-        state.pageIndex + state.numArticles >= state.initItems.length
-          ? state.pageIndex
-          : state.pageIndex + state.numArticles;
+        pageIndex + numArticles >= initItems.length
+          ? pageIndex
+          : pageIndex + numArticles;
 
       return {
         ...state,
         pageIndex: newNextPageIndex,
-        items: getNewItems(
-          state.initItems,
-          newNextPageIndex,
-          state.numArticles
-        ),
+        items: getNewItems(initItems, newNextPageIndex, numArticles),
       };
     }
     /////////////////////////////////////////////////////////////////////////

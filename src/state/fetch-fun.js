@@ -27,9 +27,7 @@ export const fetchStoriesData = () => async dispatch => {
   if (!fetchArrStoriesID.ok) return;
 
   let responseArrStoriesID = await fetchArrStoriesID.json();
-
   responseArrStoriesID = responseArrStoriesID.slice(0, 20);
-
   const responseArrStoriesData = await fetchDataItemArr(responseArrStoriesID);
 
   dispatch(actFetchStoriesSucc(responseArrStoriesData));
