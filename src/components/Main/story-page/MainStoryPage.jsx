@@ -5,10 +5,8 @@ import { useEffect } from 'react';
 
 function Main() {
   const dispatch = useDispatch();
-
   const stateTopStories = useSelector(state => state.stories);
-  const arrTopStories = stateTopStories.renderItems;
-  const isLoading = stateTopStories.loading;
+  const { renderItems: arrTopStories, loading: isLoading } = stateTopStories;
   let numArticle = stateTopStories.pageIndex + 1;
 
   useEffect(() => {

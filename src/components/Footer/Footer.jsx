@@ -7,8 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchStoriesData } from '../../state/fetch-fun';
 
 function Footer() {
-  const pageNumber = useSelector(state => state.stories.pageNumber);
-  console.log(pageNumber);
+  const { pageNumber } = useSelector(state => state.stories);
   const dispatch = useDispatch();
 
   useEffect(() => {

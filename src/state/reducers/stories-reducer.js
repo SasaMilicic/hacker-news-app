@@ -13,6 +13,7 @@ const getNewItems = (initState, index, numArt) => {
 
 export const storiesReducer = (state = initialState, { type, payload }) => {
   const { initItems, pageIndex, numArticles } = state;
+
   let { pageNumber } = state;
   switch (type) {
     case `FETCH_STORIES_REQUEST`:
