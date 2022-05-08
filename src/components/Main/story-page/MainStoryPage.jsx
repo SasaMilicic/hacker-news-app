@@ -1,6 +1,6 @@
 import * as S from './style-story-page';
 import { useSelector, useDispatch } from 'react-redux';
-import { actStartPage } from './../../../state/reducers/stories-reducer';
+import { actStartPage } from '../../../state/reducers-actions';
 import { useEffect } from 'react';
 
 function Main() {

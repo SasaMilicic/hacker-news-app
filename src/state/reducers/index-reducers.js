@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { storiesReducer } from './reducers/stories-reducer';
+import { storiesReducer } from './stories-reducer';
 
 const rootReducers = combineReducers({
   stories: storiesReducer,

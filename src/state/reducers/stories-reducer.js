@@ -3,7 +3,7 @@ const initialState = {
   renderItems: [],
   loading: false,
   pageIndex: 0,
-  numArticles: 4,
+  numArticles: 10,
 };
 
 const getNewItems = (initState, index, numArt) => {
@@ -11,22 +11,21 @@ const getNewItems = (initState, index, numArt) => {
 };
 
 export const storiesReducer = (state = initialState, { type, payload }) => {
-  const { initItems, renderItems, pageIndex, numArticles } = state;
+  const { initItems, pageIndex, numArticles } = state;
   switch (type) {
-    /////////////////////////////////////////////////////////////////////////
     case `FETCH_STORIES_REQUEST`:
       return {
         ...state,
         loading: true,
       };
-    /////////////////////////////////////////////////////////////////////////
+
     case `FETCH_STORIES_SUCCESS`:
       return {
         ...state,
         loading: false,
         initItems: payload,
       };
-    /////////////////////////////////////////////////////////////////////////
+
     case 'START_PAGE': {
       const startItems = [...initItems].slice(0, numArticles);
 
@@ -35,7 +34,7 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
         renderItems: startItems,
       };
     }
-    /////////////////////////////////////////////////////////////////////////
+
     case 'PREV_PAGE': {
       const newPrevPageIndex =
         pageIndex === 0 ? pageIndex : pageIndex - numArticles;
@@ -46,7 +45,7 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
         renderItems: getNewItems(initItems, newPrevPageIndex, numArticles),
       };
     }
-    /////////////////////////////////////////////////////////////////////////
+
     case 'NEXT_PAGE': {
       const newNextPageIndex =
         pageIndex + numArticles >= initItems.length
@@ -59,38 +58,8 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
         items: getNewItems(initItems, newNextPageIndex, numArticles),
       };
     }
-    /////////////////////////////////////////////////////////////////////////
+
     default:
       return state;
-    /////////////////////////////////////////////////////////////////////////
   }
-};
-
-export const actFetchStoriesReq = () => {
-  return {
-    type: `FETCH_STORIES_REQUEST`,
-  };
-};
-export const actFetchStoriesSucc = response => {
-  return {
-    type: `FETCH_STORIES_SUCCESS`,
-    payload: response,
-  };
-};
-
-export const actStartPage = () => {
-  return {
-    type: `START_PAGE`,
-  };
-};
-
-export const actNextPage = () => {
-  return {
-    type: 'NEXT_PAGE',
-  };
-};
-export const actPrevPage = () => {
-  return {
-    type: 'PREV_PAGE',
-  };
 };

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const ContButttons = styled.div`
-  text-align: left;
-  padding: 5px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
   gap: 10px;
 
   svg {
