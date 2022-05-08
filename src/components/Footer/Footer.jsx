@@ -3,10 +3,12 @@ import * as S from './style-footer';
 import { ReactComponent as ButtonPrevPage } from './svg/arrow-left-square-fill.svg';
 import { ReactComponent as ButtonNextPage } from './svg/arrow-right-square-fill.svg';
 import { actNextPage, actPrevPage } from '../../state/reducers-actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchStoriesData } from '../../state/fetch-fun';
 
 function Footer() {
+  const pageNumber = useSelector(state => state.stories.pageNumber);
+  console.log(pageNumber);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,6 +18,7 @@ function Footer() {
   return (
     <S.ContButttons>
       <ButtonPrevPage onClick={() => dispatch(actPrevPage())} />
+      <div>{pageNumber}</div>
       <ButtonNextPage onClick={() => dispatch(actNextPage())} />
     </S.ContButttons>
   );

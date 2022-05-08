@@ -3,6 +3,7 @@ const initialState = {
   renderItems: [],
   loading: false,
   pageIndex: 0,
+  pageNumber: 1,
   numArticles: 10,
 };
 
@@ -12,6 +13,7 @@ const getNewItems = (initState, index, numArt) => {
 
 export const storiesReducer = (state = initialState, { type, payload }) => {
   const { initItems, pageIndex, numArticles } = state;
+  let { pageNumber } = state;
   switch (type) {
     case `FETCH_STORIES_REQUEST`:
       return {
@@ -36,26 +38,28 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
     }
 
     case 'PREV_PAGE': {
-      const newPrevPageIndex =
-        pageIndex === 0 ? pageIndex : pageIndex - numArticles;
+      const checkIndex = pageIndex === 0;
+      const newPrevPageIndex = checkIndex ? pageIndex : pageIndex - numArticles;
+      const decrementPage = checkIndex ? pageNumber : pageNumber - 1;
 
       return {
         ...state,
-        pageIndex: newPrevPageIndex,
         renderItems: getNewItems(initItems, newPrevPageIndex, numArticles),
+        pageIndex: newPrevPageIndex,
+        pageNumber: decrementPage,
       };
     }
 
     case 'NEXT_PAGE': {
-      const newNextPageIndex =
-        pageIndex + numArticles >= initItems.length
-          ? pageIndex
-          : pageIndex + numArticles;
+      const checkIndex = pageIndex + numArticles >= initItems.length;
+      const newNextPageIndex = checkIndex ? pageIndex : pageIndex + numArticles;
+      const incrementPage = checkIndex ? pageNumber : pageNumber + 1;
 
       return {
         ...state,
+        renderItems: getNewItems(initItems, newNextPageIndex, numArticles),
         pageIndex: newNextPageIndex,
-        items: getNewItems(initItems, newNextPageIndex, numArticles),
+        pageNumber: incrementPage,
       };
     }
 
