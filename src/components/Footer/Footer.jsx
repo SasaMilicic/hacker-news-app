@@ -2,10 +2,7 @@ import React, { useEffect } from 'react';
 import * as S from './style-footer';
 import { ReactComponent as ButtonPrevPage } from './svg/arrow-left-square-fill.svg';
 import { ReactComponent as ButtonNextPage } from './svg/arrow-right-square-fill.svg';
-import {
-  actNextPage,
-  actPrevPage,
-} from '../../state/stories_fake/fake-stories-actions';
+import { actNextPage, actPrevPage } from '../../state/reducers/stories-reducer';
 import { useDispatch } from 'react-redux';
 import { fetchStoriesData } from '../../state/fetch-fun';
 
@@ -14,7 +11,7 @@ function Footer() {
 
   useEffect(() => {
     dispatch(fetchStoriesData());
-  });
+  }, []);
 
   return (
     <S.ContButttons>
