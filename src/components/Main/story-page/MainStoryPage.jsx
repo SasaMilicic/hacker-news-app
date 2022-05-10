@@ -1,19 +1,20 @@
 import * as S from './style-story-page';
 import { useSelector, useDispatch } from 'react-redux';
-import { actStartPage } from '../../../state/reducers-actions';
+import { fetchStoriesData } from '../../../state/fetch-fun';
 import { useEffect } from 'react';
 
 function Main() {
   const dispatch = useDispatch();
-  const stateTopStories = useSelector(state => state.stories);
-  const { renderItems: arrTopStories, loading: isLoading } = stateTopStories;
-  let numArticle = stateTopStories.pageIndex + 1;
+
+  const stateTopStories = useSelector((state) => state.stories);
+  const { firstSliceIndex, items, loading: isLoading } = stateTopStories;
+  let numArticle = stateTopStories.firstSliceIndex + 1;
 
   useEffect(() => {
-    dispatch(actStartPage());
-  }, [isLoading]);
+    dispatch(fetchStoriesData());
+  }, [firstSliceIndex]);
 
-  const listStories = arrTopStories.map(
+  const listStories = items.map(
     ({ by: author, id, url, title, score, kids: comments }) => (
       <li key={id}>
         <S.Headline>

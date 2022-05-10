@@ -4,15 +4,10 @@ import { ReactComponent as ButtonPrevPage } from './svg/arrow-left-square-fill.s
 import { ReactComponent as ButtonNextPage } from './svg/arrow-right-square-fill.svg';
 import { actNextPage, actPrevPage } from '../../state/reducers-actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchStoriesData } from '../../state/fetch-fun';
 
 function Footer() {
-  const { pageNumber } = useSelector(state => state.stories);
+  const { pageNumber } = useSelector((state) => state.stories);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchStoriesData());
-  }, []);
 
   return (
     <S.ContButttons>

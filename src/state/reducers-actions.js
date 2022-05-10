@@ -1,9 +1,3 @@
-export const actStartPage = () => {
-  return {
-    type: `START_PAGE`,
-  };
-};
-
 export const actNextPage = () => {
   return {
     type: 'NEXT_PAGE',
@@ -22,7 +16,7 @@ export const actFetchStoriesReq = () => {
   };
 };
 
-export const actFetchStoriesSucc = response => {
+export const actFetchStoriesSucc = (response) => {
   return {
     type: `FETCH_STORIES_SUCCESS`,
     payload: response,
