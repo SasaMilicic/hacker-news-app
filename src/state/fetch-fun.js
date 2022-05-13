@@ -11,7 +11,6 @@ const fetchDataItemArr = (arrID) =>
       const fetchItem = await fetch(
         `https://hacker-news.firebaseio.com/v0/item/${id}.json`
       );
-
       if (!fetchItem.ok) return;
 
       const itemData = await fetchItem.json();
@@ -25,11 +24,9 @@ export const fetchStoriesData = () => async (dispatch) => {
   const fetchArrStoriesID = await fetch(
     'https://hacker-news.firebaseio.com/v0/topstories.json'
   );
-
   if (!fetchArrStoriesID.ok) return;
 
   const responseArrStoriesID = await fetchArrStoriesID.json();
-
   const { firstSliceIndex, numArticles } = store.getState().stories;
   const arrRenderStoriesID = responseArrStoriesID.slice(
     firstSliceIndex,
@@ -37,6 +34,5 @@ export const fetchStoriesData = () => async (dispatch) => {
   );
 
   const responseArrStoriesData = await fetchDataItemArr(arrRenderStoriesID);
-
   dispatch(actFetchStoriesSucc(responseArrStoriesData));
 };

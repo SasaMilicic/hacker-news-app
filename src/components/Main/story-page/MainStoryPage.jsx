@@ -1,18 +1,10 @@
 import * as S from './style-story-page';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchStoriesData } from '../../../state/fetch-fun';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function Main() {
-  const dispatch = useDispatch();
-
   const stateTopStories = useSelector((state) => state.stories);
-  const { firstSliceIndex, items, loading: isLoading } = stateTopStories;
+  const { items, loading: isLoading } = stateTopStories;
   let numArticle = stateTopStories.firstSliceIndex + 1;
-
-  useEffect(() => {
-    dispatch(fetchStoriesData());
-  }, [firstSliceIndex]);
 
   const listStories = items.map(
     ({ by: author, id, url, title, score, kids: comments }) => (

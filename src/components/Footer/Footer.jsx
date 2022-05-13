@@ -1,5 +1,5 @@
 import * as S from './style-footer';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ReactComponent as ButtonPrevPage } from './svg/arrow-left-square-fill.svg';
 import { ReactComponent as ButtonNextPage } from './svg/arrow-right-square-fill.svg';
 import { actNextPage, actPrevPage } from '../../state/reducers-actions';
