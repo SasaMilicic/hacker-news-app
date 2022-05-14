@@ -16,11 +16,13 @@ function App() {
     dispatch(fetchStoriesData(firstSliceIndex, numArticles));
   }, [firstSliceIndex, numArticles]);
 
+  const pageNumber = Math.ceil(firstSliceIndex / numArticles) + 1;
+
   return (
     <S.App>
       <Header />
       <MainStoryPage />
-      <Footer />
+      <Footer pageNumber={pageNumber} />
     </S.App>
   );
 }
