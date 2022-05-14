@@ -1,12 +1,12 @@
 const initialState = {
   items: [],
   isLoading: false,
-  firstSliceIndex: 0,
-  numArticles: 30,
+  firstPageEl: 0,
+  lastPageEl: 30,
 };
 
 export const storiesReducer = (state = initialState, { type, payload }) => {
-  const { items, firstSliceIndex, numArticles } = state;
+  const { items, firstPageEl, lastPageEl } = state;
 
   switch (type) {
     case `FETCH_STORIES_REQUEST`:
@@ -23,26 +23,26 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
       };
 
     case 'PREV_PAGE': {
-      const checkIndex = firstSliceIndex === 0;
-      const newPrevPageIndex = checkIndex
-        ? firstSliceIndex
-        : firstSliceIndex - numArticles;
+      const checkFirstPageEl = firstPageEl === 0;
+      const newFirstPageEl = checkFirstPageEl
+        ? firstPageEl
+        : firstPageEl - lastPageEl;
 
       return {
         ...state,
-        firstSliceIndex: newPrevPageIndex,
+        firstPageEl: newFirstPageEl,
       };
     }
 
     case 'NEXT_PAGE': {
-      const checkIndex = items.length < numArticles;
-      const newNextPageIndex = checkIndex
-        ? firstSliceIndex
-        : firstSliceIndex + numArticles;
+      const checkLastPageEl = items.length < lastPageEl;
+      const newFirstPageEl = checkLastPageEl
+        ? firstPageEl
+        : firstPageEl + lastPageEl;
 
       return {
         ...state,
-        firstSliceIndex: newNextPageIndex,
+        firstPageEl: newFirstPageEl,
       };
     }
 

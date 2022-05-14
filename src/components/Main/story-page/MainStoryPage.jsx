@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 function Main() {
   const stateTopStories = useSelector((state) => state.stories);
   const { items, isLoading } = stateTopStories;
-  let numArticle = stateTopStories.firstSliceIndex + 1;
+  let ordinalNumber = stateTopStories.firstPageEl + 1;
 
   const listStories = items.map(
     ({ by: author, id, url, title, score, kids: comments }) => (
@@ -13,7 +13,7 @@ function Main() {
           <h4>author: {author} </h4>
           <h2>
             <a target="_blank" rel="noreferrer" href={url}>
-              {numArticle++}) <span>{title}</span>
+              {ordinalNumber++}) <span>{title}</span>
             </a>
           </h2>
         </S.Headline>

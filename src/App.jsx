@@ -8,15 +8,13 @@ import { getStories } from './state/fetch-fun';
 
 function App() {
   const dispatch = useDispatch();
-  const { firstSliceIndex, numArticles } = useSelector(
-    (state) => state.stories
-  );
+  const { firstPageEl, lastPageEl } = useSelector((state) => state.stories);
 
   useEffect(() => {
-    dispatch(getStories(firstSliceIndex, numArticles));
-  }, [firstSliceIndex, numArticles]);
+    dispatch(getStories(firstPageEl, lastPageEl));
+  }, [firstPageEl, lastPageEl]);
 
-  const pageNumber = Math.ceil(firstSliceIndex / numArticles) + 1;
+  const pageNumber = Math.ceil(firstPageEl / lastPageEl) + 1;
 
   return (
     <S.App>
