@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchStoriesData } from './state/fetch-fun';
 
 function App() {
-  const { firstSliceIndex } = useSelector((state) => state.stories);
   const dispatch = useDispatch();
+  const { firstSliceIndex, numArticles } = useSelector(
+    (state) => state.stories
+  );
 
   useEffect(() => {
-    dispatch(fetchStoriesData());
-  }, [firstSliceIndex]);
+    dispatch(fetchStoriesData(firstSliceIndex, numArticles));
+  }, [firstSliceIndex, numArticles]);
 
   return (
     <S.App>

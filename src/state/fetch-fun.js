@@ -1,5 +1,3 @@
-import { store } from './store';
-
 import {
   actFetchStoriesReq,
   actFetchStoriesSucc,
@@ -18,7 +16,7 @@ const fetchDataItemArr = (arrID) =>
     })
   );
 
-export const fetchStoriesData = () => async (dispatch) => {
+export const fetchStoriesData = (firstSli, numArt) => async (dispatch) => {
   dispatch(actFetchStoriesReq());
 
   const fetchArrStoriesID = await fetch(
@@ -27,10 +25,10 @@ export const fetchStoriesData = () => async (dispatch) => {
   if (!fetchArrStoriesID.ok) return;
 
   const responseArrStoriesID = await fetchArrStoriesID.json();
-  const { firstSliceIndex, numArticles } = store.getState().stories;
+
   const arrRenderStoriesID = responseArrStoriesID.slice(
-    firstSliceIndex,
-    firstSliceIndex + numArticles
+    firstSli,
+    firstSli + numArt
   );
 
   const responseArrStoriesData = await fetchDataItemArr(arrRenderStoriesID);
