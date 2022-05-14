@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 function Main() {
   const stateTopStories = useSelector((state) => state.stories);
-  const { items, loading: isLoading } = stateTopStories;
+  const { items, isLoading } = stateTopStories;
   let numArticle = stateTopStories.firstSliceIndex + 1;
 
   const listStories = items.map(

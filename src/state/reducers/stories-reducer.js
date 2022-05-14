@@ -1,6 +1,6 @@
 const initialState = {
   items: [],
-  loading: false,
+  isLoading: false,
   firstSliceIndex: 0,
   numArticles: 30,
 };
@@ -12,13 +12,13 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
     case `FETCH_STORIES_REQUEST`:
       return {
         ...state,
-        loading: true,
+        isLoading: true,
       };
 
     case `FETCH_STORIES_SUCCESS`:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         items: payload,
       };
 
