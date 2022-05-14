@@ -27,12 +27,11 @@ function Main() {
     )
   );
 
-  const renderStories = () => {
-    if (isLoading) return <h1>L O A D I N G . . .</h1>;
-    return <ul>{listStories}</ul>;
-  };
-
-  return <S.Main>{renderStories()}</S.Main>;
+  return (
+    <S.Main>
+      {isLoading ? <h1>L O A D I N G . . .</h1> : <ul>{listStories}</ul>}
+    </S.Main>
+  );
 }
 
 export default Main;
