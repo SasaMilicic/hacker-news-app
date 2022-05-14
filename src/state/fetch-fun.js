@@ -3,34 +3,30 @@ import {
   actFetchStoriesSucc,
 } from '../state/reducers-actions';
 
-const fetchDataItemArr = (arrID) =>
-  Promise.all(
-    arrID.map(async (id) => {
-      const fetchItem = await fetch(
-        `https://hacker-news.firebaseio.com/v0/item/${id}.json`
-      );
-      if (!fetchItem.ok) return;
+const base_Url = 'https://hacker-news.firebaseio.com/v0';
+const storiesID_Url = `${base_Url}/topstories.json`;
+const item_Url = (itemID) => `${base_Url}/item/${itemID}.json`;
 
-      const itemData = await fetchItem.json();
-      return itemData;
+const getItems = (arrID) =>
+  Promise.all(
+    arrID.map(async (ID) => {
+      const fetchArticle = await fetch(item_Url(ID));
+      if (!fetchArticle.ok) return;
+
+      return await fetchArticle.json();
     })
   );
 
-export const fetchStoriesData = (firstSli, numArt) => async (dispatch) => {
+export const getStories = (firstSli, numArt) => async (dispatch) => {
   dispatch(actFetchStoriesReq());
 
-  const fetchArrStoriesID = await fetch(
-    'https://hacker-news.firebaseio.com/v0/topstories.json'
-  );
-  if (!fetchArrStoriesID.ok) return;
+  const storiesID = await fetch(storiesID_Url);
+  if (!storiesID.ok) return;
 
-  const responseArrStoriesID = await fetchArrStoriesID.json();
+  const renderStoriesID = await storiesID
+    .json()
+    .then((storiesID) => storiesID.slice(firstSli, firstSli + numArt));
 
-  const arrRenderStoriesID = responseArrStoriesID.slice(
-    firstSli,
-    firstSli + numArt
-  );
-
-  const responseArrStoriesData = await fetchDataItemArr(arrRenderStoriesID);
-  dispatch(actFetchStoriesSucc(responseArrStoriesData));
+  const responseStories = await getItems(renderStoriesID);
+  dispatch(actFetchStoriesSucc(responseStories));
 };

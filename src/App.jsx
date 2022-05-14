@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import MainStoryPage from './components/Main/story-page/MainStoryPage';
 import Footer from './components/Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchStoriesData } from './state/fetch-fun';
+import { getStories } from './state/fetch-fun';
 
 function App() {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ function App() {
   );
 
   useEffect(() => {
-    dispatch(fetchStoriesData(firstSliceIndex, numArticles));
+    dispatch(getStories(firstSliceIndex, numArticles));
   }, [firstSliceIndex, numArticles]);
 
   const pageNumber = Math.ceil(firstSliceIndex / numArticles) + 1;
