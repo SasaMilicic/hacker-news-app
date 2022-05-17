@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 
 function Main() {
   const stateTopStories = useSelector((state) => state.stories);
-  const { items, isLoading } = stateTopStories;
+  const { stories, storiesRequest } = stateTopStories;
   let ordinalNumber = stateTopStories.firstPageEl + 1;
 
-  const listStories = items.map(
+  const listStories = stories.map(
     ({ by: author, id, url, title, score, kids: comments }) => (
       <li key={id}>
         <StHeadline>
@@ -29,7 +29,7 @@ function Main() {
 
   return (
     <StMain>
-      {isLoading ? <h1>L O A D I N G . . .</h1> : <ul>{listStories}</ul>}
+      {storiesRequest ? <h1>L O A D I N G . . .</h1> : <ul>{listStories}</ul>}
     </StMain>
   );
 }
