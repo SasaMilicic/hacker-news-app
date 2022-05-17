@@ -8,15 +8,17 @@ import { getStories } from './state/fetch-fun';
 
 function App() {
   const dispatch = useDispatch();
-  const { firstPageEl, lastPageEl } = useSelector(
-    (state) => state.stories.pageRange
-  );
+  const {
+    pageRange: { firstPageEl, lastPageEl },
+    NUM_ARTICLES,
+  } = useSelector((state) => state.stories);
 
   useEffect(() => {
     dispatch(getStories(firstPageEl, lastPageEl));
   }, [firstPageEl, lastPageEl]);
 
-  const pageNumber = Math.ceil(firstPageEl / lastPageEl) + 1; // craeteSelector()
+  const pageNumber = Math.ceil(firstPageEl / NUM_ARTICLES) + 1; // craeteSelector()
+  console.log(pageNumber);
 
   return (
     <StApp>

@@ -1,13 +1,15 @@
 const initialState = {
   stories: [],
   storiesRequest: false,
+  NUM_ARTICLES: 30,
   pageRange: { firstPageEl: 0, lastPageEl: 30 },
 };
 
 export const storiesReducer = (state = initialState, { type, payload }) => {
   const {
     stories,
-    pageRange: { firstPageEl, lastPageEl },
+    NUM_ARTICLES,
+    pageRange: { firstPageEl },
   } = state;
 
   switch (type) {
@@ -28,23 +30,34 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
       const checkFirstPageEl = firstPageEl === 0;
       const newFirstPageEl = checkFirstPageEl
         ? firstPageEl
-        : firstPageEl - lastPageEl;
+        : firstPageEl - NUM_ARTICLES;
+      const newLastPageEl = newFirstPageEl + NUM_ARTICLES;
 
       return {
         ...state,
-        firstPageEl: newFirstPageEl,
+        pageRange: {
+          ...state.pageRange,
+          firstPageEl: newFirstPageEl,
+          lastPageEl: newLastPageEl,
+        },
       };
     }
 
     case 'NEXT_PAGE': {
-      const checkLastPageEl = stories.length < lastPageEl;
+      const checkLastPageEl = stories.length < NUM_ARTICLES;
       const newFirstPageEl = checkLastPageEl
         ? firstPageEl
-        : firstPageEl + lastPageEl;
+        : firstPageEl + NUM_ARTICLES;
+      const newLastPageEl = newFirstPageEl + NUM_ARTICLES;
 
       return {
         ...state,
-        firstPageEl: newFirstPageEl,
+        stories: [...initialState.stories],
+        pageRange: {
+          ...state.pageRange,
+          firstPageEl: newFirstPageEl,
+          lastPageEl: newLastPageEl,
+        },
       };
     }
 

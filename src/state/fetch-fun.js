@@ -28,7 +28,7 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
 
   const storyIds = await getStoryIds.json();
 
-  const renderStoryIds = storyIds.slice(seqncStart, seqncStart + seqncEnd);
+  const renderStoryIds = storyIds.slice(seqncStart, seqncEnd);
 
   const responseStories = await getItems(renderStoryIds);
   dispatch(actFetchStoriesSucc(responseStories));
