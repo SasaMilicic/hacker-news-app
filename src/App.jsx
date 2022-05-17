@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import * as S from './style-app';
+import { StApp } from './style-app';
 import Header from './components/Header/Header';
 import MainStoryPage from './components/Main/story-page/MainStoryPage';
 import Footer from './components/Footer/Footer';
@@ -17,11 +17,11 @@ function App() {
   const pageNumber = Math.ceil(firstPageEl / lastPageEl) + 1; // craeteSelector()
 
   return (
-    <S.App>
+    <StApp>
       <Header />
       <MainStoryPage />
       <Footer pageNumber={pageNumber} />
-    </S.App>
+    </StApp>
   );
 }
 

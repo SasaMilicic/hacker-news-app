@@ -3,12 +3,12 @@ import {
   actFetchStoriesSucc,
 } from '../state/reducers-actions';
 
-const base_Url = 'https://hacker-news.firebaseio.com/v0';
-const storiesID_Url = `${base_Url}/topstories.json`;
-const item_Url = (itemID) => `${base_Url}/item/${itemID}.json`;
+const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
+const storiesIdURL = `${BASE_URL}/topstories.json`;
+const itemURL = (itemID) => `${BASE_URL}/item/${itemID}.json`;
 
 const getItem = async (id) => {
-  const fetchArticle = await fetch(item_Url(id));
+  const fetchArticle = await fetch(itemURL(id));
   if (!fetchArticle.ok) return;
 
   return await fetchArticle.json();
@@ -23,7 +23,7 @@ const getItems = (itemIds) => {
 export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   dispatch(actFetchStoriesReq());
 
-  const getStoryIds = await fetch(storiesID_Url);
+  const getStoryIds = await fetch(storiesIdURL);
   if (!getStoryIds.ok) return;
 
   const storyIds = await getStoryIds.json();

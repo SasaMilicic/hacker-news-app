@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const App = styled.main`
+export const StApp = styled.main`
   text-align: center;
   display: flex;
   flex-direction: column;

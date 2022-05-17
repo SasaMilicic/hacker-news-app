@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Main = styled.main`
+export const StMain = styled.main`
   text-align: left;
   color: black;
   background-color: #e6e6e6;
@@ -34,7 +34,7 @@ export const Main = styled.main`
   }
 `;
 
-export const Headline = styled.div`
+export const StHeadline = styled.div`
   display: flex;
   flex-direction: column;
   h4 {
