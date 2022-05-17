@@ -7,26 +7,29 @@ const base_Url = 'https://hacker-news.firebaseio.com/v0';
 const storiesID_Url = `${base_Url}/topstories.json`;
 const item_Url = (itemID) => `${base_Url}/item/${itemID}.json`;
 
-const getItems = (itemsID) =>
-  Promise.all(
-    itemsID.map(async (ID) => {
-      const fetchArticle = await fetch(item_Url(ID));
-      if (!fetchArticle.ok) return;
+const getItem = async (id) => {
+  const fetchArticle = await fetch(item_Url(id));
+  if (!fetchArticle.ok) return;
 
-      return await fetchArticle.json();
-    })
-  );
+  return await fetchArticle.json();
+};
+
+const getItems = (itemIds) => {
+  const itemPromises = itemIds.map(getItem);
+
+  return Promise.all(itemPromises);
+};
 
 export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   dispatch(actFetchStoriesReq());
 
-  const storiesID = await fetch(storiesID_Url);
-  if (!storiesID.ok) return;
+  const getStoryIds = await fetch(storiesID_Url);
+  if (!getStoryIds.ok) return;
 
-  const renderStoriesID = await storiesID
-    .json()
-    .then((storiesID) => storiesID.slice(seqncStart, seqncStart + seqncEnd));
+  const storyIds = await getStoryIds.json();
 
-  const responseStories = await getItems(renderStoriesID);
+  const renderStoryIds = storyIds.slice(seqncStart, seqncStart + seqncEnd);
+
+  const responseStories = await getItems(renderStoryIds);
   dispatch(actFetchStoriesSucc(responseStories));
 };

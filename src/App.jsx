@@ -14,7 +14,7 @@ function App() {
     dispatch(getStories(firstPageEl, lastPageEl));
   }, [firstPageEl, lastPageEl]);
 
-  const pageNumber = Math.ceil(firstPageEl / lastPageEl) + 1;
+  const pageNumber = Math.ceil(firstPageEl / lastPageEl) + 1; // craeteSelector()
 
   return (
     <S.App>
