@@ -8,7 +8,9 @@ import { getStories } from './state/fetch-fun';
 
 function App() {
   const dispatch = useDispatch();
-  const { firstPageEl, lastPageEl } = useSelector((state) => state.stories);
+  const { firstPageEl, lastPageEl } = useSelector(
+    (state) => state.stories.pageRange
+  );
 
   useEffect(() => {
     dispatch(getStories(firstPageEl, lastPageEl));

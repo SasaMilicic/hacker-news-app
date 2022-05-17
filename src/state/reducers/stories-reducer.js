@@ -1,12 +1,14 @@
 const initialState = {
   stories: [],
   storiesRequest: false,
-  firstPageEl: 0,
-  lastPageEl: 30,
+  pageRange: { firstPageEl: 0, lastPageEl: 30 },
 };
 
 export const storiesReducer = (state = initialState, { type, payload }) => {
-  const { stories, firstPageEl, lastPageEl } = state;
+  const {
+    stories,
+    pageRange: { firstPageEl, lastPageEl },
+  } = state;
 
   switch (type) {
     case `FETCH_STORIES_REQUEST`:
