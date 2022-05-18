@@ -1,5 +1,5 @@
 const initialState = {
-  stories: [],
+  storiesData: [],
   storiesRequest: false,
   NUM_ARTICLES: 30,
   pageRange: { firstPageEl: 0, lastPageEl: 30 },
@@ -7,7 +7,7 @@ const initialState = {
 
 export const storiesReducer = (state = initialState, { type, payload }) => {
   const {
-    stories,
+    storiesData,
     NUM_ARTICLES,
     pageRange: { firstPageEl },
   } = state;
@@ -23,7 +23,7 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         storiesRequest: false,
-        stories: payload,
+        storiesData: payload,
       };
 
     case 'PREV_PAGE': {
@@ -44,7 +44,7 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
     }
 
     case 'NEXT_PAGE': {
-      const checkLastPageEl = stories.length < NUM_ARTICLES;
+      const checkLastPageEl = storiesData.length < NUM_ARTICLES;
       const newFirstPageEl = checkLastPageEl
         ? firstPageEl
         : firstPageEl + NUM_ARTICLES;
@@ -52,7 +52,6 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        stories: [...initialState.stories],
         pageRange: {
           ...state.pageRange,
           firstPageEl: newFirstPageEl,

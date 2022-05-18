@@ -1,30 +1,27 @@
 import React, { useEffect } from 'react';
-import { StApp } from './style-app';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from './components/Header/Header';
 import MainStoryPage from './components/Main/story-page/MainStoryPage';
 import Footer from './components/Footer/Footer';
-import { useDispatch, useSelector } from 'react-redux';
+import { StApp } from './style-app';
 import { getStories } from './state/fetch-fun';
+import { selectPageRange } from './state/selectors';
 
 function App() {
   const dispatch = useDispatch();
-  const {
-    pageRange: { firstPageEl, lastPageEl },
-    NUM_ARTICLES,
-  } = useSelector((state) => state.stories);
+  const stories = useSelector((state) => state.stories);
+
+  const pageRange = selectPageRange(stories);
 
   useEffect(() => {
-    dispatch(getStories(firstPageEl, lastPageEl));
-  }, [firstPageEl, lastPageEl]);
-
-  const pageNumber = Math.ceil(firstPageEl / NUM_ARTICLES) + 1; // craeteSelector()
-  console.log(pageNumber);
+    dispatch(getStories(...pageRange));
+  }, [...pageRange]);
 
   return (
     <StApp>
       <Header />
       <MainStoryPage />
-      <Footer pageNumber={pageNumber} />
+      <Footer />
     </StApp>
   );
 }

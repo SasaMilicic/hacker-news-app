@@ -1,10 +1,17 @@
 import { StMain, StHeadline } from './style-story-page';
 import { useSelector } from 'react-redux';
+import {
+  calcOrdinalNumber,
+  selectRequest,
+  selectRenderStories,
+} from '../../../state/selectors';
 
 function Main() {
-  const stateTopStories = useSelector((state) => state.stories);
-  const { stories, storiesRequest } = stateTopStories;
-  let ordinalNumber = stateTopStories.pageRange.firstPageEl + 1;
+  const storiesState = useSelector((state) => state.stories);
+
+  let ordinalNumber = calcOrdinalNumber(storiesState);
+  const isLoading = selectRequest(storiesState);
+  const stories = selectRenderStories(storiesState);
 
   const listStories = stories.map(
     ({ by: author, id, url, title, score, kids: comments }) => (
@@ -29,7 +36,7 @@ function Main() {
 
   return (
     <StMain>
-      {storiesRequest ? <h1>L O A D I N G . . .</h1> : <ul>{listStories}</ul>}
+      {isLoading ? <h1>L O A D I N G . . .</h1> : <ul>{listStories}</ul>}
     </StMain>
   );
 }
