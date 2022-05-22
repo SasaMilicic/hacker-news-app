@@ -14,3 +14,10 @@ export const StHeader = styled.header`
     justify-content: space-evenly;
   }
 `;
+
+export const Error = styled.div`
+  height: 20px;
+  h5 {
+    color: red;
+  }
+`;
