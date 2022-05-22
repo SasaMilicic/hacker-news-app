@@ -1,26 +1,22 @@
-import React, { useEffect } from 'react';
-import * as S from './style-footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { StContButttons } from './style-footer';
 import { ReactComponent as ButtonPrevPage } from './svg/arrow-left-square-fill.svg';
 import { ReactComponent as ButtonNextPage } from './svg/arrow-right-square-fill.svg';
-import {
-  actNextPage,
-  actPrevPage,
-} from '../../state/stories_fake/fake-stories-actions';
-import { useDispatch } from 'react-redux';
-import { fetchStoriesData } from '../../state/fetch-fun';
+import { actNextPage, actPrevPage } from '../../state/reducers-actions';
+import { calcPageNumber } from './../../state/selectors';
 
 function Footer() {
+  const stories = useSelector((state) => state.stories);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchStoriesData());
-  });
+  const pageNumber = calcPageNumber(stories);
 
   return (
-    <S.ContButttons>
+    <StContButttons>
       <ButtonPrevPage onClick={() => dispatch(actPrevPage())} />
+      <div>{pageNumber}</div>
       <ButtonNextPage onClick={() => dispatch(actNextPage())} />
-    </S.ContButttons>
+    </StContButttons>
   );
 }
 

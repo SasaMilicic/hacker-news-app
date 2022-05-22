@@ -1,22 +1,29 @@
-import * as S from './style-story-page';
+import { StMain, StHeadline } from './style-story-page';
 import { useSelector } from 'react-redux';
+import {
+  calcOrdinalNumber,
+  selectRequest,
+  selectRenderStories,
+} from '../../../state/selectors';
 
 function Main() {
-  const stateTopStories = useSelector(state => state.topStories);
-  const arrTopStories = stateTopStories.items;
-  let numArtical = stateTopStories.pageIndex + 1;
+  const storiesState = useSelector((state) => state.stories);
 
-  const listStories = arrTopStories.map(
+  let ordinalNumber = calcOrdinalNumber(storiesState);
+  const isLoading = selectRequest(storiesState);
+  const stories = selectRenderStories(storiesState);
+
+  const listStories = stories.map(
     ({ by: author, id, url, title, score, kids: comments }) => (
       <li key={id}>
-        <S.Headline>
+        <StHeadline>
           <h4>author: {author} </h4>
           <h2>
             <a target="_blank" rel="noreferrer" href={url}>
-              {numArtical++}) <span>{title}</span>
+              {ordinalNumber++}) <span>{title}</span>
             </a>
           </h2>
-        </S.Headline>
+        </StHeadline>
         <div>
           <h3>
             {comments === undefined ? 0 : comments.length} comments | score:
@@ -28,9 +35,9 @@ function Main() {
   );
 
   return (
-    <S.Main>
-      <ul>{listStories}</ul>
-    </S.Main>
+    <StMain>
+      {isLoading ? <h1>L O A D I N G . . .</h1> : <ul>{listStories}</ul>}
+    </StMain>
   );
 }
 
