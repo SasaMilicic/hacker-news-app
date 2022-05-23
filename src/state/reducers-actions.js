@@ -22,3 +22,10 @@ export const actFetchStoriesSucc = (response) => {
     payload: response,
   };
 };
+
+export const actFetchStoriesFail = (response) => {
+  return {
+    type: `FETCH_STORIES_FAILURE`,
+    payload: response,
+  };
+};

@@ -1,6 +1,7 @@
 const initialState = {
   storiesData: [],
   storiesRequest: false,
+  error: null,
   NUM_ARTICLES: 30,
   pageRange: { firstPageEl: 0, lastPageEl: 30 },
 };
@@ -17,6 +18,7 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         storiesRequest: true,
+        error: null,
       };
 
     case `FETCH_STORIES_SUCCESS`:
@@ -24,6 +26,14 @@ export const storiesReducer = (state = initialState, { type, payload }) => {
         ...state,
         storiesRequest: false,
         storiesData: payload,
+      };
+
+    case `FETCH_STORIES_FAILURE`:
+      return {
+        ...state,
+        storiesRequest: false,
+        storiesData: [],
+        error: payload,
       };
 
     case 'PREV_PAGE': {

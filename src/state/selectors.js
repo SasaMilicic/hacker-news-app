@@ -16,3 +16,5 @@ export const selectPageRange = ({ pageRange: { firstPageEl, lastPageEl } }) => {
 };
 
 export const selectRenderStories = ({ storiesData }) => storiesData;
+
+export const selectErrorMessage = ({ error }) => error;

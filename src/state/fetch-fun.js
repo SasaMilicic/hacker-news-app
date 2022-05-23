@@ -1,6 +1,7 @@
 import {
   actFetchStoriesReq,
   actFetchStoriesSucc,
+  actFetchStoriesFail,
 } from '../state/reducers-actions';
 
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
@@ -24,7 +25,14 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   dispatch(actFetchStoriesReq());
 
   const getStoryIds = await fetch(storiesIdURL);
-  if (!getStoryIds.ok) return;
+
+  if (!getStoryIds.ok) {
+    dispatch(
+      actFetchStoriesFail('Something went wrong, please try for few minutes!')
+    );
+
+    return;
+  }
 
   const storyIds = await getStoryIds.json();
 
