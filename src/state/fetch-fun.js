@@ -8,10 +8,10 @@ const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 const STORIES_ID_URL = `${BASE_URL}/topstories.json`;
 const ITEM_URL = (itemID) => `${BASE_URL}/item/${itemID}.json`;
 
-const isDataAvlbl = (items) => {
+const isNotDataAvlbl = (items) => {
   return items.length === 0 || items.every((story) => !story);
 };
-const isEveryStoryAvlbl = (items) => items.some((story) => !story);
+const isNotEveryStoryAvlbl = (items) => items.some((story) => !story);
 
 const errorMessages = {
   msgNoIds: 'Something went wrong, please try for few minutes!',
@@ -43,17 +43,23 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   }
 
   const storyIds = await getStoryIds.json();
+
   const renderStoryIds = storyIds.slice(seqncStart, seqncEnd);
   let responseStories = await getItems(renderStoryIds);
 
-  if (isDataAvlbl(responseStories)) {
+  if (isNotDataAvlbl(responseStories)) {
     dispatch(actFetchStoriesFail(errorMessages.msgNoData));
     return;
   }
 
-  if (isEveryStoryAvlbl(responseStories)) {
+  if (isNotEveryStoryAvlbl(responseStories)) {
     dispatch(actFetchStoriesFail(errorMessages.msgNoStory));
-    responseStories = responseStories.filter((story) => story);
+    responseStories = responseStories.map((el, indexStory) => {
+      const errorStoryId = storyIds.filter(
+        (el, indexErr) => indexErr === indexStory
+      );
+      return !el ? { id: errorStoryId[0] } : el;
+    });
   }
 
   dispatch(actFetchStoriesSucc(responseStories));

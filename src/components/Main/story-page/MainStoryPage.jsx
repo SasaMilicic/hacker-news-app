@@ -1,4 +1,4 @@
-import { StMain, StHeadline } from './style-story-page';
+import { StMain, StHeadline, StyError } from './style-story-page';
 import { useSelector } from 'react-redux';
 import {
   calcOrdinalNumber,
@@ -13,26 +13,49 @@ function Main() {
   const isLoading = selectRequest(storiesState);
   const stories = selectRenderStories(storiesState);
 
-  const listStories = stories.map(
-    ({ by: author, id, url, title, score, kids: comments }) => (
-      <li key={id}>
-        <StHeadline>
-          <h4>author: {author} </h4>
-          <h2>
-            <a target="_blank" rel="noreferrer" href={url}>
-              {ordinalNumber++}) <span>{title}</span>
-            </a>
-          </h2>
-        </StHeadline>
-        <div>
-          <h3>
-            {comments === undefined ? 0 : comments.length} comments | score:
-            {score}
-          </h3>
-        </div>
-      </li>
-    )
-  );
+  const isStoryEmpty = (element) => {
+    const { id, ...storyElements } = element;
+    return Object.keys(storyElements).length === 0;
+  };
+
+  const listStories = stories.map((story) => {
+    if (isStoryEmpty(story)) {
+      const { id } = story;
+      return (
+        <li key={id}>
+          <StyError>
+            <h4> Some problem with this story... </h4>
+            <h2>
+              {ordinalNumber++}) The Story with ID '{id}' isn't available.
+            </h2>
+            <div>
+              <h3>Please try latter!</h3>
+            </div>
+          </StyError>
+        </li>
+      );
+    } else {
+      const { by: author, id, url, title, score, kids: comments } = story;
+      return (
+        <li key={id}>
+          <StHeadline>
+            <h4>author: {author} </h4>
+            <h2>
+              <a target="_blank" rel="noreferrer" href={url}>
+                {ordinalNumber++}) <span>{title}</span>
+              </a>
+            </h2>
+          </StHeadline>
+          <div>
+            <h3>
+              {comments === undefined ? 0 : comments.length} comments | score:
+              {score}
+            </h3>
+          </div>
+        </li>
+      );
+    }
+  });
 
   return (
     <StMain>

@@ -41,3 +41,12 @@ export const StHeadline = styled.div`
     font-style: italic;
   }
 `;
+
+export const StyError = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: red;
+  h4 {
+    font-style: italic;
+  }
+`;
