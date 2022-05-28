@@ -1,10 +1,10 @@
-import { StMain, StHeadline, StyError } from './style-story-page';
+import { StMain, StHeadline, StyError } from './style-stories';
 import { useSelector } from 'react-redux';
 import {
   calcOrdinalNumber,
   selectRequest,
   selectRenderStories,
-} from '../../../state/selectors';
+} from '../../state/selectors';
 
 function Main() {
   const storiesState = useSelector((state) => state.stories);
