@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { StHeader, Error } from './style-header';
 import { selectErrorMessage } from '../../state/selectors';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const errorMessage = selectErrorMessage(
@@ -12,10 +13,10 @@ function Header() {
     <StHeader>
       <h1>Hacker News</h1>
       <Error>{errorMessage && <h5> {errorMessage}</h5>}</Error>
-      <div>
-        <p>story</p>
-        <p>comments</p>
-      </div>
+      <nav>
+        <Link to="/stories"> stories </Link>
+        <Link to="/comments"> comments </Link>
+      </nav>
     </StHeader>
   );
 }

@@ -9,9 +9,14 @@ export const StHeader = styled.header`
     margin: 0px;
   }
 
-  div {
+  nav {
     display: flex;
     justify-content: space-evenly;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
   }
 `;
 

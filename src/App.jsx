@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Header from './components/header/Header';
-import StoriesArticles from './components/stories/StoriesArticles';
-import StoriesButtons from './components/stories/StoriesButtons';
+import Pages from './pages/Pages';
 import { StApp } from './style-app';
+import { BrowserRouter } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { getStories } from './state/fetch-fun';
 import { selectPageRange } from './state/selectors';
 
@@ -19,9 +19,10 @@ function App() {
 
   return (
     <StApp>
-      <Header />
-      <StoriesArticles />
-      <StoriesButtons />
+      <BrowserRouter>
+        <Header />
+        <Pages />
+      </BrowserRouter>
     </StApp>
   );
 }
