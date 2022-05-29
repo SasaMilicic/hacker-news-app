@@ -19,6 +19,19 @@ const errorMessages = {
   msgNoStory: "Some of stories isn't available!",
 };
 
+const getFilteredStories = (stories, storiesIds) => {
+  const filteredStories = stories.map((item, indexStory) => {
+    if (!item) {
+      return {
+        id: storiesIds.filter((el, indexErr) => indexErr === indexStory),
+      };
+    }
+    return item;
+  });
+
+  return filteredStories;
+};
+
 const getItem = async (id) => {
   const fetchArticle = await fetch(ITEM_URL(id));
   if (!fetchArticle.ok) return;
@@ -54,12 +67,7 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
 
   if (isNotEveryStoryAvlbl(responseStories)) {
     dispatch(actFetchStoriesFail(errorMessages.msgNoStory));
-    responseStories = responseStories.map((el, indexStory) => {
-      const errorStoryId = storyIds.filter(
-        (el, indexErr) => indexErr === indexStory
-      );
-      return !el ? { id: errorStoryId[0] } : el;
-    });
+    responseStories = getFilteredStories(responseStories, storyIds);
   }
 
   dispatch(actFetchStoriesSucc(responseStories));
