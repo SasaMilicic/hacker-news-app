@@ -60,6 +60,10 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   const renderStoryIds = storyIds.slice(seqncStart, seqncEnd);
   let responseStories = await getItems(renderStoryIds);
 
+  const commentsIds = responseStories.map((story) => story.kids);
+
+  console.log(commentsIds);
+
   if (isNotDataAvlbl(responseStories)) {
     dispatch(actFetchStoriesFail(errorMessages.msgNoData));
     return;

@@ -8,7 +8,7 @@ function Pages() {
     <Routes>
       <Route path="/" element={<StoriesPage />} />
       <Route path="/stories" element={<StoriesPage />} />
-      <Route path="/comments" element={<CommentsPage />} />
+      <Route path="/comments/:id" element={<CommentsPage />} />
     </Routes>
   );
 }

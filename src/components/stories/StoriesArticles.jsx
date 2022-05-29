@@ -5,6 +5,7 @@ import {
   selectRequest,
   selectRenderStories,
 } from '../../state/selectors';
+import { Link } from 'react-router-dom';
 
 function Main() {
   const storiesState = useSelector((state) => state.stories);
@@ -47,10 +48,12 @@ function Main() {
             </h2>
           </StHeadline>
           <div>
-            <h3>
-              {comments === undefined ? 0 : comments.length} comments | score:
-              {score}
-            </h3>
+            <Link to={'/comments/' + id}>
+              <h3>
+                {comments === undefined ? 0 : comments.length} comments | score:
+                {score}
+              </h3>
+            </Link>
           </div>
         </li>
       );
