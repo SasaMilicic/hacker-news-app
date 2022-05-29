@@ -4,25 +4,21 @@ export const StHeader = styled.header`
   font-size: calc(10px + 2vmin);
   color: black;
   padding: 10px;
-
-  h1 {
-    margin: 0px;
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-evenly;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: black;
-    text-decoration: none;
   }
 `;
 
 export const Error = styled.div`
   height: 20px;
-  h5 {
+  h4 {
     color: red;
   }
 `;
