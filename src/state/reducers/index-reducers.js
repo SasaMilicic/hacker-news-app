@@ -4,7 +4,7 @@ import { commentReducer } from './comments-reducer';
 
 const rootReducers = combineReducers({
   stories: storiesReducer,
-  comment: commentReducer,
+  comments: commentReducer,
 });
 
 export default rootReducers;

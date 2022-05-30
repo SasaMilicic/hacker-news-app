@@ -4,20 +4,27 @@ import {
   actFetchStoriesFail,
 } from '../reducers-actions';
 
+import {
+  actFetchCommentsReq,
+  actFetchCommentsSucc,
+  actFetchCommentsFail,
+  actFetchStorySucc,
+} from '../reducers-actions';
+
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 const STORIES_ID_URL = `${BASE_URL}/topstories.json`;
 export const ITEM_URL = (itemID) => `${BASE_URL}/item/${itemID}.json`;
-
-const isNotDataAvlbl = (items) => {
-  return items.length === 0 || items.every((story) => !story);
-};
-const isNotEveryStoryAvlbl = (items) => items.some((story) => !story);
 
 const errorMessages = {
   msgNoIds: 'Something went wrong, please try for few minutes!',
   msgNoData: 'Currently No stories available!',
   msgNoStory: "Some of stories isn't available!",
 };
+
+const isNotDataAvlbl = (items) => {
+  return items.length === 0 || items.every((story) => !story);
+};
+const isNotEveryStoryAvlbl = (items) => items.some((story) => !story);
 
 const getFilteredStories = (stories, storiesIds) => {
   const filteredStories = stories.map((item, indexStory) => {
@@ -44,6 +51,28 @@ const getItems = (itemIds) => {
 
   return Promise.all(itemPromises);
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+export const getComments = (id) => async (dispatch) => {
+  dispatch(actFetchCommentsReq());
+
+  const apiStory = await fetch(ITEM_URL(id));
+
+  if (!apiStory.ok) return;
+
+  const responseStory = await apiStory.json();
+  dispatch(actFetchStorySucc(responseStory));
+
+  const commentsIds = responseStory.kids;
+  console.log(commentsIds);
+
+  const responseComments = await getItems(commentsIds);
+  console.log(responseComments);
+  dispatch(actFetchCommentsSucc(responseComments));
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////
 
 export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   dispatch(actFetchStoriesReq());

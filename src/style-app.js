@@ -6,7 +6,7 @@ export const StApp = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 98vh;
+  /* min-height: 98vh; */
 `;
 
 export const GlobalStyle = createGlobalStyle`

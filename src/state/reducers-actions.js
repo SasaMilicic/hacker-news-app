@@ -24,9 +24,9 @@ export const actFetchStoriesReq = actFetchReq('STORIES');
 export const actFetchStoriesSucc = actFetchSucc('STORIES');
 export const actFetchStoriesFail = actFetchFail('STORIES');
 
-export const actFetchCommentReq = actFetchReq('COMMENT');
-export const actFetchCommentSucc = actFetchSucc('COMMENT');
-export const actFetchCommentFail = actFetchFail('COMMENT');
+export const actFetchCommentsReq = actFetchReq('COMMENTS');
+export const actFetchCommentsSucc = actFetchSucc('COMMENTS');
+export const actFetchCommentsFail = actFetchFail('COMMENTS');
 export const actFetchStorySucc = (response) => {
   return {
     type: `FETCH_STORY_SUCCESS`,
