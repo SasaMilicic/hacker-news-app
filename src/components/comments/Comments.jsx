@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComments } from '../../state/fetch/fetch-fun';
 import { StyComments, StyComment, StyReply } from './style-comments';
+import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
+import { Link } from 'react-router-dom';
 
 function Comments() {
   const dispatch = useDispatch();
@@ -21,7 +23,13 @@ function Comments() {
     <StyComments>
       <div>
         <h2>
-          '{title}' <span> {time} </span>
+          <span>
+            <Link to="/stories">
+              <BackButton />
+            </Link>
+            '{title}'
+          </span>
+          {time}
         </h2>
       </div>
 

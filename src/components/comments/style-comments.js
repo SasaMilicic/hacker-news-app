@@ -8,8 +8,16 @@ export const StyComments = styled.div`
     align-items: center;
     justify-content: space-between;
 
+    a {
+      color: black;
+      display: flex;
+    }
+
     span {
-      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-right: 10px;
     }
   }
 `;
