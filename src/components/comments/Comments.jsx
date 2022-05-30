@@ -19,6 +19,8 @@ function Comments() {
     dispatch(getComments(id));
   }, [id]);
 
+  const convertTime = (time) => new Date(time).toUTCString().slice(5, 22);
+
   return (
     <StyComments>
       <div>
@@ -31,14 +33,15 @@ function Comments() {
               '{title}'
             </a>
           </span>
-          {time}
+          {convertTime(time)}
         </h2>
       </div>
 
       {comments.map(({ id, by, text, time, type, kids }) => (
         <StyComment key={id}>
           <h3>
-            {type} by: {by} <span> {time} </span>
+            {type} by: {by}
+            <span>{convertTime(time)}</span>
           </h3>
           <p dangerouslySetInnerHTML={{ __html: text }} />
 
@@ -51,6 +54,17 @@ function Comments() {
 
 export default Comments;
 
-// <a target="_blank" rel="noreferrer" href={url}>
-// {ordinalNumber++}) <span>{title}</span>
-// </a>
+// const [sliceOn, setSliceOn] = useState(false);
+
+// const handleSliceText = () => setSliceOn(!sliceOn);
+
+//     {text && text.length < 150 ? (
+//       <p> {text} </p>
+//     ) : (
+//       <p>
+//         {sliceOn && text}
+//         {!sliceOn && text.slice(0, 150)}...
+//         {sliceOn && <button onClick={handleSliceText}>less</button>}
+//         {!sliceOn && <button onClick={handleSliceText}>more</button>}
+//       </p>
+//     )}
