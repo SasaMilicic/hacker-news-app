@@ -26,6 +26,7 @@ export const StyComments = styled.div`
 export const StyComment = styled.div`
   border-bottom: 2px solid black;
   padding: 5px;
+  color: red;
 
   h3 {
     display: flex;

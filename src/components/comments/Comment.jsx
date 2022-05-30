@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
 import { StyComment, StyReply } from './style-comments';
 
 function Comment({ comment }) {
-  const [activeButton, setActiveButton] = useState(false);
-
   const { by, type, time, text, kids } = comment;
 
   const convertTime = (time) => new Date(time).toUTCString().slice(5, 22);
-  const toggleButton = () => setActiveButton(!activeButton);
 
   return (
     <StyComment>
@@ -18,10 +14,11 @@ function Comment({ comment }) {
       <div>
         {text && text.length > 500 ? (
           <p>
-            <span dangerouslySetInnerHTML={{ __html: text }} />
-
-            {activeButton && <button onClick={toggleButton}> M O R E </button>}
-            {!activeButton && <button onClick={toggleButton}> L E S S</button>}
+            <span
+              dangerouslySetInnerHTML={{
+                __html: text,
+              }}
+            />
           </p>
         ) : (
           <p dangerouslySetInnerHTML={{ __html: text }} />
