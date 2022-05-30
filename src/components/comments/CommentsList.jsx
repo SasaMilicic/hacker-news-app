@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComments } from '../../state/fetch/fetch-fun';
-import { StyComments, StyComment, StyReply } from './style-comments';
+import { StyComments } from './style-comments';
 import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
 import { Link } from 'react-router-dom';
+import Comment from './Comment';
 
 function CommentsList() {
-  const [activeButton, setActiveButton] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -21,7 +21,6 @@ function CommentsList() {
   }, [id]);
 
   const convertTime = (time) => new Date(time).toUTCString().slice(5, 22);
-  const toggleButton = () => setActiveButton(!activeButton);
 
   return (
     <StyComments>
@@ -39,30 +38,8 @@ function CommentsList() {
         </h2>
       </div>
 
-      {comments.map(({ id, by, text, time, type, kids }) => (
-        <StyComment key={id}>
-          <h3>
-            {type} by: {by}
-            <span>{convertTime(time)}</span>
-          </h3>
-          <div>
-            {text && text.length > 500 ? (
-              <p>
-                <span dangerouslySetInnerHTML={{ __html: text }} />
-
-                {activeButton && (
-                  <button onClick={toggleButton}> M O R E </button>
-                )}
-                {!activeButton && (
-                  <button onClick={toggleButton}> L E S S</button>
-                )}
-              </p>
-            ) : (
-              <p dangerouslySetInnerHTML={{ __html: text }} />
-            )}
-          </div>
-          <StyReply>Reply: {kids === undefined ? 0 : kids.length}</StyReply>
-        </StyComment>
+      {comments.map((comment) => (
+        <Comment key={comment.id} comment={comment} />
       ))}
     </StyComments>
   );
