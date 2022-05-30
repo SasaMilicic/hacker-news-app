@@ -11,6 +11,7 @@ export const StyComments = styled.div`
     a {
       color: black;
       display: flex;
+      text-decoration: none;
     }
 
     span {

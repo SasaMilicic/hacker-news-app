@@ -13,7 +13,7 @@ function Comments() {
   const commentsState = useSelector((state) => state.comments);
   const story = commentsState.storyData;
   const comments = commentsState.commentsData;
-  const { title, time } = story;
+  const { title, time, url } = story;
 
   useEffect(() => {
     dispatch(getComments(id));
@@ -27,7 +27,9 @@ function Comments() {
             <Link to="/stories">
               <BackButton />
             </Link>
-            '{title}'
+            <a target="_blank" rel="noreferrer" href={url}>
+              '{title}'
+            </a>
           </span>
           {time}
         </h2>
@@ -48,3 +50,7 @@ function Comments() {
 }
 
 export default Comments;
+
+// <a target="_blank" rel="noreferrer" href={url}>
+// {ordinalNumber++}) <span>{title}</span>
+// </a>
