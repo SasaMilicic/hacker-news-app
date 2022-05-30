@@ -1,12 +1,12 @@
 import React from 'react';
-import Comments from '../components/comments/Comments';
+import CommentsList from '../components/comments/CommentsList';
 import CommentsButton from '../components/comments/CommentsButton';
 import { StyCommentsPage } from './style-pages';
 
 function CommentsPage() {
   return (
     <StyCommentsPage>
-      <Comments />
+      <CommentsList />
       <CommentsButton />
     </StyCommentsPage>
   );

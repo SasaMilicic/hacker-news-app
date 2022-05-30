@@ -6,7 +6,7 @@ import { StyComments, StyComment, StyReply } from './style-comments';
 import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
 import { Link } from 'react-router-dom';
 
-function Comments() {
+function CommentsList() {
   const [activeButton, setActiveButton] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -68,4 +68,4 @@ function Comments() {
   );
 }
 
-export default Comments;
+export default CommentsList;
