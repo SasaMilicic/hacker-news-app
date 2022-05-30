@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComments } from '../../state/fetch/fetch-fun';
+import { StyComments, StyComment, StyReply } from './style-comments';
 
 function Comments() {
   const dispatch = useDispatch();
@@ -9,18 +10,32 @@ function Comments() {
 
   const commentsState = useSelector((state) => state.comments);
   const story = commentsState.storyData;
-  const { title } = story;
-  console.log(story);
-  console.log(title);
+  const comments = commentsState.commentsData;
+  const { title, time } = story;
 
   useEffect(() => {
     dispatch(getComments(id));
   }, [id]);
 
   return (
-    <div>
-      <h1>{title}</h1>
-    </div>
+    <StyComments>
+      <div>
+        <h2>
+          '{title}' <span> {time} </span>
+        </h2>
+      </div>
+
+      {comments.map(({ id, by, text, time, type, kids }) => (
+        <StyComment key={id}>
+          <h3>
+            {type} by: {by} <span> {time} </span>
+          </h3>
+          <p dangerouslySetInnerHTML={{ __html: text }} />
+
+          <StyReply>Reply: {kids === undefined ? 0 : kids.length}</StyReply>
+        </StyComment>
+      ))}
+    </StyComments>
   );
 }
 
