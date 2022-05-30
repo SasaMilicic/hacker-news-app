@@ -27,6 +27,12 @@ export const actFetchStoriesFail = actFetchFail('STORIES');
 export const actFetchCommentReq = actFetchReq('COMMENT');
 export const actFetchCommentSucc = actFetchSucc('COMMENT');
 export const actFetchCommentFail = actFetchFail('COMMENT');
+export const actFetchStorySucc = (response) => {
+  return {
+    type: `FETCH_STORY_SUCCESS`,
+    payload: response,
+  };
+};
 
 //////////////////////////////////////////////////////////////
 

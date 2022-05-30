@@ -2,7 +2,7 @@ import {
   actFetchStoriesReq,
   actFetchStoriesSucc,
   actFetchStoriesFail,
-} from '../state/reducers-actions';
+} from '../reducers-actions';
 
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 const STORIES_ID_URL = `${BASE_URL}/topstories.json`;
@@ -56,9 +56,7 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   }
 
   const storyIds = await getStoryIds.json();
-
   const renderStoryIds = storyIds.slice(seqncStart, seqncEnd);
-
   let responseStories = await getItems(renderStoryIds);
 
   if (isNotDataAvlbl(responseStories)) {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ITEM_URL } from '../../state/fetch-fun';
+import { ITEM_URL } from '../../state/fetch/fetch-fun';
 
 function Comments() {
   const { id } = useParams();

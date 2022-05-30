@@ -1,30 +1,37 @@
 const initialState = {
-  commentData: {},
-  commentRequest: false,
+  storyData: {},
+  commentsData: [],
+  commentsRequest: false,
   error: null,
 };
 
 export const commentReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case `FETCH_COMMENT_REQUEST`:
+    case `FETCH_COMMENTS_REQUEST`:
       return {
         ...state,
         commentsRequest: true,
         error: null,
       };
 
-    case `FETCH_COMMENT_SUCCESS`:
+    case `FETCH_STORY_SUCCESS`:
       return {
         ...state,
-        commentRequest: false,
-        commentData: payload,
+        storyData: payload,
       };
 
-    case `FETCH_COMMENT_FAILURE`:
+    case `FETCH_COMMENTS_SUCCESS`:
       return {
         ...state,
         commentRequest: false,
-        commentData: {},
+        commentsData: payload,
+      };
+
+    case `FETCH_COMMENTS_FAILURE`:
+      return {
+        ...state,
+        commentRequest: false,
+        commentData: [],
         error: payload,
       };
 
