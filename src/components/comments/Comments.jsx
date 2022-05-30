@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComments } from '../../state/fetch/fetch-fun';
@@ -7,6 +7,7 @@ import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
 import { Link } from 'react-router-dom';
 
 function Comments() {
+  const [activeButton, setActiveButton] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -20,6 +21,7 @@ function Comments() {
   }, [id]);
 
   const convertTime = (time) => new Date(time).toUTCString().slice(5, 22);
+  const toggleButton = () => setActiveButton(!activeButton);
 
   return (
     <StyComments>
@@ -43,8 +45,22 @@ function Comments() {
             {type} by: {by}
             <span>{convertTime(time)}</span>
           </h3>
-          <p dangerouslySetInnerHTML={{ __html: text }} />
+          <div>
+            {text && text.length > 500 ? (
+              <p>
+                <span dangerouslySetInnerHTML={{ __html: text }} />
 
+                {activeButton && (
+                  <button onClick={toggleButton}> M O R E </button>
+                )}
+                {!activeButton && (
+                  <button onClick={toggleButton}> L E S S</button>
+                )}
+              </p>
+            ) : (
+              <p dangerouslySetInnerHTML={{ __html: text }} />
+            )}
+          </div>
           <StyReply>Reply: {kids === undefined ? 0 : kids.length}</StyReply>
         </StyComment>
       ))}
@@ -53,18 +69,3 @@ function Comments() {
 }
 
 export default Comments;
-
-// const [sliceOn, setSliceOn] = useState(false);
-
-// const handleSliceText = () => setSliceOn(!sliceOn);
-
-//     {text && text.length < 150 ? (
-//       <p> {text} </p>
-//     ) : (
-//       <p>
-//         {sliceOn && text}
-//         {!sliceOn && text.slice(0, 150)}...
-//         {sliceOn && <button onClick={handleSliceText}>less</button>}
-//         {!sliceOn && <button onClick={handleSliceText}>more</button>}
-//       </p>
-//     )}
