@@ -2,7 +2,7 @@ import { StMain, StyHeadline, StyError, StyCommentBox } from './style-stories';
 import { useSelector } from 'react-redux';
 import {
   calcOrdinalNumber,
-  selectRequest,
+  selectStoryRequest,
   selectRenderStories,
 } from '../../state/selectors';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ function Main() {
   const storiesState = useSelector((state) => state.stories);
 
   let ordinalNumber = calcOrdinalNumber(storiesState);
-  const isLoading = selectRequest(storiesState);
+  const isLoading = selectStoryRequest(storiesState);
   const stories = selectRenderStories(storiesState);
 
   const isStoryEmpty = (element) => {

@@ -10,6 +10,7 @@ import {
   convertTime,
   selectCommentStory,
   selectComments,
+  selectCommRequest,
 } from './../../state/selectors';
 
 function CommentsList() {
@@ -18,7 +19,9 @@ function CommentsList() {
   const { id } = useParams();
 
   const { title, time, url } = selectCommentStory(commentsState);
+  const isLoadingComments = selectCommRequest(commentsState);
   const comments = selectComments(commentsState);
+  console.log(isLoadingComments);
 
   useEffect(() => {
     dispatch(getComments(id));
@@ -26,23 +29,29 @@ function CommentsList() {
 
   return (
     <StyComments>
-      <div>
-        <h2>
-          <span>
-            <Link to="/stories">
-              <BackButton />
-            </Link>
-            <a target="_blank" rel="noreferrer" href={url}>
-              '{title}'
-            </a>
-          </span>
-          {convertTime(time)}
-        </h2>
-      </div>
+      {isLoadingComments ? (
+        <h1> L O A D I N G ! ! !</h1>
+      ) : (
+        <>
+          <div>
+            <h2>
+              <span>
+                <Link to="/stories">
+                  <BackButton />
+                </Link>
+                <a target="_blank" rel="noreferrer" href={url}>
+                  '{title}'
+                </a>
+              </span>
+              {convertTime(time)}
+            </h2>
+          </div>
 
-      {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
-      ))}
+          {comments.map((comment) => (
+            <Comment key={comment.id} comment={comment} />
+          ))}
+        </>
+      )}
     </StyComments>
   );
 }

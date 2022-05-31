@@ -15,7 +15,7 @@ export const calcOrdinalNumber = ({ pageRange: { firstPageEl } }) => {
   return firstPageEl + 1;
 };
 
-export const selectRequest = ({ storiesRequest }) => storiesRequest;
+export const selectStoryRequest = ({ storiesRequest }) => storiesRequest;
 
 export const selectPageRange = ({ pageRange: { firstPageEl, lastPageEl } }) => {
   return [firstPageEl, lastPageEl];
@@ -30,3 +30,5 @@ export const selectErrorMessage = ({ error }) => error;
 export const selectCommentStory = ({ storyData }) => storyData;
 
 export const selectComments = ({ commentsData }) => commentsData;
+
+export const selectCommRequest = ({ commentsRequest }) => commentsRequest;
