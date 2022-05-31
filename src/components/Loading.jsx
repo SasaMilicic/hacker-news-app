@@ -13,6 +13,7 @@ function Loading() {
 export default Loading;
 
 const StyleLoading = styled.div`
+  padding: 150px;
   display: flex;
   align-items: center;
   justify-content: space-around;

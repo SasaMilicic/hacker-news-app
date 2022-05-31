@@ -66,6 +66,7 @@ function Main() {
     }
   });
 
+  // return <StMain>{<Loading />}</StMain>;
   return <StMain>{isLoading ? <Loading /> : <ul>{listStories}</ul>}</StMain>;
 }
 
