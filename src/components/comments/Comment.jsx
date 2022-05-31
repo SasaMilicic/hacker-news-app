@@ -1,15 +1,14 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { StyComment, StyReply } from './style-comments';
 import { ReactComponent as ShowReplyBtn } from '../svg/arrow-down-square.svg';
 import { ReactComponent as BackReplyBtn } from '../svg/arrow-right-square.svg';
+import { convertTime } from './../../state/selectors';
 
 function Comment({ comment }) {
   const { by, type, time, text, kids } = comment;
   const [actCommBtn, setActCommBtn] = useState(false);
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
-
-  const convertTime = (time) => new Date(time).toUTCString().slice(5, 22);
 
   return (
     <StyComment>

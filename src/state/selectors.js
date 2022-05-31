@@ -1,3 +1,9 @@
+export const convertTime = (time) => {
+  return new Date(time).toUTCString().slice(5, 22);
+};
+
+/////////////////////////////////// Stories  ///////////////////////////////////
+
 export const calcPageNumber = ({
   NUM_ARTICLES,
   pageRange: { firstPageEl },
@@ -18,3 +24,9 @@ export const selectPageRange = ({ pageRange: { firstPageEl, lastPageEl } }) => {
 export const selectRenderStories = ({ storiesData }) => storiesData;
 
 export const selectErrorMessage = ({ error }) => error;
+
+/////////////////////////////////// Comments ///////////////////////////////////
+
+export const selectCommentStory = ({ storyData }) => storyData;
+
+export const selectComments = ({ commentsData }) => commentsData;

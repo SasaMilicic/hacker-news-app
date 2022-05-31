@@ -1,26 +1,28 @@
 import React, { useEffect } from 'react';
+import Comment from './Comment';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComments } from '../../state/fetch/fetch-fun';
 import { StyComments } from './style-comments';
 import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
 import { Link } from 'react-router-dom';
-import Comment from './Comment';
+import {
+  convertTime,
+  selectCommentStory,
+  selectComments,
+} from './../../state/selectors';
 
 function CommentsList() {
+  const commentsState = useSelector((state) => state.comments);
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const commentsState = useSelector((state) => state.comments);
-  const story = commentsState.storyData;
-  const comments = commentsState.commentsData;
-  const { title, time, url } = story;
+  const { title, time, url } = selectCommentStory(commentsState);
+  const comments = selectComments(commentsState);
 
   useEffect(() => {
     dispatch(getComments(id));
   }, [id]);
-
-  const convertTime = (time) => new Date(time).toUTCString().slice(5, 22);
 
   return (
     <StyComments>
