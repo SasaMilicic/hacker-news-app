@@ -26,7 +26,6 @@ export const StyComments = styled.div`
 export const StyComment = styled.div`
   border-bottom: 2px solid black;
   padding: 5px;
-  color: red;
 
   h3 {
     display: flex;
@@ -43,4 +42,8 @@ export const StyReply = styled.div`
   font-size: 15px;
   margin-top: 5px;
   font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;

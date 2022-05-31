@@ -1,7 +1,13 @@
+import React, { useState } from 'react';
 import { StyComment, StyReply } from './style-comments';
+import { ReactComponent as ShowReply } from '../svg/arrow-down-square.svg';
+import { ReactComponent as BackReply } from '../svg/arrow-right-square.svg';
 
 function Comment({ comment }) {
   const { by, type, time, text, kids } = comment;
+  const [actCommBtn, setActCommBtn] = useState(false);
+
+  const toggleCommBtns = () => setActCommBtn(!actCommBtn);
 
   const convertTime = (time) => new Date(time).toUTCString().slice(5, 22);
 
@@ -24,7 +30,12 @@ function Comment({ comment }) {
           <p dangerouslySetInnerHTML={{ __html: text }} />
         )}
       </div>
-      <StyReply>Reply: {kids === undefined ? 0 : kids.length}</StyReply>
+      <StyReply>
+        {!actCommBtn && <ShowReply onClick={toggleCommBtns} />}
+        {actCommBtn && <BackReply onClick={toggleCommBtns} />}
+        Reply:
+        {kids === undefined ? 0 : kids.length}
+      </StyReply>
     </StyComment>
   );
 }
