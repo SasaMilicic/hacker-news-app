@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { StyComment, StyReply } from './style-comments';
-import { ReactComponent as ShowReply } from '../svg/arrow-down-square.svg';
-import { ReactComponent as BackReply } from '../svg/arrow-right-square.svg';
+import { ReactComponent as ShowReplyBtn } from '../svg/arrow-down-square.svg';
+import { ReactComponent as BackReplyBtn } from '../svg/arrow-right-square.svg';
 
 function Comment({ comment }) {
   const { by, type, time, text, kids } = comment;
@@ -31,10 +31,18 @@ function Comment({ comment }) {
         )}
       </div>
       <StyReply>
-        {!actCommBtn && <ShowReply onClick={toggleCommBtns} />}
-        {actCommBtn && <BackReply onClick={toggleCommBtns} />}
-        Reply:
-        {kids === undefined ? 0 : kids.length}
+        {kids === undefined ? (
+          <div className="off-button">
+            <ShowReplyBtn />
+            <p> Reply: 0 </p>
+          </div>
+        ) : (
+          <div>
+            {!actCommBtn && <ShowReplyBtn onClick={toggleCommBtns} />}
+            {actCommBtn && <BackReplyBtn onClick={toggleCommBtns} />}
+            <p> Reply: {kids.length} </p>
+          </div>
+        )}
       </StyReply>
     </StyComment>
   );

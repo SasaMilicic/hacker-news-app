@@ -43,7 +43,13 @@ export const StyReply = styled.div`
   margin-top: 5px;
   font-weight: bold;
 
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .off-button {
+    opacity: 0.5;
+  }
 `;
