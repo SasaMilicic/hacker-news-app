@@ -83,9 +83,12 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
     return;
   }
 
-  const storyIds = await getStoryIds.json();
+  // const storyIds = await getStoryIds.json();
+
+  const storyIds = fakeStoryIds;
   const renderStoryIds = storyIds.slice(seqncStart, seqncEnd);
   let responseStories = await getItems(renderStoryIds);
+  console.log(storyIds);
 
   if (isNotDataAvlbl(responseStories)) {
     dispatch(actFetchStoriesFail(errorMessages.msgNoData));
@@ -99,3 +102,10 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
 
   dispatch(actFetchStoriesSucc(responseStories));
 };
+
+const fakeStoryIds = [
+  31569070, 31571566, 31571711, 31567633373, 31569742, 31571763, 31567755,
+  31561780, 31569381, 31566031, 31569646, 31570674, 31558038, 31567345,
+  31554024, 31570112, 31558782, 31556382, 31569934, 31568672, 31558592,
+  31553788,
+];

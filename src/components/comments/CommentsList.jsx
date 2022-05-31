@@ -40,7 +40,7 @@ function CommentsList() {
                   <BackButton />
                 </Link>
                 <a target="_blank" rel="noreferrer" href={url}>
-                  '{title}'
+                  title: '{title}'
                 </a>
               </span>
               {convertTime(time)}

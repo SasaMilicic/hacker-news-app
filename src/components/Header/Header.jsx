@@ -14,7 +14,7 @@ function Header() {
     <StHeader>
       <Link to="/">
         <HomeButton />
-        <h1>Hacker News</h1>
+        <h1> Hacker News - stories </h1>
       </Link>
 
       <Error>{errorMessage && <h4> {errorMessage}</h4>}</Error>
