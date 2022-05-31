@@ -6,6 +6,7 @@ import { getComments } from '../../state/fetch/fetch-fun';
 import { StyComments } from './style-comments';
 import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading';
 import {
   convertTime,
   selectCommentStory,
@@ -30,7 +31,7 @@ function CommentsList() {
   return (
     <StyComments>
       {isLoadingComments ? (
-        <h1> L O A D I N G ! ! !</h1>
+        <Loading />
       ) : (
         <>
           <div>

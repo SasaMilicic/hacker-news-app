@@ -1,4 +1,5 @@
 import { StMain, StyHeadline, StyError, StyCommentBox } from './style-stories';
+import Loading from '../Loading';
 import { ReactComponent as ScoreIcon } from '../svg/hand-thumbs-up-fill.svg';
 import { useSelector } from 'react-redux';
 import {
@@ -65,11 +66,7 @@ function Main() {
     }
   });
 
-  return (
-    <StMain>
-      {isLoading ? <h1>L O A D I N G . . .</h1> : <ul>{listStories}</ul>}
-    </StMain>
-  );
+  return <StMain>{isLoading ? <Loading /> : <ul>{listStories}</ul>}</StMain>;
 }
 
 export default Main;
