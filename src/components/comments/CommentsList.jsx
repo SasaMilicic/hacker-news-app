@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import Comment from './Comment';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getComments } from '../../state/fetch/fetch-fun';
-import { StyComments } from './style-comments';
-import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
-import { Link } from 'react-router-dom';
 import Loading from '../Loading';
+import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
+import { StyComments } from './style-comments';
+import { Link } from 'react-router-dom';
+import { getComments } from '../../state/fetch/fetch-fun';
 import {
   convertTime,
   selectCommentStory,
   selectComments,
   selectCommRequest,
 } from './../../state/selectors';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function CommentsList() {
   const commentsState = useSelector((state) => state.comments);
@@ -22,7 +22,6 @@ function CommentsList() {
   const { title, time, url } = selectCommentStory(commentsState);
   const isLoadingComments = selectCommRequest(commentsState);
   const comments = selectComments(commentsState);
-  console.log(isLoadingComments);
 
   useEffect(() => {
     dispatch(getComments(id));
