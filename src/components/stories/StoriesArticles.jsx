@@ -1,4 +1,4 @@
-import { StMain, StHeadline, StyError } from './style-stories';
+import { StMain, StyHeadline, StyError, StyCommentBox } from './style-stories';
 import { useSelector } from 'react-redux';
 import {
   calcOrdinalNumber,
@@ -39,22 +39,24 @@ function Main() {
       const { by: author, id, url, title, score, kids: comments } = story;
       return (
         <li key={id}>
-          <StHeadline>
+          <StyHeadline>
             <h4>author: {author} </h4>
             <h2>
               <a target="_blank" rel="noreferrer" href={url}>
                 {ordinalNumber++}) <span>{title}</span>
               </a>
             </h2>
-          </StHeadline>
-          <div>
-            <Link to={'/comments/' + id}>
-              <h3>
-                {comments === undefined ? 0 : comments.length} comments | score:
-                {score}
-              </h3>
-            </Link>
-          </div>
+          </StyHeadline>
+          <StyCommentBox>
+            {comments === undefined ? (
+              <button className="off-button"> 0 comments </button>
+            ) : (
+              <button>
+                <Link to={'/comments/' + id}>{comments.length} comments</Link>
+              </button>
+            )}
+            <p> | score: {score} </p>
+          </StyCommentBox>
         </li>
       );
     }

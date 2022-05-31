@@ -65,10 +65,9 @@ export const getComments = (id) => async (dispatch) => {
   dispatch(actFetchStorySucc(responseStory));
 
   const commentsIds = responseStory.kids;
-  console.log(commentsIds);
 
   const responseComments = await getItems(commentsIds);
-  console.log(responseComments);
+
   dispatch(actFetchCommentsSucc(responseComments));
 };
 
