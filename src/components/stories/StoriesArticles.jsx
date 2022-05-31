@@ -1,4 +1,5 @@
 import { StMain, StyHeadline, StyError, StyCommentBox } from './style-stories';
+import { ReactComponent as ScoreIcon } from '../svg/hand-thumbs-up-fill.svg';
 import { useSelector } from 'react-redux';
 import {
   calcOrdinalNumber,
@@ -55,7 +56,9 @@ function Main() {
                 <Link to={'/comments/' + id}>{comments.length} comments</Link>
               </button>
             )}
-            <p> | score: {score} </p>
+            <p>
+              | <ScoreIcon /> {score}
+            </p>
           </StyCommentBox>
         </li>
       );

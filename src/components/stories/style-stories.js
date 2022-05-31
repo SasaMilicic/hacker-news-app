@@ -88,6 +88,7 @@ export const StyCommentBox = styled.div`
 
   p {
     font-weight: 600;
-    font-size: 17px;
+    font-size: 18px;
+    display: flex;
   }
 `;
