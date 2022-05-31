@@ -7,6 +7,11 @@ export const StContButttons = styled.div`
   padding: 5px;
   gap: 10px;
 
+  .off-button {
+    opacity: 0.2;
+    cursor: auto;
+  }
+
   svg {
     cursor: pointer;
   }

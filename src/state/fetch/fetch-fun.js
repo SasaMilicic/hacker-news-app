@@ -83,12 +83,11 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
     return;
   }
 
-  // const storyIds = await getStoryIds.json();
+  const storyIds = await getStoryIds.json();
 
-  const storyIds = fakeStoryIds;
+  // const storyIds = fakeStoryIds;
   const renderStoryIds = storyIds.slice(seqncStart, seqncEnd);
   let responseStories = await getItems(renderStoryIds);
-  console.log(storyIds);
 
   if (isNotDataAvlbl(responseStories)) {
     dispatch(actFetchStoriesFail(errorMessages.msgNoData));

@@ -13,9 +13,19 @@ function Footer() {
 
   return (
     <StContButttons>
-      <ButtonPrevPage onClick={() => dispatch(actPrevPage())} />
+      {pageNumber === 1 ? (
+        <ButtonPrevPage className="off-button" />
+      ) : (
+        <ButtonPrevPage onClick={() => dispatch(actPrevPage())} />
+      )}
+
       <div>{pageNumber}</div>
-      <ButtonNextPage onClick={() => dispatch(actNextPage())} />
+
+      {pageNumber === 17 ? (
+        <ButtonNextPage className="off-button" />
+      ) : (
+        <ButtonNextPage onClick={() => dispatch(actNextPage())} />
+      )}
     </StContButttons>
   );
 }
