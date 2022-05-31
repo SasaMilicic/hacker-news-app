@@ -14,7 +14,7 @@ function Comment({ comment }) {
     <StyComment>
       <h3>
         {type} by: {by}
-        <span>{convertTime(time)}</span>
+        <div>{convertTime(time)}</div>
       </h3>
       <div>
         {text && text.length > 500 ? (

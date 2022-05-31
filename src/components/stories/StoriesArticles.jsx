@@ -7,6 +7,7 @@ import {
   calcOrdinalNumber,
   selectStoryRequest,
   selectRenderStories,
+  convertTime,
 } from '../../state/selectors';
 import { Link } from 'react-router-dom';
 
@@ -39,11 +40,14 @@ function Main() {
         </li>
       );
     } else {
-      const { by: author, id, url, title, score, kids: comments } = story;
+      const { by: author, id, url, time, title, score, kids: comments } = story;
       return (
         <li key={id}>
           <StyHeadline>
-            <h4>author: {author} </h4>
+            <h4>
+              <div>author: {author}</div>
+              <div>{convertTime(time)}</div>
+            </h4>
             <h2>
               <a target="_blank" rel="noreferrer" href={url}>
                 {ordinalNumber++}) <span>{title}</span>

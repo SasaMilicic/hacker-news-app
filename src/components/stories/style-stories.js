@@ -16,6 +16,9 @@ export const StyHeadline = styled.div`
   display: flex;
   flex-direction: column;
   h4 {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
     font-style: italic;
   }
 `;
