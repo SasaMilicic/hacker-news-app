@@ -23,14 +23,14 @@ export const commentReducer = (state = initialState, { type, payload }) => {
     case `FETCH_COMMENTS_SUCCESS`:
       return {
         ...state,
-        commentRequest: false,
+        commentsRequest: false,
         commentsData: payload,
       };
 
     case `FETCH_COMMENTS_FAILURE`:
       return {
         ...state,
-        commentRequest: false,
+        commentsRequest: false,
         commentData: [],
         error: payload,
       };
