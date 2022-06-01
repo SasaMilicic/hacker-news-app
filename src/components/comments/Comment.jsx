@@ -4,12 +4,17 @@ import { ReactComponent as ShowReplyBtn } from '../svg/arrow-down-square.svg';
 import { ReactComponent as BackReplyBtn } from '../svg/arrow-right-square.svg';
 import { convertTime } from './../../state/selectors';
 import { getReplies } from '../../state/fetch/fetch-fun';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Comment({ comment }) {
   const { by, type, time, text, kids } = comment;
   const dispatch = useDispatch();
   const [actCommBtn, setActCommBtn] = useState(false);
+
+  const stateReply = useSelector((state) => state.replies.repliesData);
+  const replyLoading = useSelector((state) => state.replies.repliesRequest);
+  console.log(stateReply);
+  console.log(replyLoading);
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
 
@@ -58,9 +63,17 @@ function Comment({ comment }) {
       </StyReply>
       <div>
         {actCommBtn &&
-          kids.map((reply) => {
-            <p key={reply}>{reply}</p>;
-          })}
+          (replyLoading ? (
+            <p>Loading....</p>
+          ) : (
+            stateReply.map(({ id, by }, i) => {
+              return (
+                <p key={id}>
+                  {i + 1}) {by}
+                </p>
+              );
+            })
+          ))}
       </div>
     </StyComment>
   );
