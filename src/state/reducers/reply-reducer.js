@@ -14,10 +14,12 @@ export const repliesReducer = (state = initialState, { type, payload }) => {
       };
 
     case `FETCH_REPLIES_SUCCESS`:
+      const addNewReply = [...state.repliesData, ...payload];
+
       return {
         ...state,
         repliesRequest: false,
-        repliesData: payload,
+        repliesData: addNewReply,
       };
 
     case `FETCH_REPLIES_FAILURE`:

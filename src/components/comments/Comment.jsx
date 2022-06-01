@@ -56,7 +56,12 @@ function Comment({ comment }) {
           </div>
         )}
       </StyReply>
-      <div>{actCommBtn && kids.map((reply) => <p key={reply}>{reply}</p>)}</div>
+      <div>
+        {actCommBtn &&
+          kids.map((reply) => {
+            <p key={reply}>{reply}</p>;
+          })}
+      </div>
     </StyComment>
   );
 }
