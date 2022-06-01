@@ -3,14 +3,19 @@ import { StyComment, StyReply } from './style-comments';
 import { ReactComponent as ShowReplyBtn } from '../svg/arrow-down-square.svg';
 import { ReactComponent as BackReplyBtn } from '../svg/arrow-right-square.svg';
 import { convertTime } from './../../state/selectors';
+import { getReplies } from '../../state/fetch/fetch-fun';
+import { useDispatch } from 'react-redux';
 
 function Comment({ comment }) {
   const { by, type, time, text, kids } = comment;
+  const dispatch = useDispatch();
   const [actCommBtn, setActCommBtn] = useState(false);
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
 
   const getReply = () => {
+    dispatch(getReplies(kids));
+
     toggleCommBtns();
   };
 

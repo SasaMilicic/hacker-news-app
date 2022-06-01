@@ -11,6 +11,12 @@ import {
   actFetchStorySucc,
 } from '../reducers-actions';
 
+import {
+  actFetchRepliesReq,
+  actFetchRepliesSucc,
+  actFetchRepliesFail,
+} from '../reducers-actions';
+
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 const STORIES_ID_URL = `${BASE_URL}/topstories.json`;
 export const ITEM_URL = (itemID) => `${BASE_URL}/item/${itemID}.json`;
@@ -101,6 +107,18 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
 
   dispatch(actFetchStoriesSucc(responseStories));
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+export const getReplies = (repliesIds) => async (dispatch) => {
+  dispatch(actFetchRepliesReq());
+
+  const responseComments = await getItems(repliesIds);
+
+  dispatch(actFetchRepliesSucc(responseComments));
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////
 
 const fakeStoryIds = [
   31569070, 31571566, 31571711, 31567633373, 31569742, 31571763, 31567755,
