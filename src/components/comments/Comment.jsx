@@ -10,6 +10,14 @@ function Comment({ comment }) {
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
 
+  const getReply = () => {
+    toggleCommBtns();
+  };
+
+  const closeReply = () => {
+    toggleCommBtns();
+  };
+
   return (
     <StyComment>
       <h3>
@@ -37,12 +45,13 @@ function Comment({ comment }) {
           </div>
         ) : (
           <div>
-            {!actCommBtn && <ShowReplyBtn onClick={toggleCommBtns} />}
-            {actCommBtn && <BackReplyBtn onClick={toggleCommBtns} />}
+            {!actCommBtn && <ShowReplyBtn onClick={() => getReply()} />}
+            {actCommBtn && <BackReplyBtn onClick={() => closeReply()} />}
             <p> Reply: {kids.length} </p>
           </div>
         )}
       </StyReply>
+      <div>{actCommBtn && kids.map((reply) => <p key={reply}>{reply}</p>)}</div>
     </StyComment>
   );
 }
