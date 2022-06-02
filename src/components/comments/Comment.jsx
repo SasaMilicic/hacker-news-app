@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyComment, StyReply } from './style-comments';
 import { ReactComponent as ShowReplyBtn } from '../svg/arrow-down-square.svg';
 import { ReactComponent as BackReplyBtn } from '../svg/arrow-right-square.svg';
-import { convertTime } from './../../state/selectors';
+import { convertTime, selectRenderReplies } from './../../state/selectors';
 import { getReplies } from '../../state/fetch/fetch-fun';
 import { useDispatch, useSelector } from 'react-redux';
 import { actRemoveUnRenderedReplies } from './../../state/reducers-actions';
@@ -14,13 +14,13 @@ function Comment({ comment }) {
 
   const stateReply = useSelector((state) => state.replies.repliesData);
   const replyLoading = useSelector((state) => state.replies.repliesRequest);
-  // console.log(stateReply);
-  // console.log(replyLoading);
+  // const renderReplies = selectRenderReplies(stateReply, kids);
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
 
   const getReply = () => {
     dispatch(getReplies(kids));
+    // console.log(renderReplies);
     toggleCommBtns();
   };
 
@@ -68,14 +68,9 @@ function Comment({ comment }) {
           (replyLoading ? (
             <p>Loading....</p>
           ) : (
-            stateReply.map(({ id, by }, i) => {
-              console.log(id);
-              return (
-                <p key={id}>
-                  {i + 1}) {by}
-                </p>
-              );
-            })
+            stateReply.map(
+              ({ id, by }) => kids.includes(id) && <p key={id}>{by}</p>
+            )
           ))}
       </div>
     </StyComment>
