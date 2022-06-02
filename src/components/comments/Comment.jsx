@@ -24,9 +24,9 @@ function Comment({ comment }) {
     toggleCommBtns();
   };
 
-  const closeReply = () => {
+  const closeReply = (repliesId) => {
     toggleCommBtns();
-    dispatch(actRemoveUnRenderedReplies());
+    dispatch(actRemoveUnRenderedReplies(repliesId));
   };
 
   return (
@@ -57,7 +57,8 @@ function Comment({ comment }) {
         ) : (
           <div>
             {!actCommBtn && <ShowReplyBtn onClick={() => getReply()} />}
-            {actCommBtn && <BackReplyBtn onClick={() => closeReply()} />}
+
+            {actCommBtn && <BackReplyBtn onClick={() => closeReply(kids)} />}
             <p> Reply: {kids.length} </p>
           </div>
         )}

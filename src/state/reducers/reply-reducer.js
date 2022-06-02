@@ -31,11 +31,19 @@ export const repliesReducer = (state = initialState, { type, payload }) => {
       };
 
     case `REMOVE_UNRENDERED_REPLIES`:
+      // const filteredReplies = [...state.repliesData];
+      const filteredReplies = [
+        ...state.repliesData.filter((reply) => {
+          console.log(payload);
+          return reply;
+        }),
+      ];
+
       return {
         ...state,
         // commentsRequest: false,
 
-        repliesData: [],
+        repliesData: filteredReplies,
 
         // error: null,
       };
