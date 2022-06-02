@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actRemoveUnRenderedReplies } from './../../state/reducers-actions';
 
 function Comment({ comment }) {
-  const { by, type, time, text, kids } = comment;
+  const { by, type, time, text, kids, id: parentId } = comment;
   const dispatch = useDispatch();
   const [actCommBtn, setActCommBtn] = useState(false);
 
@@ -20,8 +20,10 @@ function Comment({ comment }) {
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
 
   const getReply = () => {
-    dispatch(getReplies(kids));
     toggleCommBtns();
+    const parentIds = stateReply.map((rep) => rep.parent);
+    if (parentIds.includes(parentId)) return;
+    dispatch(getReplies(kids));
   };
 
   const closeReply = (repliesId) => {
