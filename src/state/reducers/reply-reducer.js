@@ -40,6 +40,11 @@ export const repliesReducer = (state = initialState, { type, payload }) => {
         repliesData: filteredReplies,
       };
 
+    case `RESTART_STATE`:
+      return {
+        state: initialState,
+      };
+
     default:
       return state;
   }

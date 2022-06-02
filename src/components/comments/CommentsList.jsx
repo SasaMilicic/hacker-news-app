@@ -13,6 +13,7 @@ import {
 } from './../../state/selectors';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { actRestartState } from '../../state/reducers-actions';
 
 function CommentsList() {
   const commentsState = useSelector((state) => state.comments);
@@ -36,7 +37,7 @@ function CommentsList() {
           <div>
             <h2>
               <span>
-                <Link to="/stories">
+                <Link onClick={dispatch(actRestartState)} to="/stories">
                   <BackButton />
                 </Link>
                 <a target="_blank" rel="noreferrer" href={url}>
