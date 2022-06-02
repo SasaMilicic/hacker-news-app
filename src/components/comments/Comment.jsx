@@ -7,7 +7,6 @@ import Reply from './Reply';
 import { convertTime } from './../../state/selectors';
 import { getReplies } from '../../state/fetch/fetch-fun';
 import { useDispatch, useSelector } from 'react-redux';
-import { actRemoveUnRenderedReplies } from './../../state/reducers-actions';
 
 function Comment({ comment }) {
   const { by, type, time, text, kids, id: parentId } = comment;
@@ -26,8 +25,7 @@ function Comment({ comment }) {
     dispatch(getReplies(kids));
   };
 
-  const closeReply = (repliesId) => {
-    dispatch(actRemoveUnRenderedReplies(repliesId));
+  const closeReply = () => {
     toggleCommBtns();
   };
 

@@ -30,16 +30,6 @@ export const repliesReducer = (state = initialState, { type, payload }) => {
         error: payload,
       };
 
-    // case `REMOVE_UNRENDERED_REPLIES`:
-    //   const filteredReplies = [
-    //     ...state.repliesData.filter((reply) => !payload.includes(reply.id)),
-    //   ];
-
-    // return {
-    //   ...state,
-    //   repliesData: filteredReplies,
-    // };
-
     case `RESTART_STATE`:
       return {
         state: initialState,
