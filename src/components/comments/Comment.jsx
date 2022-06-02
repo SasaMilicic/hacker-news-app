@@ -14,14 +14,14 @@ function Comment({ comment }) {
   const [actCommBtn, setActCommBtn] = useState(false);
 
   const stateReply = useSelector((state) => state.replies.repliesData);
-  const replyLoading = useSelector((state) => state.replies.repliesRequest);
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
+  const parentIds = stateReply.map((rep) => rep.parent);
+  const isStateContainesReply = parentIds.includes(parentId);
 
   const getReply = () => {
     toggleCommBtns();
-    const parentIds = stateReply.map((rep) => rep.parent);
-    if (parentIds.includes(parentId)) return;
+    if (isStateContainesReply) return;
     dispatch(getReplies(kids));
   };
 
@@ -57,15 +57,15 @@ function Comment({ comment }) {
         ) : (
           <div>
             {!actCommBtn && <ShowReplyBtn onClick={() => getReply()} />}
-            {actCommBtn && <BackReplyBtn onClick={() => closeReply(kids)} />}
+            {actCommBtn && <BackReplyBtn onClick={() => closeReply()} />}
             <div>
               Reply: {kids.length}
-              {replyLoading && <LoadingReplies />}
+              {actCommBtn && !isStateContainesReply && <LoadingReplies />}
             </div>
           </div>
         )}
 
-        {actCommBtn && !replyLoading && (
+        {actCommBtn && isStateContainesReply && (
           <article>
             {stateReply.map((reply) => {
               return (
@@ -82,11 +82,3 @@ function Comment({ comment }) {
 }
 
 export default Comment;
-
-// {actCommBtn &&
-//   !replyLoading &&
-//   stateReply.map((reply) => {
-//     return (
-//       kids.includes(reply.id) && <Reply key={reply.id} reply={reply} />
-//     );
-//   })}
