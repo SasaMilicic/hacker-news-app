@@ -9,7 +9,7 @@ function Reply({ reply: { by, text, time } }) {
         <h5>comment by: {by}</h5>
         <h5 className="style-time">{convertTime(time)}</h5>
       </div>
-      <p> {text} </p>
+      <p dangerouslySetInnerHTML={{ __html: text }} />
     </StyReply>
   );
 }
