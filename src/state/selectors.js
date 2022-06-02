@@ -1,5 +1,5 @@
 export const convertTime = (time) => {
-  return new Date(time).toUTCString().slice(5, 22);
+  return new Date(time * 1000).toUTCString().slice(5, 22);
 };
 
 /////////////////////////////////// Stories  ///////////////////////////////////
