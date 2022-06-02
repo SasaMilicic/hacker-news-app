@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyComment, StyReplies } from './style-comments';
 import { ReactComponent as ShowReplyBtn } from '../svg/arrow-down-square.svg';
 import { ReactComponent as BackReplyBtn } from '../svg/arrow-right-square.svg';
+import LoadingReplies from './../LoadingReplies';
 import Reply from './Reply';
 import { convertTime } from './../../state/selectors';
 import { getReplies } from '../../state/fetch/fetch-fun';
@@ -56,12 +57,11 @@ function Comment({ comment }) {
         ) : (
           <div>
             {!actCommBtn && <ShowReplyBtn onClick={() => getReply()} />}
-
             {actCommBtn && <BackReplyBtn onClick={() => closeReply(kids)} />}
-            <p>
+            <div>
               Reply: {kids.length}
-              {replyLoading && <span> L O A D I N G ....</span>}
-            </p>
+              {replyLoading && <LoadingReplies />}
+            </div>
           </div>
         )}
 

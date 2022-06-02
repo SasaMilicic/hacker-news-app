@@ -2,7 +2,7 @@ import React from 'react';
 import { FireworkSpinner } from 'react-spinners-kit';
 import styled from 'styled-components';
 
-function Loading() {
+function LoadingPage() {
   return (
     <StyleLoading>
       <FireworkSpinner size={100} color="#686769" />
@@ -10,7 +10,7 @@ function Loading() {
   );
 }
 
-export default Loading;
+export default LoadingPage;
 
 const StyleLoading = styled.div`
   margin-top: 180px;

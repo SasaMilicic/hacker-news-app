@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Comment from './Comment';
-import Loading from '../Loading';
+import LoadingPage from '../LoadingPage';
 import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
 import { StyComments } from './style-comments';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ function CommentsList() {
   return (
     <StyComments>
       {isLoadingComments ? (
-        <Loading />
+        <LoadingPage />
       ) : (
         <>
           <div>
