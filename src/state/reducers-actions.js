@@ -27,6 +27,11 @@ export const actFetchStoriesFail = actFetchFail('STORIES');
 export const actFetchRepliesReq = actFetchReq('REPLIES');
 export const actFetchRepliesSucc = actFetchSucc('REPLIES');
 export const actFetchRepliesFail = actFetchFail('REPLIES');
+export const actRemoveUnRenderedReplies = () => {
+  return {
+    type: `REMOVE_UNRENDERED_REPLIES`,
+  };
+};
 
 export const actFetchCommentsReq = actFetchReq('COMMENTS');
 export const actFetchCommentsSucc = actFetchSucc('COMMENTS');

@@ -5,6 +5,7 @@ import { ReactComponent as BackReplyBtn } from '../svg/arrow-right-square.svg';
 import { convertTime } from './../../state/selectors';
 import { getReplies } from '../../state/fetch/fetch-fun';
 import { useDispatch, useSelector } from 'react-redux';
+import { actRemoveUnRenderedReplies } from './../../state/reducers-actions';
 
 function Comment({ comment }) {
   const { by, type, time, text, kids } = comment;
@@ -13,19 +14,19 @@ function Comment({ comment }) {
 
   const stateReply = useSelector((state) => state.replies.repliesData);
   const replyLoading = useSelector((state) => state.replies.repliesRequest);
-  console.log(stateReply);
-  console.log(replyLoading);
+  // console.log(stateReply);
+  // console.log(replyLoading);
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
 
   const getReply = () => {
     dispatch(getReplies(kids));
-
     toggleCommBtns();
   };
 
   const closeReply = () => {
     toggleCommBtns();
+    dispatch(actRemoveUnRenderedReplies());
   };
 
   return (
@@ -67,6 +68,7 @@ function Comment({ comment }) {
             <p>Loading....</p>
           ) : (
             stateReply.map(({ id, by }, i) => {
+              console.log(id);
               return (
                 <p key={id}>
                   {i + 1}) {by}

@@ -30,6 +30,16 @@ export const repliesReducer = (state = initialState, { type, payload }) => {
         error: payload,
       };
 
+    case `REMOVE_UNRENDERED_REPLIES`:
+      return {
+        ...state,
+        // commentsRequest: false,
+
+        repliesData: [],
+
+        // error: null,
+      };
+
     default:
       return state;
   }
