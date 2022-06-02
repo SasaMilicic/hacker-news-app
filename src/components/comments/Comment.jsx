@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyComment, StyReply } from './style-comments';
+import { StyComment, StyReplies } from './style-comments';
 import { ReactComponent as ShowReplyBtn } from '../svg/arrow-down-square.svg';
 import { ReactComponent as BackReplyBtn } from '../svg/arrow-right-square.svg';
 import Reply from './Reply';
@@ -47,7 +47,7 @@ function Comment({ comment }) {
           <p dangerouslySetInnerHTML={{ __html: text }} />
         )}
       </div>
-      <StyReply>
+      <StyReplies>
         {kids === undefined ? (
           <div className="off-button">
             <ShowReplyBtn />
@@ -58,26 +58,35 @@ function Comment({ comment }) {
             {!actCommBtn && <ShowReplyBtn onClick={() => getReply()} />}
 
             {actCommBtn && <BackReplyBtn onClick={() => closeReply(kids)} />}
-            <p> Reply: {kids.length} </p>
+            <p>
+              Reply: {kids.length}
+              {replyLoading && <span> L O A D I N G ....</span>}
+            </p>
           </div>
         )}
-      </StyReply>
-      <div>
-        {actCommBtn &&
-          (replyLoading ? (
-            <p>L O A D I N G ....</p>
-          ) : (
-            stateReply.map((reply) => {
+
+        {actCommBtn && !replyLoading && (
+          <article>
+            {stateReply.map((reply) => {
               return (
                 kids.includes(reply.id) && (
                   <Reply key={reply.id} reply={reply} />
                 )
               );
-            })
-          ))}
-      </div>
+            })}
+          </article>
+        )}
+      </StyReplies>
     </StyComment>
   );
 }
 
 export default Comment;
+
+// {actCommBtn &&
+//   !replyLoading &&
+//   stateReply.map((reply) => {
+//     return (
+//       kids.includes(reply.id) && <Reply key={reply.id} reply={reply} />
+//     );
+//   })}
