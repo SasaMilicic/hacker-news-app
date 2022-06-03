@@ -12,7 +12,6 @@ function Comment({ comment }) {
   const { by, type, time, text, kids, id: parentId } = comment;
   const dispatch = useDispatch();
   const [actCommBtn, setActCommBtn] = useState(false);
-
   const stateReply = useSelector((state) => state.replies.repliesData);
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
@@ -24,10 +23,7 @@ function Comment({ comment }) {
     if (isContainesId) return;
     dispatch(getReplies(kids));
   };
-
-  const closeReply = () => {
-    toggleCommBtns();
-  };
+  const closeReply = () => toggleCommBtns();
 
   return (
     <StyComment>
