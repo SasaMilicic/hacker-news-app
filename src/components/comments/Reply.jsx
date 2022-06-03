@@ -2,14 +2,22 @@ import React from 'react';
 import { convertTime } from './../../state/selectors';
 import { StyReply } from './style-comments';
 
-function Reply({ reply: { by, text, time } }) {
+function Reply({ reply: { deleted, by, text, time } }) {
   return (
     <StyReply>
-      <div>
-        <h5>comment by: {by}</h5>
-        <h5 className="style-time">{convertTime(time)}</h5>
-      </div>
-      <p dangerouslySetInnerHTML={{ __html: text }} />
+      {deleted ? (
+        <div>
+          <h5>Reply deleted!</h5>
+        </div>
+      ) : (
+        <>
+          <div>
+            <h5>Reply by: {by}</h5>
+            <h5 className="style-time">{convertTime(time)}</h5>
+          </div>
+          <p dangerouslySetInnerHTML={{ __html: text }} />
+        </>
+      )}
     </StyReply>
   );
 }

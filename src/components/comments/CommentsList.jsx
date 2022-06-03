@@ -48,13 +48,9 @@ function CommentsList() {
             </h2>
           </div>
 
-          {comments.map((comment) => {
-            // if (comment.deleted) {
-            //   return <p>D E L E T E</p>;
-            // }
-
-            return <Comment key={comment.id} comment={comment} />;
-          })}
+          {comments.map((comment) => (
+            <Comment key={comment.id} comment={comment} />
+          ))}
         </>
       )}
     </StyComments>
