@@ -28,7 +28,7 @@ function Comment({ comment }) {
   return (
     <StyComment>
       {comment.deleted ? (
-        <h3>
+        <h3 className="deleted">
           {type} deleted!
           <div>{convertTime(time)}</div>
         </h3>

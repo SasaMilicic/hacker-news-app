@@ -6,7 +6,7 @@ function Reply({ reply: { deleted, by, text, time } }) {
   return (
     <StyReply>
       {deleted ? (
-        <div>
+        <div className="deleted">
           <h5>Reply deleted!</h5>
         </div>
       ) : (

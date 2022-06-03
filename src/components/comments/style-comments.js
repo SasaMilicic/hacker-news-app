@@ -41,6 +41,10 @@ export const StyComment = styled.div`
       margin-left: 10px;
     }
   }
+
+  .deleted {
+    opacity: 0.4;
+  }
 `;
 
 export const StyReplies = styled.div`
@@ -85,5 +89,9 @@ export const StyReply = styled.div`
 
   .style-time {
     font-style: italic;
+  }
+
+  .deleted {
+    opacity: 0.4;
   }
 `;
