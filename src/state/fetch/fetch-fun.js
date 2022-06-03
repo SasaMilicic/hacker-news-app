@@ -2,16 +2,10 @@ import {
   actFetchStoriesReq,
   actFetchStoriesSucc,
   actFetchStoriesFail,
-} from '../reducers-actions';
-
-import {
   actFetchCommentsReq,
   actFetchCommentsSucc,
   actFetchCommentsFail,
   actFetchStorySucc,
-} from '../reducers-actions';
-
-import {
   actFetchRepliesReq,
   actFetchRepliesSucc,
   actFetchRepliesFail,
@@ -27,12 +21,12 @@ const errorMessages = {
   msgNoStory: "Some of stories isn't available!",
 };
 
-const isNotDataAvlbl = (items) => {
+const isNotDataAvilable = (items) => {
   return items.length === 0 || items.every((story) => !story);
 };
-const isNotEveryStoryAvlbl = (items) => items.some((story) => !story);
+const isNotAllElementsAvilable = (items) => items.some((story) => !story);
 
-const getFilteredStories = (stories, storiesIds) => {
+const getFilteredElements = (stories, storiesIds) => {
   const filteredStories = stories.map((item, indexStory) => {
     if (!item) {
       return {
@@ -96,14 +90,14 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   const renderStoryIds = storyIds.slice(seqncStart, seqncEnd);
   let responseStories = await getItems(renderStoryIds);
 
-  if (isNotDataAvlbl(responseStories)) {
+  if (isNotDataAvilable(responseStories)) {
     dispatch(actFetchStoriesFail(errorMessages.msgNoData));
     return;
   }
 
-  if (isNotEveryStoryAvlbl(responseStories)) {
+  if (isNotAllElementsAvilable(responseStories)) {
     dispatch(actFetchStoriesFail(errorMessages.msgNoStory));
-    responseStories = getFilteredStories(responseStories, storyIds);
+    responseStories = getFilteredElements(responseStories, storyIds);
   }
 
   dispatch(actFetchStoriesSucc(responseStories));
