@@ -95,3 +95,10 @@ export const StyReply = styled.div`
     opacity: 0.4;
   }
 `;
+
+export const StyCommentError = styled.div`
+  color: red;
+  border-bottom: 2px solid black;
+  padding: 5px;
+  opacity: 0.5;
+`;

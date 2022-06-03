@@ -54,23 +54,12 @@ const getItems = (itemIds) => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-export const getComments = (id) => async (dispatch) => {
-  dispatch(actFetchCommentsReq());
+export const getReplies = (repliesIds) => async (dispatch) => {
+  dispatch(actFetchRepliesReq());
 
-  const apiStory = await fetch(ITEM_URL(id));
+  const responseComments = await getItems(repliesIds);
 
-  if (!apiStory.ok) return;
-
-  const responseStory = await apiStory.json();
-  dispatch(actFetchStorySucc(responseStory));
-
-  const commentsIds = responseStory.kids;
-
-  const responseComments = await getItems(commentsIds);
-
-  console.log(responseComments);
-
-  dispatch(actFetchCommentsSucc(responseComments));
+  dispatch(actFetchRepliesSucc(responseComments));
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -105,12 +94,26 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-export const getReplies = (repliesIds) => async (dispatch) => {
-  dispatch(actFetchRepliesReq());
+export const getComments = (id) => async (dispatch) => {
+  dispatch(actFetchCommentsReq());
 
-  const responseComments = await getItems(repliesIds);
+  const apiStory = await fetch(ITEM_URL(id));
 
-  dispatch(actFetchRepliesSucc(responseComments));
+  if (!apiStory.ok) return;
+
+  const responseStory = await apiStory.json();
+  dispatch(actFetchStorySucc(responseStory));
+
+  const commentsIds = responseStory.kids;
+
+  let responseComments = await getItems(commentsIds);
+
+  if (isNotAllElementsAvilable(responseComments)) {
+    dispatch(actFetchCommentsFail('no comment avilable'));
+    responseComments = getFilteredElements(responseComments, commentsIds);
+  }
+
+  console.log(responseComments);
+
+  dispatch(actFetchCommentsSucc(responseComments));
 };
-
-///////////////////////////////////////////////////////////////////////////////////////////

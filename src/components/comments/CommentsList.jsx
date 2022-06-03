@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Comment from './Comment';
 import LoadingPage from '../LoadingPage';
 import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
-import { StyComments } from './style-comments';
+import { StyComments, StyCommentError } from './style-comments';
 import { Link } from 'react-router-dom';
 import { getComments } from '../../state/fetch/fetch-fun';
 import {
@@ -28,6 +28,11 @@ function CommentsList() {
     dispatch(getComments(id));
   }, [id]);
 
+  const isCommentsEmpty = (element) => {
+    const { id, ...storyElements } = element;
+    return Object.keys(storyElements).length === 0;
+  };
+
   return (
     <StyComments>
       {isLoadingComments ? (
@@ -48,9 +53,17 @@ function CommentsList() {
             </h2>
           </div>
 
-          {comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
-          ))}
+          {comments.map((comment) => {
+            return isCommentsEmpty(comment) ? (
+              <StyCommentError key={comment.id}>
+                <h3>
+                  {commentsState.error} id:'{id}'
+                </h3>
+              </StyCommentError>
+            ) : (
+              <Comment key={comment.id} comment={comment} />
+            );
+          })}
         </>
       )}
     </StyComments>
