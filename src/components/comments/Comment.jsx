@@ -27,52 +27,62 @@ function Comment({ comment }) {
 
   return (
     <StyComment>
-      <h3>
-        {type} by: {by}
-        <div>{convertTime(time)}</div>
-      </h3>
-      <div>
-        {text && text.length > 500 ? (
-          <p>
-            <span
-              dangerouslySetInnerHTML={{
-                __html: text,
-              }}
-            />
-          </p>
-        ) : (
-          <p dangerouslySetInnerHTML={{ __html: text }} />
-        )}
-      </div>
-      <StyReplies>
-        {kids === undefined ? (
-          <div className="off-button">
-            <ShowReplyBtn />
-            <p> Reply: 0 </p>
-          </div>
-        ) : (
+      {comment.deleted ? (
+        <h3>
+          {type} deleted!
+          <div>{convertTime(time)}</div>
+        </h3>
+      ) : (
+        <>
+          <h3>
+            {type} by: {by}
+            <div>{convertTime(time)}</div>
+          </h3>
           <div>
-            {!actCommBtn && <ShowReplyBtn onClick={() => getReply()} />}
-            {actCommBtn && <BackReplyBtn onClick={() => closeReply()} />}
-            <div>
-              Reply: {kids.length}
-              {actCommBtn && !isContainesId && <LoadingReplies />}
-            </div>
+            {text && text.length > 500 ? (
+              <p>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: text,
+                  }}
+                />
+              </p>
+            ) : (
+              <p dangerouslySetInnerHTML={{ __html: text }} />
+            )}
           </div>
-        )}
+          <StyReplies>
+            {kids === undefined ? (
+              <div className="off-button">
+                <ShowReplyBtn />
+                <p> Reply: 0 </p>
+              </div>
+            ) : (
+              <div>
+                {!actCommBtn && <ShowReplyBtn onClick={() => getReply()} />}
+                {actCommBtn && <BackReplyBtn onClick={() => closeReply()} />}
+                <div>
+                  Reply: {kids.length}
+                  {actCommBtn && !isContainesId && <LoadingReplies />}
+                </div>
+              </div>
+            )}
 
-        {actCommBtn && isContainesId && (
-          <article>
-            {stateReply.map((reply) => {
-              return (
-                kids.includes(reply.id) && (
-                  <Reply key={reply.id} reply={reply} />
-                )
-              );
-            })}
-          </article>
-        )}
-      </StyReplies>
+            {actCommBtn && isContainesId && (
+              <article>
+                {stateReply.map((reply) => {
+                  console.log(reply);
+                  return (
+                    kids.includes(reply.id) && (
+                      <Reply key={reply.id} reply={reply} />
+                    )
+                  );
+                })}
+              </article>
+            )}
+          </StyReplies>
+        </>
+      )}
     </StyComment>
   );
 }
