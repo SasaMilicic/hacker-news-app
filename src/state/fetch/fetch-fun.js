@@ -30,7 +30,7 @@ const getFilteredElements = (stories, storiesIds) => {
   const filteredStories = stories.map((item, indexStory) => {
     if (!item) {
       return {
-        id: storiesIds.filter((el, indexErr) => indexErr === indexStory),
+        id: storiesIds.filter((el, indexErr) => indexErr === indexStory)[0],
       };
     }
     return item;
