@@ -17,11 +17,11 @@ function Comment({ comment }) {
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
   const parentIds = stateReply.map((rep) => rep.parent);
-  const isStateContainesReply = parentIds.includes(parentId);
+  const isContainesId = parentIds.includes(parentId);
 
   const getReply = () => {
     toggleCommBtns();
-    if (isStateContainesReply) return;
+    if (isContainesId) return;
     dispatch(getReplies(kids));
   };
 
@@ -60,12 +60,12 @@ function Comment({ comment }) {
             {actCommBtn && <BackReplyBtn onClick={() => closeReply()} />}
             <div>
               Reply: {kids.length}
-              {actCommBtn && !isStateContainesReply && <LoadingReplies />}
+              {actCommBtn && !isContainesId && <LoadingReplies />}
             </div>
           </div>
         )}
 
-        {actCommBtn && isStateContainesReply && (
+        {actCommBtn && isContainesId && (
           <article>
             {stateReply.map((reply) => {
               return (

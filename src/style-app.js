@@ -22,6 +22,6 @@ body{
 
 main{
     border-radius: 20px;
- }
+ } 
 }
 `;
