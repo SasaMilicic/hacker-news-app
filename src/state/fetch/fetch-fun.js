@@ -54,16 +54,6 @@ const getItems = (itemIds) => {
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-export const getReplies = (repliesIds) => async (dispatch) => {
-  dispatch(actFetchRepliesReq());
-
-  const responseComments = await getItems(repliesIds);
-
-  dispatch(actFetchRepliesSucc(responseComments));
-};
-
-///////////////////////////////////////////////////////////////////////////////////////////
-
 export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   dispatch(actFetchStoriesReq());
 
@@ -116,4 +106,25 @@ export const getComments = (id) => async (dispatch) => {
   }
 
   dispatch(actFetchCommentsSucc(responseComments));
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+export const getReplies = (repliesIds) => async (dispatch) => {
+  dispatch(actFetchRepliesReq());
+
+  console.log(repliesIds);
+
+  const ids = [
+    31619377, 31618817, 31619367, 316197411111, 31619299999, 31619167777,
+  ];
+
+  let responseReplies = await getItems(ids);
+
+  if (isNotAllElementsAvilable(responseReplies)) {
+    dispatch(actFetchRepliesFail('no reply avilable'));
+    responseReplies = getFilteredElements(responseReplies, ids);
+  }
+
+  dispatch(actFetchRepliesSucc(responseReplies));
 };

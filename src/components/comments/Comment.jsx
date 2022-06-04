@@ -71,12 +71,13 @@ function Comment({ comment }) {
             {actCommBtn && isContainesId && (
               <article>
                 {stateReply.map((reply) => {
-                  console.log(reply);
-                  return (
-                    kids.includes(reply.id) && (
-                      <Reply key={reply.id} reply={reply} />
-                    )
-                  );
+                  console.log(kids.includes(reply.id));
+                  return <Reply key={reply.id} reply={reply} />;
+                  // return (
+                  //   kids.includes(reply.id) && (
+                  //     <Reply key={reply.id} reply={reply} />
+                  //   )
+                  // );
                 })}
               </article>
             )}

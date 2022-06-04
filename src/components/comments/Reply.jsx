@@ -1,11 +1,27 @@
 import React from 'react';
 import { convertTime } from './../../state/selectors';
 import { StyReply } from './style-comments';
+import { useSelector } from 'react-redux';
 
-function Reply({ reply: { deleted, by, text, time } }) {
+function Reply({ reply }) {
+  const { deleted, by, text, time, id } = reply;
+
+  const error = useSelector((state) => state.replies.error);
+
+  const isReplyEmpty = (element) => {
+    const { id, ...storyElements } = element;
+    return Object.keys(storyElements).length === 0;
+  };
+
   return (
     <StyReply>
-      {deleted ? (
+      {isReplyEmpty(reply) ? (
+        <div className="error">
+          <h5>
+            {error} '{id}'
+          </h5>
+        </div>
+      ) : deleted ? (
         <div className="deleted">
           <h5>Reply deleted!</h5>
         </div>

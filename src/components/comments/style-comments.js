@@ -94,6 +94,11 @@ export const StyReply = styled.div`
   .deleted {
     opacity: 0.4;
   }
+
+  .error {
+    opacity: 0.4;
+    color: red;
+  }
 `;
 
 export const StyCommentError = styled.div`
