@@ -24,8 +24,6 @@ export const actFetchStoriesReq = actFetchReq('STORIES');
 export const actFetchStoriesSucc = actFetchSucc('STORIES');
 export const actFetchStoriesFail = actFetchFail('STORIES');
 
-//----------------------------------------------------------//
-
 export const actFetchRepliesReq = actFetchReq('REPLIES');
 export const actFetchRepliesSucc = actFetchSucc('REPLIES');
 export const actFetchRepliesFail = actFetchFail('REPLIES');
@@ -34,8 +32,6 @@ export const actRestartState = () => {
     type: 'RESTART_STATE',
   };
 };
-
-//----------------------------------------------------------//
 
 export const actFetchCommentsReq = actFetchReq('COMMENTS');
 export const actFetchCommentsSucc = actFetchSucc('COMMENTS');

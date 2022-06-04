@@ -9,7 +9,7 @@ import { actRestartState } from '../../state/reducers-actions';
 
 function Header() {
   const dispatch = useDispatch();
-  const errorMessage = selectErrorMessage(
+  const errStoryMessage = selectErrorMessage(
     useSelector((state) => state.stories)
   );
 
@@ -20,7 +20,7 @@ function Header() {
         <h1> Hacker News - stories </h1>
       </Link>
 
-      <Error>{errorMessage && <h4> {errorMessage}</h4>}</Error>
+      <Error>{errStoryMessage && <h4> {errStoryMessage}</h4>}</Error>
     </StHeader>
   );
 }

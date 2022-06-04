@@ -7,12 +7,12 @@ import { StyleStoriesPage } from './style-pages';
 
 function StoriesPage() {
   const storiesState = useSelector((state) => state.stories);
-  const isLoading = selectStoryRequest(storiesState);
+  const isLoadingStories = selectStoryRequest(storiesState);
 
   return (
-    <StyleStoriesPage isLoading={isLoading}>
+    <StyleStoriesPage isLoading={isLoadingStories}>
       <StoriesArticles />
-      {!isLoading && <StoriesButtons />}
+      {!isLoadingStories && <StoriesButtons />}
     </StyleStoriesPage>
   );
 }

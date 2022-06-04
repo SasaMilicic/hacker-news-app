@@ -1,24 +1,25 @@
 import React from 'react';
-import { convertTime } from './../../state/selectors';
-import { StyReply } from './style-comments';
 import { useSelector } from 'react-redux';
+import {
+  convertTime,
+  isContainesJustId,
+  selectErrorMessage,
+} from './../../state/selectors';
+import { StyReply } from './style-comments';
 
 function Reply({ reply }) {
   const { deleted, by, text, time, id } = reply;
 
-  const error = useSelector((state) => state.replies.error);
-
-  const isReplyEmpty = (element) => {
-    const { id, ...storyElements } = element;
-    return Object.keys(storyElements).length === 0;
-  };
+  const errRepliesMessage = selectErrorMessage(
+    useSelector((state) => state.replies)
+  );
 
   return (
     <StyReply>
-      {isReplyEmpty(reply) ? (
+      {isContainesJustId(reply) ? (
         <div className="error">
           <h5>
-            {error} '{id}'
+            {errRepliesMessage} '{id}'
           </h5>
         </div>
       ) : deleted ? (

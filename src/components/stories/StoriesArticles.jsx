@@ -1,12 +1,13 @@
 import { StyHeadline, StyError, StyCommentBox } from './style-stories';
-import LoadingPage from '../LoadingPage';
+import LoadingPage from '../loading/LoadingPage';
 import { ReactComponent as ScoreIcon } from '../svg/hand-thumbs-up-fill.svg';
 import { useSelector } from 'react-redux';
 import {
   calcOrdinalNumber,
   selectStoryRequest,
-  selectRenderStories,
+  selectStories,
   convertTime,
+  isContainesJustId,
 } from '../../state/selectors';
 import { Link } from 'react-router-dom';
 
@@ -15,15 +16,10 @@ function Main() {
 
   let ordinalNumber = calcOrdinalNumber(storiesState);
   const isLoading = selectStoryRequest(storiesState);
-  const stories = selectRenderStories(storiesState);
-
-  const isStoryEmpty = (element) => {
-    const { id, ...storyElements } = element;
-    return Object.keys(storyElements).length === 0;
-  };
+  const stories = selectStories(storiesState);
 
   const listStories = stories.map((story) => {
-    if (isStoryEmpty(story)) {
+    if (isContainesJustId(story)) {
       const { id } = story;
       return (
         <li key={id}>
@@ -40,6 +36,7 @@ function Main() {
       );
     } else {
       const { by: author, id, url, time, title, score, kids: comments } = story;
+
       return (
         <li key={id}>
           <StyHeadline>
@@ -53,6 +50,7 @@ function Main() {
               </a>
             </h2>
           </StyHeadline>
+
           <StyCommentBox>
             {comments === undefined ? (
               <button className="off-button"> 0 comments </button>

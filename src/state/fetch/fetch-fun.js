@@ -18,7 +18,10 @@ export const ITEM_URL = (itemID) => `${BASE_URL}/item/${itemID}.json`;
 const errorMessages = {
   msgNoIds: 'Something went wrong, please try for few minutes!',
   msgNoData: 'Currently No stories available!',
-  msgNoStory: "Some of stories isn't available!",
+  msgNoStories: "Some of stories isn't available!",
+  msgNoReply: "This Reply currently isn't available!",
+  msgNoComment: "This Comment currently isn't available!",
+  msgNoStory: "Story isn't available!",
 };
 
 const isNotDataAvilable = (items) => {
@@ -52,21 +55,19 @@ const getItems = (itemIds) => {
   return Promise.all(itemPromises);
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////
-
 export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   dispatch(actFetchStoriesReq());
 
-  const getStoryIds = await fetch(STORIES_ID_URL);
+  const getStoriesIds = await fetch(STORIES_ID_URL);
 
-  if (!getStoryIds.ok) {
+  if (!getStoriesIds.ok) {
     dispatch(actFetchStoriesFail(errorMessages.msgNoIds));
     return;
   }
 
-  const storyIds = await getStoryIds.json();
+  const storiesIds = await getStoriesIds.json();
 
-  const renderStoryIds = storyIds.slice(seqncStart, seqncEnd);
+  const renderStoryIds = storiesIds.slice(seqncStart, seqncEnd);
   let responseStories = await getItems(renderStoryIds);
 
   if (isNotDataAvilable(responseStories)) {
@@ -75,14 +76,12 @@ export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
   }
 
   if (isNotAllElementsAvilable(responseStories)) {
-    dispatch(actFetchStoriesFail(errorMessages.msgNoStory));
-    responseStories = getFilteredElements(responseStories, storyIds);
+    dispatch(actFetchStoriesFail(errorMessages.msgNoStories));
+    responseStories = getFilteredElements(responseStories, storiesIds);
   }
 
   dispatch(actFetchStoriesSucc(responseStories));
 };
-
-///////////////////////////////////////////////////////////////////////////////////////////
 
 export const getComments = (id) => async (dispatch) => {
   dispatch(actFetchCommentsReq());
@@ -90,7 +89,7 @@ export const getComments = (id) => async (dispatch) => {
   const apiStory = await fetch(ITEM_URL(id));
 
   if (!apiStory.ok) {
-    dispatch(actFetchCommentsFail("Story isn't aviilable"));
+    dispatch(actFetchCommentsFail(errorMessages.msgNoStory));
     return;
   }
 
@@ -101,29 +100,21 @@ export const getComments = (id) => async (dispatch) => {
   let responseComments = await getItems(commentsIds);
 
   if (isNotAllElementsAvilable(responseComments)) {
-    dispatch(actFetchCommentsFail('no comment avilable'));
+    dispatch(actFetchCommentsFail(errorMessages.msgNoComment));
     responseComments = getFilteredElements(responseComments, commentsIds);
   }
 
   dispatch(actFetchCommentsSucc(responseComments));
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////
-
 export const getReplies = (repliesIds) => async (dispatch) => {
   dispatch(actFetchRepliesReq());
 
-  console.log(repliesIds);
-
-  const ids = [
-    31619377, 31618817, 31619367, 316197411111, 31619299999, 31619167777,
-  ];
-
-  let responseReplies = await getItems(ids);
+  let responseReplies = await getItems(repliesIds);
 
   if (isNotAllElementsAvilable(responseReplies)) {
-    dispatch(actFetchRepliesFail('no reply avilable'));
-    responseReplies = getFilteredElements(responseReplies, ids);
+    dispatch(actFetchRepliesFail(errorMessages.msgNoReply));
+    responseReplies = getFilteredElements(responseReplies, repliesIds);
   }
 
   dispatch(actFetchRepliesSucc(responseReplies));

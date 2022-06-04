@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyComment, StyReplies } from './style-comments';
 import { ReactComponent as ShowReplyBtn } from '../svg/arrow-down-square.svg';
 import { ReactComponent as BackReplyBtn } from '../svg/arrow-right-square.svg';
-import LoadingReplies from './../LoadingReplies';
+import LoadingReplies from './../loading/LoadingReplies';
 import Reply from './Reply';
-import { convertTime } from './../../state/selectors';
+import { convertTime, selectReplies } from './../../state/selectors';
 import { getReplies } from '../../state/fetch/fetch-fun';
-import { useDispatch, useSelector } from 'react-redux';
 
 function Comment({ comment }) {
-  const { by, type, time, text, kids, id: parentId } = comment;
   const dispatch = useDispatch();
+  const { by, type, time, text, kids, id: parentId } = comment;
   const [actCommBtn, setActCommBtn] = useState(false);
-  const stateReply = useSelector((state) => state.replies.repliesData);
+  const stateReplies = useSelector((state) => state.replies);
+  const replies = selectReplies(stateReplies);
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
-  const parentIds = stateReply.map((rep) => rep.parent);
+  const parentIds = replies.map((rep) => rep.parent);
   const isContainesId = parentIds.includes(parentId);
 
   const getReply = () => {
@@ -51,6 +52,7 @@ function Comment({ comment }) {
               <p dangerouslySetInnerHTML={{ __html: text }} />
             )}
           </div>
+
           <StyReplies>
             {kids === undefined ? (
               <div className="off-button">
@@ -70,15 +72,12 @@ function Comment({ comment }) {
 
             {actCommBtn && isContainesId && (
               <article>
-                {stateReply.map((reply) => {
-                  console.log(kids.includes(reply.id));
-                  return <Reply key={reply.id} reply={reply} />;
-                  // return (
-                  //   kids.includes(reply.id) && (
-                  //     <Reply key={reply.id} reply={reply} />
-                  //   )
-                  // );
-                })}
+                {replies.map(
+                  (reply) =>
+                    kids.includes(reply.id) && (
+                      <Reply key={reply.id} reply={reply} />
+                    )
+                )}
               </article>
             )}
           </StyReplies>
