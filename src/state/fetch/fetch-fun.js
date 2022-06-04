@@ -99,21 +99,21 @@ export const getComments = (id) => async (dispatch) => {
 
   const apiStory = await fetch(ITEM_URL(id));
 
-  if (!apiStory.ok) return;
+  if (!apiStory.ok) {
+    dispatch(actFetchCommentsFail("Story isn't aviilable"));
+    return;
+  }
 
   const responseStory = await apiStory.json();
   dispatch(actFetchStorySucc(responseStory));
 
   const commentsIds = responseStory.kids;
-
   let responseComments = await getItems(commentsIds);
 
   if (isNotAllElementsAvilable(responseComments)) {
     dispatch(actFetchCommentsFail('no comment avilable'));
     responseComments = getFilteredElements(responseComments, commentsIds);
   }
-
-  console.log(responseComments);
 
   dispatch(actFetchCommentsSucc(responseComments));
 };

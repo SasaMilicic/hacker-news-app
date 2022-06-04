@@ -1,26 +1,18 @@
 import React, { useEffect } from 'react';
+import { StyComments, StyCommentError } from './style-comments';
 import Comment from './Comment';
 import LoadingPage from '../LoadingPage';
-import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
-import { StyComments, StyCommentError } from './style-comments';
-import { Link } from 'react-router-dom';
+import CommentStory from './CommentStory';
 import { getComments } from '../../state/fetch/fetch-fun';
-import {
-  convertTime,
-  selectCommentStory,
-  selectComments,
-  selectCommRequest,
-} from './../../state/selectors';
+import { selectComments, selectCommRequest } from './../../state/selectors';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { actRestartState } from '../../state/reducers-actions';
 
 function CommentsList() {
   const commentsState = useSelector((state) => state.comments);
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const { title, time, url } = selectCommentStory(commentsState);
   const isLoadingComments = selectCommRequest(commentsState);
   const comments = selectComments(commentsState);
 
@@ -33,25 +25,18 @@ function CommentsList() {
     return Object.keys(storyElements).length === 0;
   };
 
+  const errorMessage = useSelector((state) => state.comments.error);
+  console.log(errorMessage);
+
   return (
     <StyComments>
       {isLoadingComments ? (
         <LoadingPage />
+      ) : errorMessage ? (
+        <h1>error</h1>
       ) : (
         <>
-          <div>
-            <h2>
-              <span>
-                <Link onClick={dispatch(actRestartState)} to="/stories">
-                  <BackButton />
-                </Link>
-                <a target="_blank" rel="noreferrer" href={url}>
-                  title: '{title}'
-                </a>
-              </span>
-              {convertTime(time)}
-            </h2>
-          </div>
+          <CommentStory />
 
           {comments.map((comment) => {
             return isCommentsEmpty(comment) ? (
