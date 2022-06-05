@@ -6,7 +6,7 @@ import { ReactComponent as BackReplyBtn } from '../../assets/svg/icons/arrow-rig
 import LoadingReplies from './../loading/LoadingReplies';
 import Reply from './Reply';
 import { convertTime, selectReplies } from './../../state/selectors';
-import { getReplies } from '../../api/fetch-fun';
+import { getReplies } from './../../api/api-replies';
 
 function Comment({ comment }) {
   const dispatch = useDispatch();
