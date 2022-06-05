@@ -11,6 +11,13 @@ import {
   actFetchRepliesFail,
 } from '../state/reducers-actions';
 
+import {
+  getItems,
+  isNotDataAvilable,
+  isNotAllElementsAvilable,
+  getFilteredElements,
+} from './../utils/api-utils';
+
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 const STORIES_ID_URL = `${BASE_URL}/topstories.json`;
 export const ITEM_URL = (itemID) => `${BASE_URL}/item/${itemID}.json`;
@@ -22,37 +29,6 @@ const errorMessages = {
   msgNoReply: "This Reply currently isn't available!",
   msgNoComment: "This Comment currently isn't available!",
   msgNoStory: "Story isn't available!",
-};
-
-const isNotDataAvilable = (items) => {
-  return items.length === 0 || items.every((story) => !story);
-};
-const isNotAllElementsAvilable = (items) => items.some((story) => !story);
-
-const getFilteredElements = (stories, storiesIds) => {
-  const filteredStories = stories.map((item, indexStory) => {
-    if (!item) {
-      return {
-        id: storiesIds.filter((el, indexErr) => indexErr === indexStory)[0],
-      };
-    }
-    return item;
-  });
-
-  return filteredStories;
-};
-
-const getItem = async (id) => {
-  const fetchArticle = await fetch(ITEM_URL(id));
-  if (!fetchArticle.ok) return;
-
-  return await fetchArticle.json();
-};
-
-const getItems = (itemIds) => {
-  const itemPromises = itemIds.map(getItem);
-
-  return Promise.all(itemPromises);
 };
 
 export const getStories = (seqncStart, seqncEnd) => async (dispatch) => {
