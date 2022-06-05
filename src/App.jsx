@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Header from './components/Header/Header';
-import MainStoryPage from './components/Main/story-page/MainStoryPage';
-import Footer from './components/Footer/Footer';
+import Header from './components/header/Header';
+import Pages from './pages/Pages';
 import { StApp } from './style-app';
-import { getStories } from './state/fetch-fun';
+import { BrowserRouter } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getStories } from './state/fetch/fetch-fun';
 import { selectPageRange } from './state/selectors';
 
 function App() {
@@ -19,9 +19,10 @@ function App() {
 
   return (
     <StApp>
-      <Header />
-      <MainStoryPage />
-      <Footer />
+      <BrowserRouter>
+        <Header />
+        <Pages />
+      </BrowserRouter>
     </StApp>
   );
 }

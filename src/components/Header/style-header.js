@@ -4,13 +4,21 @@ export const StHeader = styled.header`
   font-size: calc(10px + 2vmin);
   color: black;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  h1 {
-    margin: 0px;
-  }
-
-  div {
+  a {
     display: flex;
-    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    color: black;
+  }
+`;
+
+export const Error = styled.div`
+  height: 20px;
+  h4 {
+    color: red;
   }
 `;
