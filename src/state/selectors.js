@@ -1,34 +1,42 @@
 /////////////////////////////////// Stories  ///////////////////////////////////
 
-export const calcPageNumber = ({
-  NUM_ARTICLES,
-  pageRange: { firstPageEl },
-}) => {
+export const calcPageNumber = (state) => {
+  const {
+    NUM_ARTICLES,
+    pageRange: { firstPageEl },
+  } = state.stories;
+
   return Math.ceil(firstPageEl / NUM_ARTICLES) + 1;
 };
 
-export const calcOrdinalNumber = ({ pageRange: { firstPageEl } }) => {
-  return firstPageEl + 1;
+export const calcOrdinalNumber = (state) => {
+  return state.stories.pageRange.firstPageEl + 1;
 };
 
-export const selectStoryRequest = ({ storiesRequest }) => storiesRequest;
+export const selectStoryRequest = (state) => state.stories.storiesRequest;
 
-export const selectPageRange = ({ pageRange: { firstPageEl, lastPageEl } }) => {
+export const selectPageRange = (state) => {
+  const { firstPageEl, lastPageEl } = state.stories.pageRange;
+
   return [firstPageEl, lastPageEl];
 };
 
-export const selectStories = ({ storiesData }) => storiesData;
+export const selectStories = (state) => state.stories.storiesData;
 
-export const selectErrorMessage = ({ error }) => error;
+export const selectErrorStories = (state) => state.stories.error;
 
 /////////////////////////////////// Comments ///////////////////////////////////
 
-export const selectCommentStory = ({ storyData }) => storyData;
+export const selectCommentStory = (state) => state.comments.storyData;
 
-export const selectCommRequest = ({ commentsRequest }) => commentsRequest;
+export const selectCommRequest = (state) => state.comments.commentsRequest;
 
-export const selectComments = ({ commentsData }) => commentsData;
+export const selectComments = (state) => state.comments.commentsData;
+
+export const selectErrorComments = (state) => state.comments.error;
 
 /////////////////////////////////// Replies ///////////////////////////////////
 
-export const selectReplies = ({ repliesData }) => repliesData;
+export const selectReplies = (state) => state.replies.repliesData;
+
+export const selectErrorReplies = (state) => state.replies.error;

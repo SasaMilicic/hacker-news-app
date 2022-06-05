@@ -6,8 +6,7 @@ import { selectStoryRequest } from '../state/selectors';
 import { StyleStoriesPage } from './style-pages';
 
 function StoriesPage() {
-  const storiesState = useSelector((state) => state.stories);
-  const isLoadingStories = selectStoryRequest(storiesState);
+  const isLoadingStories = useSelector(selectStoryRequest);
 
   return (
     <StyleStoriesPage isLoading={isLoadingStories}>

@@ -11,11 +11,9 @@ import {
 } from '../../state/selectors';
 
 function Main() {
-  const storiesState = useSelector((state) => state.stories);
-
-  let ordinalNumber = calcOrdinalNumber(storiesState);
-  const isLoading = selectStoryRequest(storiesState);
-  const stories = selectStories(storiesState);
+  let ordinalNumber = useSelector(calcOrdinalNumber);
+  const isLoadingStories = useSelector(selectStoryRequest);
+  const stories = useSelector(selectStories);
 
   const listStories = stories.map((story) => {
     if (isContainesJustId(story)) {
@@ -67,7 +65,9 @@ function Main() {
     }
   });
 
-  return <div>{isLoading ? <LoadingPage /> : <ul>{listStories}</ul>}</div>;
+  return (
+    <div>{isLoadingStories ? <LoadingPage /> : <ul>{listStories}</ul>}</div>
+  );
 }
 
 export default Main;

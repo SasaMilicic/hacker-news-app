@@ -5,8 +5,7 @@ import { selectCommRequest } from '../state/selectors';
 import { StyCommentsPage } from './style-pages';
 
 function CommentsPage() {
-  const commentsState = useSelector((state) => state.comments);
-  const isLoadingComments = selectCommRequest(commentsState);
+  const isLoadingComments = useSelector(selectCommRequest);
 
   return (
     <StyCommentsPage isLoadingComments={isLoadingComments}>

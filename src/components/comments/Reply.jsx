@@ -1,15 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { isContainesJustId, convertTime } from '../../utils/utils-components';
-import { selectErrorMessage } from './../../state/selectors';
+import { selectErrorReplies } from './../../state/selectors';
 import { StyReply } from './style-comments';
 
 function Reply({ reply }) {
   const { deleted, by, text, time, id } = reply;
-
-  const errRepliesMessage = selectErrorMessage(
-    useSelector((state) => state.replies)
-  );
+  const errRepliesMessage = useSelector(selectErrorReplies);
 
   return (
     <StyReply>

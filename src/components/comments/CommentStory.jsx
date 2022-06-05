@@ -8,8 +8,7 @@ import { convertTime } from './../../utils/utils-components';
 
 function CommentStory() {
   const dispatch = useDispatch();
-  const commentsState = useSelector((state) => state.comments);
-  const { title, time, url } = selectCommentStory(commentsState);
+  const { title, time, url } = useSelector(selectCommentStory);
 
   return (
     <div>

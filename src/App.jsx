@@ -9,9 +9,7 @@ import { getStories } from './api/api-stories';
 
 function App() {
   const dispatch = useDispatch();
-  const stories = useSelector((state) => state.stories);
-
-  const pageRange = selectPageRange(stories);
+  const pageRange = useSelector(selectPageRange);
 
   useEffect(() => {
     dispatch(getStories(...pageRange));

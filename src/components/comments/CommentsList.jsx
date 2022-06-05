@@ -10,17 +10,16 @@ import { isContainesJustId } from '../../utils/utils-components';
 import {
   selectComments,
   selectCommRequest,
-  selectErrorMessage,
+  selectErrorComments,
 } from './../../state/selectors';
 
 function CommentsList() {
-  const commentsState = useSelector((state) => state.comments);
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const errorMessage = selectErrorMessage(commentsState);
-  const isLoadingComments = selectCommRequest(commentsState);
-  const comments = selectComments(commentsState);
+  const errorCommentsMessage = useSelector(selectErrorComments);
+  const isLoadingComments = useSelector(selectCommRequest);
+  const comments = useSelector(selectComments);
 
   useEffect(() => {
     dispatch(getComments(id));
@@ -38,7 +37,7 @@ function CommentsList() {
             return isContainesJustId(comment) ? (
               <StyCommentError key={comment.id}>
                 <h3>
-                  {errorMessage} id:'{id}'
+                  {errorCommentsMessage} id:'{id}'
                 </h3>
               </StyCommentError>
             ) : (

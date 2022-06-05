@@ -13,8 +13,7 @@ function Comment({ comment }) {
   const dispatch = useDispatch();
   const { by, type, time, text, kids, id: parentId } = comment;
   const [actCommBtn, setActCommBtn] = useState(false);
-  const stateReplies = useSelector((state) => state.replies);
-  const replies = selectReplies(stateReplies);
+  const replies = useSelector(selectReplies);
 
   const toggleCommBtns = () => setActCommBtn(!actCommBtn);
   const parentIds = replies.map((rep) => rep.parent);

@@ -6,10 +6,9 @@ import { actNextPage, actPrevPage } from '../../state/reducers-actions';
 import { calcPageNumber } from '../../state/selectors';
 
 function Footer() {
-  const stories = useSelector((state) => state.stories);
   const dispatch = useDispatch();
 
-  const pageNumber = calcPageNumber(stories);
+  const pageNumber = useSelector(calcPageNumber);
 
   return (
     <StContButttons>
