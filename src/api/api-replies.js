@@ -11,12 +11,7 @@ import {
 } from './../utils/api-utils';
 
 const errorMessages = {
-  msgNoIds: 'Something went wrong, please try for few minutes!',
-  msgNoData: 'Currently No stories available!',
-  msgNoStories: "Some of stories isn't available!",
   msgNoReply: "This Reply currently isn't available!",
-  msgNoComment: "This Comment currently isn't available!",
-  msgNoStory: "Story isn't available!",
 };
 
 export const getReplies = (repliesIds) => async (dispatch) => {
