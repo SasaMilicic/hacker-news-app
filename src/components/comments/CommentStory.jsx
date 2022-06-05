@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ReactComponent as BackButton } from '../svg/arrow-left-square.svg';
+import { ReactComponent as BackButton } from '../../assets/svg/icons/arrow-left-square.svg';
 import { convertTime, selectCommentStory } from './../../state/selectors';
 import { actRestartState } from '../../state/reducers-actions';
 

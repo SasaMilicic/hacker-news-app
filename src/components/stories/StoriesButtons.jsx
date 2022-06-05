@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { StContButttons } from './style-stories';
-import { ReactComponent as ButtonPrevPage } from '../svg/arrow-left-square-fill.svg';
-import { ReactComponent as ButtonNextPage } from '../svg/arrow-right-square-fill.svg';
+import { ReactComponent as ButtonPrevPage } from '../../assets/svg/icons/arrow-left-square-fill.svg';
+import { ReactComponent as ButtonNextPage } from '../../assets/svg/icons/arrow-right-square-fill.svg';
 import { actNextPage, actPrevPage } from '../../state/reducers-actions';
 import { calcPageNumber } from '../../state/selectors';
 

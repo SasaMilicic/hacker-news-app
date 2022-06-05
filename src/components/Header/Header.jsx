@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { StHeader, Error } from './style-header';
 import { selectErrorMessage } from '../../state/selectors';
 import { Link } from 'react-router-dom';
-import { ReactComponent as HomeButton } from '../svg/home.svg';
+import { ReactComponent as HomeButton } from '../../assets/svg/icons/home.svg';
 import { useDispatch } from 'react-redux';
 import { actRestartState } from '../../state/reducers-actions';
 

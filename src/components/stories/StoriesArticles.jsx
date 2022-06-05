@@ -1,6 +1,6 @@
 import { StyHeadline, StyError, StyCommentBox } from './style-stories';
 import LoadingPage from '../loading/LoadingPage';
-import { ReactComponent as ScoreIcon } from '../svg/hand-thumbs-up-fill.svg';
+import { ReactComponent as ScoreIcon } from '../../assets/svg/icons/hand-thumbs-up-fill.svg';
 import { useSelector } from 'react-redux';
 import {
   calcOrdinalNumber,

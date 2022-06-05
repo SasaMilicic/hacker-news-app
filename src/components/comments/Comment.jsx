@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyComment, StyReplies } from './style-comments';
-import { ReactComponent as ShowReplyBtn } from '../svg/arrow-down-square.svg';
-import { ReactComponent as BackReplyBtn } from '../svg/arrow-right-square.svg';
+import { ReactComponent as ShowReplyBtn } from '../../assets/svg/icons/arrow-down-square.svg';
+import { ReactComponent as BackReplyBtn } from '../../assets/svg/icons/arrow-right-square.svg';
 import LoadingReplies from './../loading/LoadingReplies';
 import Reply from './Reply';
 import { convertTime, selectReplies } from './../../state/selectors';
