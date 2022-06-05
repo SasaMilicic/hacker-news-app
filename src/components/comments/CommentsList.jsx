@@ -5,7 +5,7 @@ import { StyComments, StyCommentError } from './style-comments';
 import Comment from './Comment';
 import LoadingPage from '../loading/LoadingPage';
 import CommentStory from './CommentStory';
-import { getComments } from '../../state/fetch/fetch-fun';
+import { getComments } from './../../api/fetch-fun';
 import {
   isContainesJustId,
   selectComments,

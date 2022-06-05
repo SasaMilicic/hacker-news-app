@@ -4,8 +4,8 @@ import Pages from './pages/Pages';
 import { StApp } from './style-app';
 import { BrowserRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getStories } from './state/fetch/fetch-fun';
 import { selectPageRange } from './state/selectors';
+import { getStories } from './api/fetch-fun';
 
 function App() {
   const dispatch = useDispatch();

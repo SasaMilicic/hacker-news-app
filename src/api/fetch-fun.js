@@ -9,7 +9,7 @@ import {
   actFetchRepliesReq,
   actFetchRepliesSucc,
   actFetchRepliesFail,
-} from '../reducers-actions';
+} from '../state/reducers-actions';
 
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 const STORIES_ID_URL = `${BASE_URL}/topstories.json`;
