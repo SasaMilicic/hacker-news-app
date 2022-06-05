@@ -5,8 +5,9 @@ import { ReactComponent as ShowReplyBtn } from '../../assets/svg/icons/arrow-dow
 import { ReactComponent as BackReplyBtn } from '../../assets/svg/icons/arrow-right-square.svg';
 import LoadingReplies from './../loading/LoadingReplies';
 import Reply from './Reply';
-import { convertTime, selectReplies } from './../../state/selectors';
+import { selectReplies } from './../../state/selectors';
 import { getReplies } from './../../api/api-replies';
+import { convertTime } from './../../utils/utils-components';
 
 function Comment({ comment }) {
   const dispatch = useDispatch();

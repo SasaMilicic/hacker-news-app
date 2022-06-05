@@ -1,10 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import {
-  convertTime,
-  isContainesJustId,
-  selectErrorMessage,
-} from './../../state/selectors';
+import { isContainesJustId, convertTime } from '../../utils/utils-components';
+import { selectErrorMessage } from './../../state/selectors';
 import { StyReply } from './style-comments';
 
 function Reply({ reply }) {

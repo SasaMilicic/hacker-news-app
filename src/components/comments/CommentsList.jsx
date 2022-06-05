@@ -6,8 +6,8 @@ import Comment from './Comment';
 import LoadingPage from '../loading/LoadingPage';
 import CommentStory from './CommentStory';
 import { getComments } from './../../api/api-comments';
+import { isContainesJustId } from '../../utils/utils-components';
 import {
-  isContainesJustId,
   selectComments,
   selectCommRequest,
   selectErrorMessage,

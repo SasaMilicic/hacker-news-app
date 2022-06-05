@@ -1,15 +1,14 @@
-import { StyHeadline, StyError, StyCommentBox } from './style-stories';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LoadingPage from '../loading/LoadingPage';
 import { ReactComponent as ScoreIcon } from '../../assets/svg/icons/hand-thumbs-up-fill.svg';
-import { useSelector } from 'react-redux';
+import { StyHeadline, StyError, StyCommentBox } from './style-stories';
+import { isContainesJustId, convertTime } from '../../utils/utils-components';
 import {
   calcOrdinalNumber,
   selectStoryRequest,
   selectStories,
-  convertTime,
-  isContainesJustId,
 } from '../../state/selectors';
-import { Link } from 'react-router-dom';
 
 function Main() {
   const storiesState = useSelector((state) => state.stories);

@@ -8,7 +8,7 @@ import {
   getItems,
   isNotAllElementsAvilable,
   getFilteredElements,
-} from './../utils/api-utils';
+} from '../utils/utils-api';
 
 const errorMessages = {
   msgNoReply: "This Reply currently isn't available!",

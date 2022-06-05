@@ -9,9 +9,9 @@ import {
   isNotDataAvilable,
   isNotAllElementsAvilable,
   getFilteredElements,
-} from './../utils/api-utils';
+} from './../utils/utils-api';
 
-import { STORIES_ID_URL } from './../utils/api-utils';
+import { STORIES_ID_URL } from './../utils/utils-api';
 
 const errorMessages = {
   msgNoIds: 'Something went wrong, please try for few minutes!',

@@ -9,9 +9,9 @@ import {
   getItems,
   isNotAllElementsAvilable,
   getFilteredElements,
-} from './../utils/api-utils';
+} from '../utils/utils-api';
 
-import { ITEM_URL } from './../utils/api-utils';
+import { ITEM_URL } from '../utils/utils-api';
 
 const errorMessages = {
   msgNoComment: "This Comment currently isn't available!",
