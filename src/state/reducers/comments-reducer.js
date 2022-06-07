@@ -1,3 +1,10 @@
+import { createAction, createReducer } from '@reduxjs/toolkit';
+
+export const actFetchCommentsReq = createAction('fetchCommentsReq');
+export const actFetchCommentsSucc = createAction('fetchCommentsSucc');
+export const actFetchStorySucc = createAction('fetchStorySucc');
+export const actFetchCommentsFail = createAction('fetchCommentsFail');
+
 const initialState = {
   storyData: {},
   commentsData: [],
@@ -5,37 +12,25 @@ const initialState = {
   error: null,
 };
 
-export const commentReducer = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case `FETCH_COMMENTS_REQUEST`:
-      return {
-        ...state,
-        commentsRequest: true,
-        error: null,
-      };
+export const commentsReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase('fetchCommentsReq', (state) => {
+      state.commentsRequest = true;
+      state.error = null;
+    })
 
-    case `FETCH_STORY_SUCCESS`:
-      return {
-        ...state,
-        storyData: payload,
-      };
+    .addCase('fetchStorySucc', (state, { payload }) => {
+      state.storyData = payload;
+    })
 
-    case `FETCH_COMMENTS_SUCCESS`:
-      return {
-        ...state,
-        commentsRequest: false,
-        commentsData: payload,
-      };
+    .addCase('fetchCommentsSucc', (state, { payload }) => {
+      state.commentsRequest = false;
+      state.commentsData = payload;
+    })
 
-    case `FETCH_COMMENTS_FAILURE`:
-      return {
-        ...state,
-        commentsRequest: false,
-        commentData: [],
-        error: payload,
-      };
-
-    default:
-      return state;
-  }
-};
+    .addCase('fetchCommentsFail', (state, { payload }) => {
+      state.commentsRequest = false;
+      state.commentsData = [];
+      state.error = payload;
+    });
+});

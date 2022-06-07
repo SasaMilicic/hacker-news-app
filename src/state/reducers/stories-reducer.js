@@ -1,10 +1,10 @@
 import { createAction, createReducer, current } from '@reduxjs/toolkit';
 
-export const actFetchStoriesReq = createAction('stories/fetchStoriesReq');
-export const actFetchStoriesSucc = createAction('stories/fetchStoriesSucc');
-export const actFetchStoriesFail = createAction('stories/fetchStoriesFail');
-export const actNextPage = createAction('stories/nextPage');
-export const actPrevPage = createAction('stories/prevPage');
+export const actFetchStoriesReq = createAction('fetchStoriesReq');
+export const actFetchStoriesSucc = createAction('fetchStoriesSucc');
+export const actFetchStoriesFail = createAction('fetchStoriesFail');
+export const actNextPage = createAction('nextPage');
+export const actPrevPage = createAction('prevPage');
 
 const initialState = {
   storiesData: [],
@@ -16,23 +16,23 @@ const initialState = {
 
 export const storiesReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(actFetchStoriesReq, (state) => {
+    .addCase('fetchStoriesReq', (state) => {
       state.storiesRequest = true;
       state.error = null;
     })
 
-    .addCase(actFetchStoriesSucc, (state, { payload }) => {
+    .addCase('fetchStoriesSucc', (state, { payload }) => {
       state.storiesRequest = false;
       state.storiesData = payload;
     })
 
-    .addCase(actFetchStoriesFail, (state, { payload }) => {
+    .addCase('fetchStoriesFail', (state, { payload }) => {
       state.storiesRequest = false;
       state.storiesData = [];
       state.error = payload;
     })
 
-    .addCase(actNextPage, (state) => {
+    .addCase('nextPage', (state) => {
       const {
         storiesData,
         NUM_ARTICLES,
@@ -49,7 +49,7 @@ export const storiesReducer = createReducer(initialState, (builder) => {
       state.pageRange.lastPageEl = newLastPageEl;
     })
 
-    .addCase(actPrevPage, (state, action) => {
+    .addCase('prevPage', (state, action) => {
       const {
         NUM_ARTICLES,
         pageRange: { firstPageEl },

@@ -5,7 +5,7 @@ import { selectErrorStories } from '../../state/selectors';
 import { Link, useLocation } from 'react-router-dom';
 import { ReactComponent as HomeButton } from '../../assets/svg/icons/home.svg';
 import { useDispatch } from 'react-redux';
-import { actRestartState } from '../../state/reducers-actions';
+import { actRestartState } from '../../state/reducers/reply-reducer';
 
 function Header() {
   const dispatch = useDispatch();

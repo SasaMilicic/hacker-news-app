@@ -2,7 +2,7 @@ import {
   actFetchRepliesReq,
   actFetchRepliesSucc,
   actFetchRepliesFail,
-} from '../state/reducers-actions';
+} from '../state/reducers/reply-reducer';
 
 import {
   getItems,

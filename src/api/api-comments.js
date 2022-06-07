@@ -3,7 +3,7 @@ import {
   actFetchCommentsSucc,
   actFetchCommentsFail,
   actFetchStorySucc,
-} from '../state/reducers-actions';
+} from '../state/reducers/comments-reducer';
 
 import {
   getItems,

@@ -1,41 +1,39 @@
+import { createAction, createReducer } from '@reduxjs/toolkit';
+
+export const actFetchRepliesReq = createAction('fetchRepliesReq');
+export const actFetchRepliesSucc = createAction('fetchRepliesSucc');
+export const actFetchRepliesFail = createAction('fetchRepliesFail');
+export const actRestartState = createAction('restartState');
+
 const initialState = {
   repliesData: [],
   repliesRequest: false,
   error: null,
 };
 
-export const repliesReducer = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case `FETCH_REPLIES_REQUEST`:
-      return {
-        ...state,
-        repliesRequest: true,
-        error: null,
-      };
+export const repliesReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase('fetchRepliesReq', (state) => {
+      state.repliesRequest = true;
+      state.error = null;
+    })
 
-    case `FETCH_REPLIES_SUCCESS`:
-      const addNewReply = [...state.repliesData, ...payload];
+    .addCase('fetchRepliesSucc', (state, { payload }) => {
+      const { repliesData } = state;
 
-      return {
-        ...state,
-        repliesRequest: false,
-        repliesData: addNewReply,
-      };
+      const addNewReply = [...repliesData, ...payload];
 
-    case `FETCH_REPLIES_FAILURE`:
-      return {
-        ...state,
-        commentsRequest: false,
-        repliesData: [],
-        error: payload,
-      };
+      state.repliesRequest = false;
+      state.repliesData = addNewReply;
+    })
 
-    case `RESTART_STATE`:
-      return {
-        state: initialState,
-      };
+    .addCase('fetchRepliesFail', (state, { payload }) => {
+      state.commentsRequest = false;
+      state.repliesData = [];
+      state.error = payload;
+    })
 
-    default:
-      return state;
-  }
-};
+    .addCase('restartState', (state) => {
+      state = initialState;
+    });
+});

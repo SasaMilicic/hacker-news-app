@@ -1,8 +1,13 @@
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from '@redux-devtools/extension';
-import thunk from 'redux-thunk';
-import rootReducers from '../state/reducers/index-reducers';
+import { configureStore } from '@reduxjs/toolkit';
 
-const composedEnhancer = composeWithDevTools(applyMiddleware(thunk));
+import { storiesReducer } from './reducers/stories-reducer';
+import { commentsReducer } from './reducers/comments-reducer';
+import { repliesReducer } from './reducers/reply-reducer';
 
-export const store = createStore(rootReducers, composedEnhancer);
+export const store = configureStore({
+  reducer: {
+    stories: storiesReducer,
+    comments: commentsReducer,
+    replies: repliesReducer,
+  },
+});
