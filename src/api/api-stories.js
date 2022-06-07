@@ -2,7 +2,7 @@ import {
   actFetchStoriesReq,
   actFetchStoriesSucc,
   actFetchStoriesFail,
-} from '../state/reducers-actions';
+} from '../state/reducers/stories-reducer';
 
 import {
   getItems,
