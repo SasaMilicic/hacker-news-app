@@ -9,8 +9,6 @@ import { STORIES_ID_URL } from './../utils/utils-api';
 export const getStoriesIds = () => async (dispatch) => {
   dispatch(actFetchStoriesIdsReq());
 
-  console.log('sasa');
-
   const getStoriesIds = await fetch(STORIES_ID_URL);
 
   if (!getStoriesIds.ok) {
