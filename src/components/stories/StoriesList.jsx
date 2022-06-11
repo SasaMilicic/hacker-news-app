@@ -5,7 +5,6 @@ import Story from './Story';
 
 function StoriesList() {
   const storiesIds = useSelector(selectStoriesIds);
-  console.log(storiesIds);
 
   return (
     <div>

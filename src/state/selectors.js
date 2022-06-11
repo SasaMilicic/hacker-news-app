@@ -1,6 +1,8 @@
 /////////////////////////////////// StoriesIds  ///////////////////////////////////
 
-export const selectStoriesIds = (state) => state.storiesIds.storiesIdsData;
+export const selectStoriesIds = (state) => {
+  return state.storiesIds.storiesIdsData.slice(0, 10);
+};
 
 /////////////////////////////////// Stories  ///////////////////////////////////
 
