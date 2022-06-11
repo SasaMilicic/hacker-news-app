@@ -13,7 +13,7 @@ export const calcOrdinalNumber = (state) => {
   return state.stories.pageRange.firstPageEl + 1;
 };
 
-export const selectStoryRequest = (state) => state.stories.storiesRequest;
+// export const selectStoryRequest = (state) => state.stories.storiesRequest;
 
 export const selectPageRange = (state) => {
   const { firstPageEl, lastPageEl } = state.stories.pageRange;

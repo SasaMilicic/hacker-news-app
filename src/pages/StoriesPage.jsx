@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 import StoriesList from '../components/stories/StoriesList';
 
 // import StoriesButtons from '../components/stories/StoriesButtons';
-import { selectStoryRequest } from '../state/selectors';
+// import { selectStoryRequest } from '../state/selectors';
 import { StyleStoriesPage } from './style-pages';
 
 function StoriesPage() {
-  const isLoadingStories = useSelector(selectStoryRequest);
+  // const isLoadingStories = useSelector(selectStoryRequest);
 
   return (
-    <StyleStoriesPage isLoading={isLoadingStories}>
+    <StyleStoriesPage /* isLoading={isLoadingStories} */>
       <StoriesList />
       {/* {!isLoadingStories && <StoriesButtons />} */}
     </StyleStoriesPage>

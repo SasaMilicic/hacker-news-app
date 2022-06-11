@@ -3,6 +3,6 @@ import { reducerStoriesIds } from './reducers/reducer-stories-ids';
 
 export const store = configureStore({
   reducer: {
-    stories: reducerStoriesIds,
+    storiesIds: reducerStoriesIds,
   },
 });
