@@ -1,20 +1,9 @@
-import React, { useEffect } from 'react';
 import Header from './components/header/Header';
 import Pages from './pages/Pages';
 import { StApp } from './style-app';
 import { BrowserRouter } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectPageRange } from './state/selectors';
-import { getStories } from './api/api-stories';
 
 function App() {
-  const dispatch = useDispatch();
-  const pageRange = useSelector(selectPageRange);
-
-  useEffect(() => {
-    dispatch(getStories(...pageRange));
-  }, [...pageRange]);
-
   return (
     <StApp>
       <BrowserRouter>
