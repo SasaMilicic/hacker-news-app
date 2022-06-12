@@ -1,6 +1,8 @@
 /////////////////////////////////// StoriesIds  ///////////////////////////////////
 
 export const selectStoriesIds = (state) => {
+  console.log(state);
+
   return state.storiesIds.storiesIdsData.slice(0, 10);
 };
 

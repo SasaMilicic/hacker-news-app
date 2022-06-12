@@ -1,5 +1,8 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 
+export const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
+export const ITEM_URL = (itemID) => `${BASE_URL}/item/${itemID}.json`;
+
 export const actFetchStories = createAction('fetchStories');
 
 const initialState = {
@@ -11,9 +14,6 @@ export const storiesReducer = createReducer(initialState, (builder) => {
     state.storiesData.push(payload);
   });
 });
-
-export const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
-export const ITEM_URL = (itemID) => `${BASE_URL}/item/${itemID}.json`;
 
 export const getItem = (id, loading) => async (dispatch) => {
   loading(true);
