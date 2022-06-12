@@ -1,4 +1,4 @@
-// import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectStory } from '../../state/selectors';
@@ -14,8 +14,6 @@ function CommentsList() {
     url,
     kids: commentsIds,
   } = useSelector((state) => selectStory(state, Number(id)));
-
-  console.log(commentsIds);
 
   return (
     <StyComments>

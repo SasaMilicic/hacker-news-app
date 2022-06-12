@@ -24,7 +24,7 @@ export const storiesReducer = createReducer(initialState, (builder) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const getItem = (id, loading) => async (dispatch) => {
+export const getStories = (id, loading) => async (dispatch) => {
   dispatch(restartState());
 
   loading(true);

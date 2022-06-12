@@ -23,30 +23,6 @@ export const StyComments = styled.div`
   }
 `;
 
-export const StyComment = styled.div`
-  border-bottom: 2px solid black;
-  padding: 5px;
-
-  h3 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    div {
-      font-size: 15px;
-      font-style: italic;
-    }
-
-    span {
-      margin-left: 10px;
-    }
-  }
-
-  .deleted {
-    opacity: 0.4;
-  }
-`;
-
 export const StyReplies = styled.div`
   margin-top: 5px;
 

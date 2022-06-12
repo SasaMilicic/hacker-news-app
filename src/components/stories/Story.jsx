@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getItem } from './../../state/reducers/stories-reducer';
+import { getStories } from '../../state/reducers/reducer-stories';
 import LoadingPage from './../loading/LoadingPage';
 import { selectStory } from '../../state/selectors';
 import { convertTime } from './../../utils/utils-components';
@@ -20,7 +20,7 @@ function Story({ storyId }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getItem(storyId, setIsLoading));
+    dispatch(getStories(storyId, setIsLoading));
   }, [storyId]);
 
   if (isLoading) {

@@ -16,6 +16,14 @@ export const selectStory = (state, id) => {
   return story[0];
 };
 
+export const selectComment = (state, id) => {
+  const { commentsData } = state.comments;
+
+  const comment = commentsData.filter((comment) => comment.id === id);
+
+  return comment[0];
+};
+
 /* ---------------------------------------------------------------------------- */
 
 export const calcOrdinalNumber = (state, StoryId) => {
