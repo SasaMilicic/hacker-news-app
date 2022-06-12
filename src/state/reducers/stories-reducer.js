@@ -20,13 +20,13 @@ export const getItem = (id, loading) => async (dispatch) => {
 
   const fetchArticle = await fetch(ITEM_URL(id));
   if (!fetchArticle.ok) {
-    loading(false);
     dispatch(actFetchStories(id));
+    loading(false);
     return;
   }
 
   const responseItem = await fetchArticle.json();
 
-  loading(false);
   dispatch(actFetchStories(responseItem));
+  loading(false);
 };

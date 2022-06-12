@@ -4,6 +4,25 @@ export const selectStoriesIds = (state) => {
   return state.storiesIds.storiesIdsData.slice(0, 10);
 };
 
+/* ---------------------------------------------------------------------------- */
+
+export const selectStory = (state, id) => {
+  const { storiesData } = state.stories;
+
+  const story = storiesData.filter((story) => story.id === id);
+  return story[0];
+};
+
+/* ---------------------------------------------------------------------------- */
+
+export const calcOrdinalNumber = (state, StoryId) => {
+  const { storiesIdsData } = state.storiesIds;
+
+  const oridinalNumber = storiesIdsData.indexOf(StoryId);
+
+  return oridinalNumber + 1;
+};
+
 /////////////////////////////////// Stories  ///////////////////////////////////
 
 export const calcPageNumber = (state) => {
@@ -13,10 +32,6 @@ export const calcPageNumber = (state) => {
   } = state.stories;
 
   return Math.ceil(firstPageEl / NUM_ARTICLES) + 1;
-};
-
-export const calcOrdinalNumber = (state) => {
-  return state.stories.pageRange.firstPageEl + 1;
 };
 
 // export const selectStoryRequest = (state) => state.stories.storiesRequest;
