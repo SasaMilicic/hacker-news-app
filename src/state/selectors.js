@@ -1,9 +1,9 @@
 /////////////////////////////////// StoriesIds  ///////////////////////////////////
 
 export const selectStoriesIds = (state) => {
-  console.log(state);
+  const { firstPageEl, lastPageEl } = state.storiesIds.pageRange;
 
-  return state.storiesIds.storiesIdsData.slice(0, 10);
+  return state.storiesIds.storiesIdsData.slice(firstPageEl, lastPageEl);
 };
 
 /* ---------------------------------------------------------------------------- */

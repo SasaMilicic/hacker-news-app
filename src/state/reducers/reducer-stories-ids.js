@@ -3,6 +3,8 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 export const actFetchStoriesIdsReq = createAction('fetchStoriesIdsReq');
 export const actFetchStoriesIdsSucc = createAction('fetchStoriesIdsSucc');
 export const actFetchStoriesIdsFail = createAction('fetchStoriesIdsFail');
+export const actNextPage = createAction('nextPage');
+export const actPrevPage = createAction('prevPage');
 
 const initialState = {
   storiesIdsData: [],
@@ -25,6 +27,18 @@ export const reducerStoriesIds = createReducer(initialState, (builder) => {
     })
 
     .addCase('fetchStoriesIdsFail', (state, { payload }) => {
+      state.storiesIdsRequest = false;
+      state.storiesIdsData = [];
+      state.errorIds = payload;
+    })
+
+    .addCase('nextPage', (state, { payload }) => {
+      state.storiesIdsRequest = false;
+      state.storiesIdsData = [];
+      state.errorIds = payload;
+    })
+
+    .addCase('prevPage', (state, { payload }) => {
       state.storiesIdsRequest = false;
       state.storiesIdsData = [];
       state.errorIds = payload;
