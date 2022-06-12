@@ -4,14 +4,26 @@ import { useParams } from 'react-router-dom';
 import { selectStory } from '../../state/selectors';
 import { StyComments } from './style-comments';
 import CommentStory from './CommentStory';
+import Comment from './Comment';
 
 function CommentsList() {
   const { id } = useParams();
-  const story = useSelector((state) => selectStory(state, Number(id)));
+  const {
+    title,
+    time,
+    url,
+    kids: commentsIds,
+  } = useSelector((state) => selectStory(state, Number(id)));
+
+  console.log(commentsIds);
 
   return (
     <StyComments>
-      <CommentStory story={story} />
+      <CommentStory title={title} time={time} url={url} />
+
+      {commentsIds.map((commentId) => (
+        <Comment key={commentId} commentId={commentId} />
+      ))}
     </StyComments>
   );
 }
