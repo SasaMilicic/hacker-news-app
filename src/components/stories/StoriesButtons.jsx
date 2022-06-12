@@ -11,25 +11,23 @@ import { calcPageNumber } from '../../state/selectors';
 function StoriesButtons() {
   const dispatch = useDispatch();
 
-  // const pageNumber = useSelector(calcPageNumber);
+  const pageNumber = useSelector(calcPageNumber);
 
   return (
     <StContButttons>
-      {/* {pageNumber === 1 ? (
+      {pageNumber === 1 ? (
         <ButtonPrevPage className="off-button" />
       ) : (
         <ButtonPrevPage onClick={() => dispatch(actPrevPage())} />
       )}
 
-      <div>{pageNumber}</div> */}
+      <div>{pageNumber}</div>
 
-      {/* {pageNumber === 17 ? (
+      {pageNumber === 17 ? (
         <ButtonNextPage className="off-button" />
       ) : (
         <ButtonNextPage onClick={() => dispatch(actNextPage())} />
-      )} */}
-      <ButtonPrevPage onClick={() => dispatch(actPrevPage())} />
-      <ButtonNextPage onClick={() => dispatch(actNextPage())} />
+      )}
     </StContButttons>
   );
 }

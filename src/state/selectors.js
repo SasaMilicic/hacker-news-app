@@ -29,9 +29,9 @@ export const calcOrdinalNumber = (state, StoryId) => {
 
 export const calcPageNumber = (state) => {
   const {
-    NUM_ARTICLES,
     pageRange: { firstPageEl },
-  } = state.stories;
+    NUM_ARTICLES,
+  } = state.storiesIds;
 
   return Math.ceil(firstPageEl / NUM_ARTICLES) + 1;
 };
