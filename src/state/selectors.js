@@ -12,6 +12,7 @@ export const selectStory = (state, id) => {
   const { storiesData } = state.stories;
 
   const story = storiesData.filter((story) => story.id === id);
+
   return story[0];
 };
 
