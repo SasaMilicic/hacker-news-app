@@ -16,10 +16,10 @@ function Header() {
 
   return (
     <StHeader>
-      {/* <Link onClick={dispatch(actRestartState)} to="/"> */}
-      <HomeButton />
-      <h1>Hacker News - {toggleHeadline}</h1>
-      {/* </Link> */}
+      <Link /* onClick={dispatch(actRestartState)} */ to="/">
+        <HomeButton />
+        <h1>Hacker News - {toggleHeadline}</h1>
+      </Link>
 
       {/* <Error>{errStoryMessage && <h4> {errStoryMessage}</h4>}</Error> */}
     </StHeader>
