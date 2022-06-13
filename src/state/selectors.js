@@ -34,6 +34,15 @@ export const calcOrdinalNumber = (state, StoryId) => {
   return oridinalNumber + 1;
 };
 
+export const checkStoriesFilled = (state) => {
+  const {
+    stories: { storiesData },
+    storiesIds: { NUM_ARTICLES },
+  } = state;
+
+  return storiesData.length === NUM_ARTICLES;
+};
+
 /////////////////////////////////// Stories  ///////////////////////////////////
 
 export const calcPageNumber = (state) => {
