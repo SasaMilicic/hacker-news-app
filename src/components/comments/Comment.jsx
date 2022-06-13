@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getComment } from '../../state/reducers/reducer-comments';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingPage from './../loading/LoadingPage';
 import styled from 'styled-components';
 import { selectComment } from './../../state/selectors';
 import { convertTime } from './../../utils/utils-components';
 import Replies from './../replies/Replies';
+import { getItem } from './../../utils/utils-api';
+import { actFetchComment } from './../../state/reducers/reducer-comments';
 
 function Comment({ commentId }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +15,7 @@ function Comment({ commentId }) {
   const comment = useSelector((state) => selectComment(state, commentId));
 
   useEffect(() => {
-    dispatch(getComment(commentId, setIsLoading));
+    dispatch(getItem(commentId, setIsLoading, actFetchComment));
   }, [commentId]);
 
   if (isLoading) {

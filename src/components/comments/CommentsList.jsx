@@ -6,10 +6,9 @@ import CommentStory from './CommentStory';
 import Comment from './Comment';
 import { selectCommentsStory } from './../../state/selectors';
 import LoadingPage from './../loading/LoadingPage';
-import {
-  actRestartCommentState,
-  getStory,
-} from './../../state/reducers/reducer-comments';
+import { getItem } from './../../utils/utils-api';
+import { actRestartCommentState } from './../../state/reducers/reducer-comments';
+import { actFetchCommentStory } from './../../state/reducers/reducer-comments';
 
 function CommentsList() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +18,7 @@ function CommentsList() {
   const story = useSelector(selectCommentsStory);
 
   useEffect(() => {
-    dispatch(getStory(id, setIsLoading));
+    dispatch(getItem(id, setIsLoading, actFetchCommentStory));
 
     return () => {
       dispatch(actRestartCommentState());

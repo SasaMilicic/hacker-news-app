@@ -22,15 +22,17 @@ export const getFilteredElements = (stories, storiesIds) => {
   return filteredStories;
 };
 
-export const getItem = async (id) => {
-  const fetchArticle = await fetch(ITEM_URL(id));
-  if (!fetchArticle.ok) return;
+export const getItem = (id, loading, actFetch) => async (dispatch) => {
+  loading(true);
+  const fetchItem = await fetch(ITEM_URL(id));
 
-  return await fetchArticle.json();
-};
+  if (!fetchItem.ok) {
+    dispatch(actFetch(id));
+    loading(false);
+    return;
+  }
 
-export const getItems = (itemIds) => {
-  const itemPromises = itemIds.map(getItem);
-
-  return Promise.all(itemPromises);
+  const responseItem = await fetchItem.json();
+  dispatch(actFetch(responseItem));
+  loading(false);
 };

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getStories } from '../../state/reducers/reducer-stories';
 import LoadingPage from './../loading/LoadingPage';
 import { selectStory } from '../../state/selectors';
 import { calcOrdinalNumber } from './../../state/selectors';
 import styled from 'styled-components';
 import StoryHeadline from './StoryHeadline';
 import StoryCommentBox from './StoryCommentBox';
+import { actFetchStories } from './../../state/reducers/reducer-stories';
+import { getItem } from './../../utils/utils-api';
 
 function Story({ storyId }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +20,7 @@ function Story({ storyId }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getStories(storyId, setIsLoading));
+    dispatch(getItem(storyId, setIsLoading, actFetchStories));
   }, [storyId]);
 
   return (

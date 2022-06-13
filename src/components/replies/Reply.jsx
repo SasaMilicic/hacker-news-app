@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {
-  getReply,
   actRemoveUnrenderedReply,
+  actFetchReply,
 } from './../../state/reducers/reducer-replies';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingReplies from './../loading/LoadingReplies';
 import { selectReply } from './../../state/selectors';
 import { convertTime } from './../../utils/utils-components';
+import { getItem } from './../../utils/utils-api';
 
 function Reply({ replyId }) {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function Reply({ replyId }) {
   const story = useSelector((state) => selectReply(state, replyId));
 
   useEffect(() => {
-    dispatch(getReply(replyId, setLoading));
+    dispatch(getItem(replyId, setLoading, actFetchReply));
 
     return () => {
       dispatch(actRemoveUnrenderedReply(replyId));
