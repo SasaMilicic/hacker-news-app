@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectStory } from '../../state/selectors';
 import { StyComments } from './style-comments';
 import CommentStory from './CommentStory';
 import Comment from './Comment';
+import { actRestartCommentStata } from './../../state/reducers/reducer-comments';
 
 function CommentsList() {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const {
     title,
@@ -14,6 +16,12 @@ function CommentsList() {
     url,
     kids: commentsIds,
   } = useSelector((state) => selectStory(state, Number(id)));
+
+  useEffect(() => {
+    return () => {
+      dispatch(actRestartCommentStata());
+    };
+  }, []);
 
   return (
     <StyComments>

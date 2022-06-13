@@ -1,8 +1,8 @@
 import { createAction, createReducer, current } from '@reduxjs/toolkit';
 
-export const actFetchStoriesIdsReq = createAction('fetchStoriesIdsReq');
-export const actFetchStoriesIdsSucc = createAction('fetchStoriesIdsSucc');
-export const actFetchStoriesIdsFail = createAction('fetchStoriesIdsFail');
+export const actFetchStoriesIdsReq = createAction('storiesIds/fetchReq');
+export const actFetchStoriesIdsSucc = createAction('storiesIds/fetchSucc');
+export const actFetchStoriesIdsFail = createAction('storiesIds/fetchFail');
 export const actNextPage = createAction('nextPage');
 export const actPrevPage = createAction('prevPage');
 
@@ -16,17 +16,17 @@ const initialState = {
 
 export const reducerStoriesIds = createReducer(initialState, (builder) => {
   builder
-    .addCase('fetchStoriesIdsReq', (state) => {
+    .addCase('storiesIds/fetchReq', (state) => {
       state.storiesIdsRequest = true;
       state.errorIds = null;
     })
 
-    .addCase('fetchStoriesIdsSucc', (state, { payload }) => {
+    .addCase('storiesIds/fetchSucc', (state, { payload }) => {
       state.storiesIdsRequest = false;
       state.storiesIdsData = payload;
     })
 
-    .addCase('fetchStoriesIdsFail', (state, { payload }) => {
+    .addCase('storiesIds/fetchFail', (state, { payload }) => {
       state.storiesIdsRequest = false;
       state.storiesIdsData = [];
       state.errorIds = payload;

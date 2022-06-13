@@ -3,8 +3,8 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 export const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 export const ITEM_URL = (itemID) => `${BASE_URL}/item/${itemID}.json`;
 
-export const actFetchStories = createAction('fetchStories');
-export const restartState = createAction('restartState');
+export const actFetchStories = createAction('stories/fetchStories');
+export const restartState = createAction('stories/restartState');
 
 const initialState = {
   storiesData: [],
@@ -13,11 +13,11 @@ const initialState = {
 export const storiesReducer = createReducer(initialState, (builder) => {
   builder
 
-    .addCase('fetchStories', (state, { payload }) => {
+    .addCase('stories/fetchStories', (state, { payload }) => {
       state.storiesData.push(payload);
     })
 
-    .addCase('restartState', (state) => {
+    .addCase('stories/restartState', (state) => {
       state.storiesData = initialState.storiesData;
     });
 });

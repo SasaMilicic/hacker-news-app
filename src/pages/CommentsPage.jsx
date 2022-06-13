@@ -1,17 +1,28 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import CommentsList from '../components/comments/CommentsList';
-import { selectCommRequest } from '../state/selectors';
-import { StyCommentsPage } from './style-pages';
+import styled from 'styled-components';
 
 function CommentsPage() {
-  // const isLoadingComments = useSelector(selectCommRequest);
-
   return (
-    <StyCommentsPage /* isLoadingComments={isLoadingComments} */>
+    <StyCommentsPage>
       <CommentsList />
     </StyCommentsPage>
   );
 }
 
 export default CommentsPage;
+
+const setBackgroundColor = (isLoad) => {
+  return (
+    !isLoad &&
+    `background: #e6e6e6;
+  color: black;`
+  );
+};
+const StyCommentsPage = styled.div`
+  text-align: justify;
+  padding: 20px;
+  border-radius: 20px;
+
+  ${(props) => setBackgroundColor(props.isLoadingComments)}
+`;
