@@ -8,7 +8,7 @@ function CommentStory({ story: { title, time, url } }) {
     <div>
       <h2>
         <span>
-          <Link /* onClick={dispatch(actRestartState)} */ to="/stories">
+          <Link to="/stories">
             <BackButton />
           </Link>
           <a target="_blank" rel="noreferrer" href={url}>

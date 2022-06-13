@@ -44,25 +44,3 @@ function CommentsList() {
 }
 
 export default CommentsList;
-
-//  <StyComments>
-// {isLoadingComments ? (
-//   <LoadingPage />
-// ) : (
-//   <>
-//     <CommentStory />
-
-//     {comments.map((comment) => {
-//       return isContainesJustId(comment) ? (
-//         <StyCommentError key={comment.id}>
-//           <h3>
-//             {errorCommentsMessage} id:'{id}'
-//           </h3>
-//         </StyCommentError>
-//       ) : (
-//         <Comment key={comment.id} comment={comment} />
-//       );
-//     })}
-//   </>
-// )}
-// </StyComments>

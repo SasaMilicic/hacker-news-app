@@ -5,6 +5,7 @@ import LoadingPage from './../loading/LoadingPage';
 import styled from 'styled-components';
 import { selectComment } from './../../state/selectors';
 import { convertTime } from './../../utils/utils-components';
+import Replies from './../replies/Replies';
 
 function Comment({ commentId }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +24,7 @@ function Comment({ commentId }) {
       </div>
     );
   } else {
-    const { type, by, time, text } = comment;
+    const { type, by, time, text, kids } = comment;
     return (
       <StyledComment>
         {comment.deleted ? (
@@ -50,6 +51,7 @@ function Comment({ commentId }) {
                 <p dangerouslySetInnerHTML={{ __html: text }} />
               )}
             </div>
+            <Replies repliesIds={kids} />
           </>
         )}
       </StyledComment>
