@@ -15,38 +15,3 @@ export const StyCommentsPage = styled.div`
 
   ${(props) => setBackgroundColor(props.isLoadingComments)}
 `;
-
-export const StyleStoriesPage = styled.main`
-  text-align: left;
-  color: black;
-  padding: 5px;
-
-  ${(props) => setBackgroundColor(props.isLoading)}
-
-  a {
-    color: black;
-    text-decoration: none;
-  }
-
-  li {
-    border-bottom: solid 2px black;
-  }
-
-  ul {
-    padding: 10px;
-    list-style-type: none;
-  }
-
-  h1 {
-    text-align: center;
-  }
-
-  h4,
-  h3,
-  h2 {
-    margin: 5px 0;
-  }
-  span {
-    text-decoration: underline;
-  }
-`;
