@@ -104,3 +104,12 @@ const StyledCommentBox = styled.div`
     display: flex;
   }
 `;
+
+// const StyError = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   color: red;
+//   h4 {
+//     font-style: italic;
+//   }
+// `;
