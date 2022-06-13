@@ -23,7 +23,7 @@ function Story({ storyId }) {
   }, [storyId]);
 
   return (
-    <StyleStory>
+    <StyleStory isLoading={isLoading}>
       {isLoading ? (
         <LoadingPage size={70} />
       ) : (
@@ -40,6 +40,7 @@ export default Story;
 
 const StyleStory = styled.div`
   border-bottom: 2px solid black;
+  padding: ${({ isLoading }) => isLoading && '10px 0px'};
 `;
 
 // const StyError = styled.div`
