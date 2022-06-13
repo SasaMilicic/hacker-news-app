@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getReply } from './../../state/reducers/reducer-replies';
+import {
+  getReply,
+  actRemoveUnrenderedReply,
+} from './../../state/reducers/reducer-replies';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingReplies from './../loading/LoadingReplies';
 import { selectReply } from './../../state/selectors';
@@ -14,7 +17,11 @@ function Reply({ replyId }) {
 
   useEffect(() => {
     dispatch(getReply(replyId, setLoading));
-  }, []);
+
+    return () => {
+      dispatch(actRemoveUnrenderedReply(replyId));
+    };
+  }, [replyId]);
 
   if (loading) {
     return (
