@@ -24,6 +24,14 @@ export const selectComment = (state, id) => {
   return comment[0];
 };
 
+export const selectReply = (state, id) => {
+  const { repliesData } = state.replies;
+
+  const reply = repliesData.filter((reply) => reply.id === id);
+
+  return reply[0];
+};
+
 /* ---------------------------------------------------------------------------- */
 
 export const calcOrdinalNumber = (state, StoryId) => {

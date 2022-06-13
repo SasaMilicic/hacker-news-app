@@ -1,7 +1,92 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { getReply } from './../../state/reducers/reducer-replies';
+import { useDispatch, useSelector } from 'react-redux';
+import LoadingReplies from './../loading/LoadingReplies';
+import { selectReply } from './../../state/selectors';
+import { convertTime } from './../../utils/utils-components';
 
 function Reply({ replyId }) {
-  return <div> {replyId} </div>;
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+
+  const story = useSelector((state) => selectReply(state, replyId));
+
+  useEffect(() => {
+    dispatch(getReply(replyId, setLoading));
+  }, []);
+
+  if (loading) {
+    return (
+      <StyledLoading>
+        <div className="loading">
+          <LoadingReplies />
+        </div>
+      </StyledLoading>
+    );
+  } else {
+    const { time, text, by, deleted } = story;
+    console.log(story);
+
+    return (
+      <StyledReply>
+        {deleted ? (
+          <div className="deleted">
+            <h5>Reply deleted!</h5>
+          </div>
+        ) : (
+          <>
+            <div>
+              <h5>Reply by: {by}</h5>
+              <h5 className="style-time">{convertTime(time)}</h5>
+            </div>
+            <p dangerouslySetInnerHTML={{ __html: text }} />
+          </>
+        )}
+      </StyledReply>
+    );
+  }
 }
 
 export default Reply;
+
+const StyledLoading = styled.div`
+  margin-left: 10px;
+  padding: 5px;
+  background-color: #cfcfcf;
+  border-radius: 10px;
+  display: flex;
+`;
+
+const StyledReply = styled.div`
+  margin-left: 10px;
+  padding: 5px;
+  background-color: #cfcfcf;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  p {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .style-time {
+    font-style: italic;
+  }
+
+  .deleted {
+    opacity: 0.4;
+  }
+
+  .error {
+    opacity: 0.4;
+    color: red;
+  }
+`;
