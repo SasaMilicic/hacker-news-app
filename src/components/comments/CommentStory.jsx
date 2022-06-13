@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as BackButton } from '../../assets/svg/icons/arrow-left-square.svg';
 import { convertTime } from './../../utils/utils-components';
 
-function CommentStory({ title, time, url }) {
+function CommentStory({ story: { title, time, url } }) {
   return (
     <div>
       <h2>

@@ -43,6 +43,8 @@ export const checkStoriesFilled = (state) => {
   return storiesData.length === NUM_ARTICLES;
 };
 
+export const selectCommentsStory = (state) => state.comments.storyData;
+
 /////////////////////////////////// Stories  ///////////////////////////////////
 
 export const calcPageNumber = (state) => {
