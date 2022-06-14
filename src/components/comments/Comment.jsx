@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { selectComment } from './../../state/selectors';
 import { convertTime, isContainesJustId } from './../../utils/utils-components';
 import Replies from './../replies/Replies';
-import { getComment } from './../../api/api';
+import { getComment } from './../../api/api-elements';
 
 function Comment({ commentId }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,9 +19,9 @@ function Comment({ commentId }) {
 
   if (isLoading) {
     return (
-      <div>
+      <StyledLoading>
         <LoadingPage size={70} />
-      </div>
+      </StyledLoading>
     );
   } else {
     if (isContainesJustId(comment)) {
@@ -70,6 +70,12 @@ function Comment({ commentId }) {
 }
 
 export default Comment;
+
+const StyledLoading = styled.div`
+  background-color: #cfcfcf;
+  border-radius: 10px;
+  margin-bottom: 5px;
+`;
 
 const StyledComment = styled.div`
   border-bottom: 2px solid black;

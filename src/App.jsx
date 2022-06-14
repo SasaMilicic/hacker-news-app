@@ -22,7 +22,7 @@ function App() {
     <StApp>
       <BrowserRouter>
         <Header />
-        {isStoriesIdsFiled && <Pages />}
+        {isStoriesIdsFiled && !storiesIds.error && <Pages />}
       </BrowserRouter>
     </StApp>
   );

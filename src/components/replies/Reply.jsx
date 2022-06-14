@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingReplies from './../loading/LoadingReplies';
 import { selectReply } from './../../state/selectors';
 import { convertTime, isContainesJustId } from './../../utils/utils-components';
-import { getReply } from '../../api/api';
+import { getReply } from '../../api/api-elements';
 
 function Reply({ replyId }) {
   const dispatch = useDispatch();

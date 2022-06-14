@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import StoryHeadline from './StoryHeadline';
 import StoryCommentBox from './StoryCommentBox';
 import { actRestartStoriesState } from './../../state/reducers/reducer-stories';
-import { getStory } from '../../api/api';
+import { getStory } from '../../api/api-elements';
 
 function Story({ storyId }) {
   const [isLoading, setIsLoading] = useState(true);

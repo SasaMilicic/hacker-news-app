@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { ReactComponent as HomeButton } from '../../assets/svg/icons/home.svg';
 import { actHomePage } from '../../state/reducers/reducer-stories-ids';
+import { selectStoriesIds } from './../../state/selectors';
 
 function Header() {
   const dispatch = useDispatch();
   const path = useLocation().pathname;
+
+  const storiesIds = useSelector(selectStoriesIds);
 
   const toggleHeadline = path.startsWith('/comments') ? 'comments' : 'stories';
 
@@ -17,6 +20,11 @@ function Header() {
         <HomeButton />
         <h1>Hacker News - {toggleHeadline}</h1>
       </Link>
+      {storiesIds.error && (
+        <Error>
+          <h4>{storiesIds.error}</h4>
+        </Error>
+      )}
     </StyleHeader>
   );
 }
