@@ -7,14 +7,14 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingReplies from './../loading/LoadingReplies';
 import { selectReply } from './../../state/selectors';
-import { convertTime } from './../../utils/utils-components';
+import { convertTime, isContainesJustId } from './../../utils/utils-components';
 import { getItem } from './../../utils/utils-api';
 
 function Reply({ replyId }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
-  const story = useSelector((state) => selectReply(state, replyId));
+  const reply = useSelector((state) => selectReply(state, replyId));
 
   useEffect(() => {
     dispatch(getItem(replyId, setLoading, actFetchReply));
@@ -33,9 +33,17 @@ function Reply({ replyId }) {
       </StyledLoading>
     );
   } else {
-    const { time, text, by, deleted } = story;
-    console.log(story);
+    if (isContainesJustId(reply)) {
+      return (
+        <StyledReply>
+          <div className="error">
+            Sorry, reply with ID '{replyId}' isn't available!
+          </div>
+        </StyledReply>
+      );
+    }
 
+    const { time, text, by, deleted } = reply;
     return (
       <StyledReply>
         {deleted ? (

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingPage from './../loading/LoadingPage';
 import styled from 'styled-components';
 import { selectComment } from './../../state/selectors';
-import { convertTime } from './../../utils/utils-components';
+import { convertTime, isContainesJustId } from './../../utils/utils-components';
 import Replies from './../replies/Replies';
 import { getItem } from './../../utils/utils-api';
 import { actFetchComment } from './../../state/reducers/reducer-comments';
@@ -25,6 +25,16 @@ function Comment({ commentId }) {
       </div>
     );
   } else {
+    if (isContainesJustId(comment)) {
+      return (
+        <StyledComment>
+          <div className="error">
+            Sorry, comment with ID '{commentId}' isn't available!
+          </div>
+        </StyledComment>
+      );
+    }
+
     const { type, by, time, text, kids } = comment;
     return (
       <StyledComment>
@@ -83,5 +93,11 @@ const StyledComment = styled.div`
 
   .deleted {
     opacity: 0.4;
+  }
+
+  .error {
+    color: red;
+    font-weight: 900;
+    opacity: 0.5;
   }
 `;
