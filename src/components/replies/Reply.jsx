@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingReplies from './../loading/LoadingReplies';
 import { selectReply } from './../../state/selectors';
 import { convertTime, isContainesJustId } from './../../utils/utils-components';
-import { getItem } from './../../utils/utils-api';
+import { getReply } from '../../api/api';
 
 function Reply({ replyId }) {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function Reply({ replyId }) {
   const reply = useSelector((state) => selectReply(state, replyId));
 
   useEffect(() => {
-    dispatch(getItem(replyId, setLoading, actFetchReply));
+    dispatch(getReply(replyId, setLoading));
 
     return () => {
       dispatch(actRemoveUnrenderedReply(replyId));

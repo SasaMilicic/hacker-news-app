@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import { selectComment } from './../../state/selectors';
 import { convertTime, isContainesJustId } from './../../utils/utils-components';
 import Replies from './../replies/Replies';
-import { getItem } from './../../utils/utils-api';
-import { actFetchComment } from './../../state/reducers/reducer-comments';
+import { getComment } from './../../api/api';
 
 function Comment({ commentId }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,7 +14,7 @@ function Comment({ commentId }) {
   const comment = useSelector((state) => selectComment(state, commentId));
 
   useEffect(() => {
-    dispatch(getItem(commentId, setIsLoading, actFetchComment));
+    dispatch(getComment(commentId, setIsLoading));
   }, [commentId]);
 
   if (isLoading) {

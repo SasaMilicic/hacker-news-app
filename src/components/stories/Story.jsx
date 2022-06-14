@@ -6,11 +6,8 @@ import { calcOrdinalNumber } from './../../state/selectors';
 import styled from 'styled-components';
 import StoryHeadline from './StoryHeadline';
 import StoryCommentBox from './StoryCommentBox';
-import {
-  actFetchStories,
-  actRestartStoriesState,
-} from './../../state/reducers/reducer-stories';
-import { getItem } from './../../utils/utils-api';
+import { actRestartStoriesState } from './../../state/reducers/reducer-stories';
+import { getStory } from '../../api/api';
 
 function Story({ storyId }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +20,7 @@ function Story({ storyId }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getItem(storyId, setIsLoading, actFetchStories));
+    dispatch(getStory(storyId, setIsLoading));
 
     return () => {
       dispatch(actRestartStoriesState());

@@ -1,6 +1,6 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 
-export const actFetchStories = createAction('stories/fetchStories');
+export const actFetchStory = createAction('stories/fetchStory');
 export const actRestartStoriesState = createAction('stories/restartState');
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
 export const storiesReducer = createReducer(initialState, (builder) => {
   builder
 
-    .addCase('stories/fetchStories', (state, { payload }) => {
+    .addCase('stories/fetchStory', (state, { payload }) => {
       state.storiesData.push(payload);
     })
 
