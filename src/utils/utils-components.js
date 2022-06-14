@@ -8,3 +8,7 @@ export const isContainesJustId = (element) => {
 };
 
 export const isArrayEmpty = (arr) => arr.length === 0;
+
+export const reducedText = (text) => {
+  return text.slice(0, 50);
+};

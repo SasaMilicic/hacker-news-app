@@ -1,40 +1,13 @@
-/////////////////////////////////// StoriesIds  ///////////////////////////////////
+////////////////////////////// CALCULATION AND CHECK //////////////////////////////
 
-export const selectStoriesIds = (state) => state.storiesIds.storiesIdsData;
+export const calcPageNumber = (state) => {
+  const {
+    pageRange: { firstPageEl },
+    NUM_ARTICLES,
+  } = state.storiesIds;
 
-export const selectRenderStoriesIds = (state) => {
-  const { firstPageEl, lastPageEl } = state.storiesIds.pageRange;
-
-  return state.storiesIds.storiesIdsData.slice(firstPageEl, lastPageEl);
+  return Math.ceil(firstPageEl / NUM_ARTICLES) + 1;
 };
-
-/* ---------------------------------------------------------------------------- */
-
-export const selectStory = (state, id) => {
-  const { storiesData } = state.stories;
-
-  const story = storiesData.filter((story) => story.id === id);
-
-  return story[0];
-};
-
-export const selectComment = (state, id) => {
-  const { commentsData } = state.comments;
-
-  const comment = commentsData.filter((comment) => comment.id === id);
-
-  return comment[0];
-};
-
-export const selectReply = (state, id) => {
-  const { repliesData } = state.replies;
-
-  const reply = repliesData.filter((reply) => reply.id === id);
-
-  return reply[0];
-};
-
-/* ---------------------------------------------------------------------------- */
 
 export const calcOrdinalNumber = (state, StoryId) => {
   const { storiesIdsData } = state.storiesIds;
@@ -53,21 +26,40 @@ export const checkStoriesFilled = (state) => {
   return storiesData.length === NUM_ARTICLES;
 };
 
+////////////////////////////////// S E L E C T //////////////////////////////////
+
 export const selectCommentsStory = (state) => state.comments.storyData;
 
-/////////////////////////////////// Stories  ///////////////////////////////////
-
-export const calcPageNumber = (state) => {
-  const {
-    pageRange: { firstPageEl },
-    NUM_ARTICLES,
-  } = state.storiesIds;
-
-  return Math.ceil(firstPageEl / NUM_ARTICLES) + 1;
-};
+export const selectStoriesIds = (state) => state.storiesIds.storiesIdsData;
 
 export const selectPageRange = (state) => {
   const { firstPageEl, lastPageEl } = state.stories.pageRange;
 
   return [firstPageEl, lastPageEl];
 };
+
+export const selectRenderStoriesIds = (state) => {
+  const { firstPageEl, lastPageEl } = state.storiesIds.pageRange;
+
+  return state.storiesIds.storiesIdsData.slice(firstPageEl, lastPageEl);
+};
+
+export const selectStory = (state, id) => {
+  const { storiesData } = state.stories;
+  const story = storiesData.filter((story) => story.id === id);
+  return story[0];
+};
+
+export const selectComment = (state, id) => {
+  const { commentsData } = state.comments;
+  const comment = commentsData.filter((comment) => comment.id === id);
+  return comment[0];
+};
+
+export const selectReply = (state, id) => {
+  const { repliesData } = state.replies;
+  const reply = repliesData.filter((reply) => reply.id === id);
+  return reply[0];
+};
+
+///////////////////////////////////////////////////////////////////////////////

@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingPage from './../loading/LoadingPage';
 import styled from 'styled-components';
 import { selectComment } from './../../state/selectors';
-import { convertTime, isContainesJustId } from './../../utils/utils-components';
+import {
+  convertTime,
+  isContainesJustId,
+  reducedText,
+} from './../../utils/utils-components';
 import Replies from './../replies/Replies';
 import { getComment } from './../../api/api-elements';
 
@@ -35,6 +39,7 @@ function Comment({ commentId }) {
     }
 
     const { type, by, time, text, kids } = comment;
+
     return (
       <StyledComment>
         {comment.deleted ? (
@@ -49,16 +54,12 @@ function Comment({ commentId }) {
               <div>{convertTime(time)}</div>
             </h3>
             <div>
-              {text && text.length > 500 ? (
-                <p>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: text,
-                    }}
-                  />
-                </p>
+              {text === undefined ? (
+                <p className="deleted"> No Text Reply! </p>
               ) : (
-                <p dangerouslySetInnerHTML={{ __html: text }} />
+                <>
+                  <p dangerouslySetInnerHTML={{ __html: text }} />
+                </>
               )}
             </div>
             <Replies repliesIds={kids} />
