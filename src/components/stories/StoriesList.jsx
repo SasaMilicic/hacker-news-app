@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectStoriesIds } from './../../state/selectors';
+import { selectRenderStoriesIds } from './../../state/selectors';
 import Story from './Story';
 
 function StoriesList() {
-  const storiesIds = useSelector(selectStoriesIds);
+  const storiesIds = useSelector(selectRenderStoriesIds);
 
   return (
     <div>

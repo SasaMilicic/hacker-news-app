@@ -4,10 +4,15 @@ import Pages from './pages/Pages';
 import { StApp } from './style-app';
 import { BrowserRouter } from 'react-router-dom';
 import { getStoriesIds } from './api/api-stories-ids';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { isArrayEmpty } from './utils/utils-components';
+import { selectStoriesIds } from './state/selectors';
 
 function App() {
   const dispatch = useDispatch();
+  const storiesIds = useSelector(selectStoriesIds);
+
+  const isStoriesIdsFiled = !isArrayEmpty(storiesIds);
 
   useEffect(() => {
     dispatch(getStoriesIds());
@@ -17,7 +22,7 @@ function App() {
     <StApp>
       <BrowserRouter>
         <Header />
-        <Pages />
+        {isStoriesIdsFiled && <Pages />}
       </BrowserRouter>
     </StApp>
   );
