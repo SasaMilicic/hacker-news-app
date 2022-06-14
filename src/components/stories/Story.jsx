@@ -6,7 +6,10 @@ import { calcOrdinalNumber } from './../../state/selectors';
 import styled from 'styled-components';
 import StoryHeadline from './StoryHeadline';
 import StoryCommentBox from './StoryCommentBox';
-import { actFetchStories } from './../../state/reducers/reducer-stories';
+import {
+  actFetchStories,
+  actRestartStoriesState,
+} from './../../state/reducers/reducer-stories';
 import { getItem } from './../../utils/utils-api';
 
 function Story({ storyId }) {
@@ -21,6 +24,10 @@ function Story({ storyId }) {
 
   useEffect(() => {
     dispatch(getItem(storyId, setIsLoading, actFetchStories));
+
+    return () => {
+      dispatch(actRestartStoriesState());
+    };
   }, [storyId]);
 
   return (

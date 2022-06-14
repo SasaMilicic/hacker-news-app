@@ -9,7 +9,7 @@ function StoriesPage() {
   const isStoriesFulfilled = useSelector(checkStoriesFilled);
 
   return (
-    <StyleStoriesPage /* isLoading={isLoadingStories} */>
+    <StyleStoriesPage>
       <StoriesList />
 
       {isStoriesFulfilled && <StoriesButtons />}

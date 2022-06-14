@@ -21,6 +21,7 @@ export const commentsReducer = createReducer(initialState, (builder) => {
     })
 
     .addCase('comments/restartState', (state) => {
-      state = initialState;
+      state.storyData = initialState.storyData;
+      state.commentsData = initialState.commentsData;
     });
 });

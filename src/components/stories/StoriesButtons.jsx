@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { ReactComponent as ButtonPrevPage } from '../../assets/svg/icons/arrow-left-square-fill.svg';
 import { ReactComponent as ButtonNextPage } from '../../assets/svg/icons/arrow-right-square-fill.svg';
 import {
@@ -6,7 +7,6 @@ import {
   actPrevPage,
 } from '../../state/reducers/reducer-stories-ids';
 import { calcPageNumber } from '../../state/selectors';
-import styled from 'styled-components';
 import { actRestartStoriesState } from '../../state/reducers/reducer-stories';
 
 function StoriesButtons() {
