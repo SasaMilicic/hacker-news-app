@@ -1,7 +1,7 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 
 export const actFetchStories = createAction('stories/fetchStories');
-export const restartState = createAction('stories/restartState');
+export const actRestartStoriesState = createAction('stories/restartState');
 
 const initialState = {
   storiesData: [],

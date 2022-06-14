@@ -7,18 +7,29 @@ import {
 } from '../../state/reducers/reducer-stories-ids';
 import { calcPageNumber } from '../../state/selectors';
 import styled from 'styled-components';
+import { actRestartStoriesState } from '../../state/reducers/reducer-stories';
 
 function StoriesButtons() {
   const dispatch = useDispatch();
 
   const pageNumber = useSelector(calcPageNumber);
 
+  const toNextPage = () => {
+    dispatch(actRestartStoriesState());
+    dispatch(actNextPage());
+  };
+
+  const toPrevPage = () => {
+    dispatch(actRestartStoriesState());
+    dispatch(actPrevPage());
+  };
+
   return (
     <StContButttons>
       {pageNumber === 1 ? (
         <ButtonPrevPage className="off-button" />
       ) : (
-        <ButtonPrevPage onClick={() => dispatch(actPrevPage())} />
+        <ButtonPrevPage onClick={toPrevPage} />
       )}
 
       <div>{pageNumber}</div>
@@ -26,7 +37,7 @@ function StoriesButtons() {
       {pageNumber === 17 ? (
         <ButtonNextPage className="off-button" />
       ) : (
-        <ButtonNextPage onClick={() => dispatch(actNextPage())} />
+        <ButtonNextPage onClick={toNextPage} />
       )}
     </StContButttons>
   );
