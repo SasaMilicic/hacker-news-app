@@ -17,11 +17,13 @@ function StoriesButtons() {
   const toNextPage = () => {
     dispatch(actRestartStoriesState());
     dispatch(actNextPage());
+    window.scrollTo(0, 0);
   };
 
   const toPrevPage = () => {
     dispatch(actRestartStoriesState());
     dispatch(actPrevPage());
+    window.scrollTo(0, 0);
   };
 
   return (
